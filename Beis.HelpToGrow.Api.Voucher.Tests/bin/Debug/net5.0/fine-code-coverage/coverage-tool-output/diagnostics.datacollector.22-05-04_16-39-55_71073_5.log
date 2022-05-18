@@ -1,0 +1,302 @@
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:55.861, 5325828069612, datacollector.dll, Version: 16.10.0-preview-20210219-03
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:55.869, 5325828126813, datacollector.dll, DataCollectorMain.Run: Starting data collector run with args: --port,61491,--parentprocessid,9320,--diag,C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\coverage-tool-output\diagnostics.datacollector.22-05-04_16-39-55_71073_5.log,--tracelevel,4
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:55.870, 5325828131478, datacollector.dll, DataCollector: Monitoring parent process with id: '9320'
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:55.879, 5325828228703, datacollector.dll, Trying to connect to server on socket : 127.0.0.1:61491 
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:55.887, 5325828303660, datacollector.dll, SocketCommunicationManager : SetupClientAsync : Attempting to connect to the server.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:55.898, 5325828411639, datacollector.dll, Connected to the server successfully 
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:55.898, 5325828413012, datacollector.dll, Using the buffer size of 16384 bytes
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:55.998, 5325829410192, datacollector.dll, DataCollector: Start Request Processing.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.003, 5325829469531, datacollector.dll, DataCollectionRequestHandler.ProcessRequests : Datacollector received message: (DataCollection.BeforeTestRunStart) -> {
+  "SettingsXml": "<RunSettings><RunConfiguration><ResultsDirectory>C:\\Users\\paulc\\source\\repos\\htg-sme-voucher-check-service\\Beis.HelpToGrow.Voucher.Api.Check.Tests\\bin\\Debug\\net5.0\\fine-code-coverage\\coverage-tool-output</ResultsDirectory><TargetPlatform>X64</TargetPlatform><TargetFrameworkVersion>.NETCoreApp,Version=v5.0</TargetFrameworkVersion><DesignMode>False</DesignMode><CollectSourceInformation>False</CollectSourceInformation><TestAdaptersPaths>C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.2.21155.3\\Extensions</TestAdaptersPaths></RunConfiguration><LoggerRunSettings><Loggers><Logger friendlyName=\"blame\" enabled=\"True\" /><Logger friendlyName=\"Console\" uri=\"logger://microsoft/TestPlatform/ConsoleLogger/v1\" assemblyQualifiedName=\"Microsoft.VisualStudio.TestPlatform.CommandLine.Internal.ConsoleLogger, vstest.console, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\" codeBase=\"C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.2.21155.3\\vstest.console.dll\" enabled=\"True\" /></Loggers></LoggerRunSettings><DataCollectionRunSettings><DataCollectors><DataCollector friendlyName=\"blame\" enabled=\"True\"><Configuration><ResultsDirectory>C:\\Users\\paulc\\source\\repos\\htg-sme-voucher-check-service\\Beis.HelpToGrow.Voucher.Api.Check.Tests\\bin\\Debug\\net5.0\\fine-code-coverage\\coverage-tool-output</ResultsDirectory></Configuration></DataCollector></DataCollectors></DataCollectionRunSettings></RunSettings>",
+  "Sources": [
+    "C:\\Users\\paulc\\source\\repos\\htg-sme-voucher-check-service\\Beis.HelpToGrow.Voucher.Api.Check.Tests\\bin\\Debug\\net5.0\\fine-code-coverage\\build-output\\Beis.HelpToGrow.Voucher.Api.Check.Tests.dll"
+  ],
+  "IsTelemetryOptedIn": false
+}
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.052, 5325829952977, datacollector.dll, TestPluginCache: Update extensions started. Skip filter = False
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.053, 5325829966510, datacollector.dll, TestPluginCache: Using directories for assembly resolution 'C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions'.
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.053, 5325829967933, datacollector.dll, TestPluginCache: Updated the available extensions to 'C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.DependencyCollector.dll,C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.EventCounterCollector.dll,C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.PerfCounterCollector.dll,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.BlameDataCollector.dll,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.EventLogCollector.dll'.
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.061, 5325830046594, datacollector.dll, TestPluginCache.DiscoverTestExtensions: finding test extensions in assemblies ends with: Collector.dll TPluginInfo: Microsoft.VisualStudio.TestPlatform.Common.DataCollector.DataCollectorConfig TExtension: Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection.DataCollector
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.061, 5325830048903, datacollector.dll, TestPluginCache.GetExtensionPaths: Filtered extension paths: C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.DependencyCollector.dll
+C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.EventCounterCollector.dll
+C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.PerfCounterCollector.dll
+C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.BlameDataCollector.dll
+C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.EventLogCollector.dll
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.061, 5325830049463, datacollector.dll, TestPluginCache.GetExtensionPaths: Added default extension paths: 
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.062, 5325830049738, datacollector.dll, TestPluginCache.GetExtensionPaths: Added unfilterableExtensionPaths: 
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.062, 5325830056232, datacollector.dll, AssemblyResolver.ctor: Creating AssemblyResolver with searchDirectories C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.064, 5325830073919, datacollector.dll, TestPluginCache.DiscoverTestExtensions: Discovering the extensions using extension path.
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.064, 5325830075434, datacollector.dll, TestPluginCache.GetExtensionPaths: Filtered extension paths: C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.DependencyCollector.dll
+C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.EventCounterCollector.dll
+C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.PerfCounterCollector.dll
+C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.BlameDataCollector.dll
+C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.EventLogCollector.dll
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.064, 5325830075899, datacollector.dll, TestPluginCache.GetExtensionPaths: Added default extension paths: 
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.064, 5325830076713, datacollector.dll, TestPluginCache.GetExtensionPaths: Added unfilterableExtensionPaths: 
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.064, 5325830077481, datacollector.dll, TestPluginCache.DiscoverTestExtensions: Discovering the extensions using allExtensionPaths: C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.DependencyCollector.dll
+C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.EventCounterCollector.dll
+C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.PerfCounterCollector.dll
+C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.BlameDataCollector.dll
+C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.EventLogCollector.dll
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.064, 5325830078581, datacollector.dll, AssemblyResolver.AddSearchDirectories: Adding more searchDirectories C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.064, 5325830079196, datacollector.dll, AssemblyResolver.AddSearchDirectories: Adding more searchDirectories C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.065, 5325830079542, datacollector.dll, AssemblyResolver.AddSearchDirectories: Adding more searchDirectories C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.065, 5325830079878, datacollector.dll, AssemblyResolver.AddSearchDirectories: Adding more searchDirectories C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.065, 5325830080154, datacollector.dll, AssemblyResolver.AddSearchDirectories: Adding more searchDirectories C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.065, 5325830084096, datacollector.dll, AssemblyResolver.OnResolve: Microsoft.AI.DependencyCollector: Resolving assembly.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.066, 5325830092288, datacollector.dll, AssemblyResolver.OnResolve: Resolved assembly: Microsoft.AI.DependencyCollector, from path: C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.DependencyCollector.dll
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.072, 5325830152107, datacollector.dll, AssemblyResolver.OnResolve: Microsoft.ApplicationInsights: Resolving assembly.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.073, 5325830162292, datacollector.dll, AssemblyResolver.OnResolve: Resolved assembly: Microsoft.ApplicationInsights, from path: C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.ApplicationInsights.dll
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.076, 5325830198633, datacollector.dll, AssemblyResolver.OnResolve: Microsoft.AI.EventCounterCollector: Resolving assembly.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.077, 5325830205097, datacollector.dll, AssemblyResolver.OnResolve: Resolved assembly: Microsoft.AI.EventCounterCollector, from path: C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.EventCounterCollector.dll
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.078, 5325830210422, datacollector.dll, AssemblyResolver.OnResolve: Microsoft.AI.PerfCounterCollector: Resolving assembly.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.078, 5325830216537, datacollector.dll, AssemblyResolver.OnResolve: Resolved assembly: Microsoft.AI.PerfCounterCollector, from path: C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.PerfCounterCollector.dll
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.080, 5325830238158, datacollector.dll, AssemblyResolver.OnResolve: Microsoft.TestPlatform.Extensions.BlameDataCollector: Resolving assembly.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.082, 5325830249847, datacollector.dll, AssemblyResolver.OnResolve: Resolved assembly: Microsoft.TestPlatform.Extensions.BlameDataCollector, from path: C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.BlameDataCollector.dll
+TpTrace Error: 0 : 37712, 1, 2022/05/04, 16:39:56.082, 5325830259369, datacollector.dll, The type "Microsoft.TestPlatform.Extensions.BlameDataCollector.BlameCollector" defined in "Microsoft.TestPlatform.Extensions.BlameDataCollector.dll" does not have ExtensionUri attribute.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.084, 5325830271451, datacollector.dll, AssemblyResolver.OnResolve: Microsoft.TestPlatform.Extensions.EventLogCollector: Resolving assembly.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.085, 5325830285054, datacollector.dll, AssemblyResolver.OnResolve: Resolved assembly: Microsoft.TestPlatform.Extensions.EventLogCollector, from path: C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.EventLogCollector.dll
+TpTrace Error: 0 : 37712, 1, 2022/05/04, 16:39:56.088, 5325830310263, datacollector.dll, The type "Microsoft.TestPlatform.Extensions.EventLogCollector.EventLogDataCollector" defined in "Microsoft.TestPlatform.Extensions.EventLogCollector.dll" does not have ExtensionUri attribute.
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.088, 5325830314092, datacollector.dll, TestPluginCache: Discovered the extensions using extension path 'C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.DependencyCollector.dll,C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.EventCounterCollector.dll,C:\Users\paulc\source\repos\htg-sme-voucher-check-service\Beis.HelpToGrow.Voucher.Api.Check.Tests\bin\Debug\net5.0\fine-code-coverage\build-output\Microsoft.AI.PerfCounterCollector.dll,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.BlameDataCollector.dll,C:\Program Files\dotnet\sdk\6.0.100-preview.2.21155.3\Extensions\Microsoft.TestPlatform.Extensions.EventLogCollector.dll'.
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.088, 5325830314995, datacollector.dll, TestPluginCache: Discoverers are ''.
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.088, 5325830315320, datacollector.dll, TestPluginCache: Executors are ''.
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.088, 5325830315552, datacollector.dll, TestPluginCache: Executors2 are ''.
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.088, 5325830315776, datacollector.dll, TestPluginCache: Setting providers are ''.
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:56.088, 5325830316004, datacollector.dll, TestPluginCache: Loggers are ''.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.089, 5325830328302, datacollector.dll, TestPluginManager.CreateTestExtension: Attempting to load test extension: Microsoft.TestPlatform.Extensions.BlameDataCollector.BlameCollector
+TpTrace Error: 0 : 37712, 1, 2022/05/04, 16:39:56.090, 5325830333104, datacollector.dll, The type "Microsoft.TestPlatform.Extensions.BlameDataCollector.BlameCollector" defined in "Microsoft.TestPlatform.Extensions.BlameDataCollector.dll" does not have ExtensionUri attribute.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.096, 5325830394947, datacollector.dll, Listening on Endpoint : 127.0.0.1:61493
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.104, 5325830474855, datacollector.dll, DataCollectionRequestHandler.ProcessRequests : DataCollection started.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:56.122, 5325830649986, datacollector.dll, DataCollectionRequestHandler.ProcessRequests : Datacollector received message: (DataCollection.TestHostLaunched) -> {
+  "ProcessId": 15516
+}
+TpTrace Information: 0 : 37712, 5, 2022/05/04, 16:39:56.346, 5325832892670, datacollector.dll, Using the buffer size of 16384 bytes
+TpTrace Information: 0 : 37712, 5, 2022/05/04, 16:39:56.346, 5325832893631, datacollector.dll, Accepted Client request and set the flag
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.022, 5325839658761, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.034, 5325839773250, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.037, 5325839806511, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingDecryptReturnsValidPlainTextString - b48ce0f0-2b29-fe96-8e82-8d682293c711' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.054, 5325839973860, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.060, 5325840033385, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.067, 5325840101373, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingDecryptReturnsValidPlainTextString - b48ce0f0-2b29-fe96-8e82-8d682293c711' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.081, 5325840248519, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.082, 5325840252464, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.082, 5325840254259, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingDecryptWithEmptyEncryptedStringReturnsEmptyString - 991c6d13-c646-930e-f6b2-0179875dc1df' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.083, 5325840264245, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.083, 5325840267797, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.084, 5325840270031, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingDecryptWithEmptyEncryptedStringReturnsEmptyString - 991c6d13-c646-930e-f6b2-0179875dc1df' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.085, 5325840283309, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.085, 5325840287906, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.086, 5325840289782, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingDecryptWithNullEncryptedStringReturnsEmptyString - d0de3bfb-705d-f00f-cb7d-5e6089c6cf14' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.086, 5325840299239, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.087, 5325840305345, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.087, 5325840307738, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingDecryptWithNullEncryptedStringReturnsEmptyString - d0de3bfb-705d-f00f-cb7d-5e6089c6cf14' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.088, 5325840317058, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.089, 5325840320976, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.090, 5325840335382, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingEncryptReturnsValidEncodedString - d06059cd-6520-7d99-5d8d-0a67b7df8da8' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.091, 5325840343417, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.091, 5325840347687, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.092, 5325840350014, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingEncryptReturnsValidEncodedString - d06059cd-6520-7d99-5d8d-0a67b7df8da8' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.093, 5325840361275, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.093, 5325840364482, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.093, 5325840365994, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingEncryptWithEmptyPlainTextReturnsEmptyString - 14a34204-33d1-45f6-aecf-5ebf54ba0f2e' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.094, 5325840374639, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.094, 5325840379049, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.095, 5325840381009, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingEncryptWithEmptyPlainTextReturnsEmptyString - 14a34204-33d1-45f6-aecf-5ebf54ba0f2e' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.096, 5325840390815, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.096, 5325840393925, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.096, 5325840395474, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingEncryptWithNullPlainTextReturnsEmptyString - ac379e27-7d8b-5a5c-7504-08ed9c67d4e2' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.097, 5325840403795, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.097, 5325840407359, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.097, 5325840409438, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingEncryptWithNullPlainTextReturnsEmptyString - ac379e27-7d8b-5a5c-7504-08ed9c67d4e2' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.100, 5325840432660, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.100, 5325840436654, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.100, 5325840438578, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CanGenerateTestVoucherAttribute_returns_404_for_false_env_var - b9002633-d85c-1bd4-20b3-c5c65cf90086' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.275, 5325842185252, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.275, 5325842188931, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.276, 5325842191118, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CanGenerateTestVoucherAttribute_returns_404_for_false_env_var - b9002633-d85c-1bd4-20b3-c5c65cf90086' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.277, 5325842200393, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.277, 5325842203520, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.277, 5325842205128, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CanGenerateTestVoucherAttribute_returns_404_for_no_env_var - 8c68e158-2aa1-a065-8860-9b10c84a0322' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.278, 5325842213728, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.278, 5325842216359, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.278, 5325842217747, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CanGenerateTestVoucherAttribute_returns_404_for_no_env_var - 8c68e158-2aa1-a065-8860-9b10c84a0322' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.279, 5325842228277, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.280, 5325842232457, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.280, 5325842234714, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CanGenerateTestVoucherAttribute_returns_ok_for_false_env_var - 0e54cf9d-af87-1653-9a6d-4087d66b1722' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.281, 5325842244826, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.281, 5325842248530, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.282, 5325842250698, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CanGenerateTestVoucherAttribute_returns_ok_for_false_env_var - 0e54cf9d-af87-1653-9a6d-4087d66b1722' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.317, 5325842605646, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.317, 5325842609178, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:57.318, 5325842611073, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckStartup - c1cf03ff-8f2d-5e51-d066-2809023f3a25' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.320, 5325852634328, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.320, 5325852636710, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.320, 5325852638114, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckStartup - c1cf03ff-8f2d-5e51-d066-2809023f3a25' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.321, 5325852648108, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.322, 5325852649672, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.322, 5325852650433, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingGenerateVoucherCompanyRegistrationNotFoundTests - 9816eee6-1952-c541-e910-09eca08535a5' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.361, 5325853042267, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.361, 5325853044318, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.361, 5325853045545, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingGenerateVoucherCompanyRegistrationNotFoundTests - 9816eee6-1952-c541-e910-09eca08535a5' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.362, 5325853050646, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.362, 5325853051664, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.362, 5325853052326, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingGenerateVoucherHappyPathTests - c6c47041-d0c5-2fd0-55c9-29758b6471b8' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.365, 5325853083280, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.365, 5325853084521, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.365, 5325853085372, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingGenerateVoucherHappyPathTests - c6c47041-d0c5-2fd0-55c9-29758b6471b8' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.366, 5325853090213, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.366, 5325853091466, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.366, 5325853092474, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingGenerateVoucherProductNotFoundTests - d87f7d15-e865-1e43-6d35-3cac7fe95e86' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.367, 5325853105107, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.367, 5325853106935, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.367, 5325853107911, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingGenerateVoucherProductNotFoundTests - d87f7d15-e865-1e43-6d35-3cac7fe95e86' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.368, 5325853114764, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.368, 5325853116213, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.368, 5325853117030, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VendorAPICallStatusServicesCreateLogRequestDetailsHappyTests - f5590d9d-0a35-e386-c28c-b96b3f80593e' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.380, 5325853238579, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.381, 5325853240750, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.381, 5325853241865, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VendorAPICallStatusServicesCreateLogRequestDetailsHappyTests - f5590d9d-0a35-e386-c28c-b96b3f80593e' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.395, 5325853384526, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.395, 5325853386607, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.395, 5325853387588, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VendorAPICallStatusServicesLogRequestDetailsHappyTests - 7e6ab0cd-3234-4c37-dfce-748bebe920cc' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.400, 5325853432662, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.400, 5325853434580, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.400, 5325853435875, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VendorAPICallStatusServicesLogRequestDetailsHappyTests - 7e6ab0cd-3234-4c37-dfce-748bebe920cc' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.401, 5325853442576, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.401, 5325853443827, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.401, 5325853444548, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherCheckResponseHappyPathTests - 22b34b2a-adef-5a4c-beb6-4b2f755d6786' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.436, 5325853798529, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.437, 5325853800456, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.437, 5325853801660, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherCheckResponseHappyPathTests - 22b34b2a-adef-5a4c-beb6-4b2f755d6786' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.437, 5325853808176, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.437, 5325853809428, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.438, 5325853810133, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherDecryptCanelledVoucherStatus1Response - 39559b5c-5d55-36d3-4bdc-3b23c23b9bee' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.439, 5325853827585, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.439, 5325853829432, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.440, 5325853830482, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherDecryptCanelledVoucherStatus1Response - 39559b5c-5d55-36d3-4bdc-3b23c23b9bee' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.440, 5325853835947, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.440, 5325853837505, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.440, 5325853838437, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherDecryptCanelledVoucherStatus2Response - ce3513c2-c0c3-16e4-fee2-dbac93284e42' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.442, 5325853850128, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.442, 5325853852098, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.442, 5325853853298, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherDecryptCanelledVoucherStatus2Response - ce3513c2-c0c3-16e4-fee2-dbac93284e42' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.444, 5325853869778, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.444, 5325853871504, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.444, 5325853872704, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherDecryptCanelledVoucherStatus3Response - 53a9e223-7811-b208-f5ba-b3677fd28b91' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.445, 5325853880122, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.445, 5325853881653, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.445, 5325853882794, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherDecryptCanelledVoucherStatus3Response - 53a9e223-7811-b208-f5ba-b3677fd28b91' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.446, 5325853891893, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.446, 5325853894015, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.446, 5325853895209, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherDecryptCanelledVoucherStatus4Response - 0c1da019-d65e-3438-3cd3-e00de4246549' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.447, 5325853902620, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.447, 5325853904108, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.447, 5325853905094, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherDecryptCanelledVoucherStatus4Response - 0c1da019-d65e-3438-3cd3-e00de4246549' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.448, 5325853913852, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.448, 5325853915423, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.448, 5325853916276, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherDecryptVoucherResponseNegativePathTests - 3172bbab-e38e-47a5-23a7-893e456a0785' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.453, 5325853964823, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.453, 5325853966814, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.453, 5325853967959, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherDecryptVoucherResponseNegativePathTests - 3172bbab-e38e-47a5-23a7-893e456a0785' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.454, 5325853974661, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.454, 5325853976145, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.454, 5325853977024, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherResponseHappyPathTests - 82d43191-42f9-81f9-00c8-0dea47364b4f' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.456, 5325853992936, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.456, 5325853994385, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.456, 5325853995241, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherResponseHappyPathTests - 82d43191-42f9-81f9-00c8-0dea47364b4f' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.457, 5325854002387, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.457, 5325854004163, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.457, 5325854005038, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherResponseNegativePathTests - 514fb38e-2e47-0e9b-2c55-a67a6cda0490' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.459, 5325854021149, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.459, 5325854023178, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.459, 5325854024290, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherResponseNegativePathTests - 514fb38e-2e47-0e9b-2c55-a67a6cda0490' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.460, 5325854033338, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.460, 5325854034906, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.460, 5325854035922, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherWithEmptyTokenResponseNegativePathTests - 28fdb37a-dd69-196c-f7b8-30c2d8a950fb' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.461, 5325854045424, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.461, 5325854047030, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.461, 5325854048006, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherWithEmptyTokenResponseNegativePathTests - 28fdb37a-dd69-196c-f7b8-30c2d8a950fb' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.462, 5325854056166, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.462, 5325854057636, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.462, 5325854058490, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherWithEmptyVendorCompanyResponseNegativePathTests - 8a6cfbe8-6a8b-4c94-e2d8-f02f429760ce' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.463, 5325854066684, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.463, 5325854068485, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.464, 5325854069529, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherWithEmptyVendorCompanyResponseNegativePathTests - 8a6cfbe8-6a8b-4c94-e2d8-f02f429760ce' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.464, 5325854078324, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.465, 5325854079830, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.465, 5325854081047, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherWithExpiredTokenResponseNegativePathTests - ee8b4a88-b1f4-3fb4-d678-33865f0b9876' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.466, 5325854096040, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.466, 5325854099189, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.467, 5325854100877, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherWithExpiredTokenResponseNegativePathTests - ee8b4a88-b1f4-3fb4-d678-33865f0b9876' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.468, 5325854110935, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.468, 5325854113696, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.468, 5325854114761, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherWithLockedResponseNegativePathTests - 5a7577c0-09f1-6a84-9317-54dd9d8691ad' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.469, 5325854127569, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.469, 5325854129283, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.470, 5325854130279, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherWithLockedResponseNegativePathTests - 5a7577c0-09f1-6a84-9317-54dd9d8691ad' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.471, 5325854143355, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.471, 5325854145635, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.471, 5325854146900, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherWithNoBalanceTokenResponseNegativePathTests - 35f39b8e-1f4c-19bd-96e9-333a1717ac64' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.473, 5325854159871, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.473, 5325854161602, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.473, 5325854163193, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'VoucherCheckServiceGetVoucherWithNoBalanceTokenResponseNegativePathTests - 35f39b8e-1f4c-19bd-96e9-333a1717ac64' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.474, 5325854172130, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.474, 5325854173610, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.474, 5325854174562, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherHappyPathTest - 858a1e8d-fb58-7615-4ced-3902921846d7' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.481, 5325854242990, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.481, 5325854245041, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.481, 5325854246109, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherHappyPathTest - 858a1e8d-fb58-7615-4ced-3902921846d7' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.482, 5325854254159, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.482, 5325854255886, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.482, 5325854256951, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherNegativePathTest - dfdb5a79-2a15-d920-03b8-bbd32f3f2e86' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.483, 5325854265721, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.483, 5325854268309, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.484, 5325854270249, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherNegativePathTest - dfdb5a79-2a15-d920-03b8-bbd32f3f2e86' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.485, 5325854280918, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.485, 5325854283912, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.485, 5325854285458, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherReturnsStatus400PathTest - 86640c9a-a84e-a6fb-d7dc-c5e6e05e054d' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.486, 5325854292547, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.486, 5325854294587, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.486, 5325854295594, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherReturnsStatus400PathTest - 86640c9a-a84e-a6fb-d7dc-c5e6e05e054d' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.487, 5325854306769, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.487, 5325854309334, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.488, 5325854310603, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingGenerateVoucherReturnsValidToken - 6d567a84-c12c-c1f2-6133-a96f2dfc7eee' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.492, 5325854350095, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.492, 5325854352711, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.492, 5325854354171, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingGenerateVoucherReturnsValidToken - 6d567a84-c12c-c1f2-6133-a96f2dfc7eee' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.493, 5325854364711, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.493, 5325854366430, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.493, 5325854367489, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingGenerateVoucherReturnsValidTokenEndingDoubleEquals - 5c015664-2e82-bf3a-24d9-371f9d0af66e' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.494, 5325854375254, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.494, 5325854377160, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.494, 5325854378315, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CallingGenerateVoucherReturnsValidTokenEndingDoubleEquals - 5c015664-2e82-bf3a-24d9-371f9d0af66e' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.495, 5325854388039, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.496, 5325854389756, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.496, 5325854390616, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherReturnsErrorCode400 - 5f235662-db88-d28a-f72c-397eaeb929a7' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.502, 5325854450060, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.502, 5325854452314, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.502, 5325854453425, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherReturnsErrorCode400 - 5f235662-db88-d28a-f72c-397eaeb929a7' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.503, 5325854461258, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.503, 5325854463878, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.503, 5325854465167, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherReturnsErrorCodeZero - 86bae1ef-b721-b4da-3746-54f79cb92f8e' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.504, 5325854476170, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.504, 5325854477914, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.504, 5325854478835, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherReturnsErrorCodeZero - 86bae1ef-b721-b4da-3746-54f79cb92f8e' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.505, 5325854486325, datacollector.dll, DataCollectionTestCaseEventHandler: Test case starting.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.505, 5325854487949, datacollector.dll, Blame Collector : Test Case Start
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.505, 5325854488759, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherReturnsException - b4073447-33d7-2682-b8f3-716676fe1bae' started.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.508, 5325854518203, datacollector.dll, DataCollectionTestCaseEventHandler : Test case completing.
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.509, 5325854520210, datacollector.dll, Blame Collector : Test Case End
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.509, 5325854521256, datacollector.dll, DataCollectionTestCaseEventHandler: Test case 'CheckVoucherReturnsException - b4073447-33d7-2682-b8f3-716676fe1bae' completed
+TpTrace Information: 0 : 37712, 8, 2022/05/04, 16:39:58.522, 5325854651081, datacollector.dll, DataCollectionTestCaseEventHandler: Test session ended
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:58.579, 5325855227401, datacollector.dll, DataCollectionRequestHandler.ProcessRequests : Datacollector received message: (DataCollection.AfterTestRunEnd) -> false
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:58.580, 5325855234306, datacollector.dll, Blame Collector : Session End
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:58.580, 5325855235083, datacollector.dll, BlameCollector.CollectDumpAndAbortTesthost: Custom path to dump directory was provided via VSTEST_DUMP_PATH. Skipping attachment upload, the caller is responsible for collecting and uploading the dumps themselves.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:58.580, 5325855236161, datacollector.dll, DataCollectionManager.CleanupPlugins: CleanupPlugins called
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:58.580, 5325855236499, datacollector.dll, DataCollectionManager.CleanupPlugins: Cleaning up 1 plugins
+TpTrace Verbose: 0 : 37712, 1, 2022/05/04, 16:39:58.580, 5325855237435, datacollector.dll, dataCollectorInfo.DisposeDataCollector: calling Dispose() on Microsoft.TestPlatform.Extensions.BlameDataCollector.BlameCollector
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:58.580, 5325855238034, datacollector.dll, DataCollectionManager.CleanupPlugins: CleanupPlugins finished
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:58.584, 5325855270337, datacollector.dll, DataCollectionRequestHandler.ProcessRequests : Session End message received from server. Closing the connection.
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:58.584, 5325855273062, datacollector.dll, Closing the connection !
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:58.584, 5325855273607, datacollector.dll, DataCollectionRequestHandler.ProcessRequests : DataCollection completed
+TpTrace Information: 0 : 37712, 1, 2022/05/04, 16:39:58.584, 5325855273848, datacollector.dll, Program.Main: exiting datacollector process.

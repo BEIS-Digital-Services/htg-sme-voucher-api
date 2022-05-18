@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="VoucherCheck\**" />
+      <EmbeddedResource Remove="VoucherCheck\**" />
+      <None Remove="VoucherCheck\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentResults" Version="3.5.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.5" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+        <PackageReference Include="Moq" Version="4.18.0" />
+        <PackageReference Include="NUnit" Version="3.13.3" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+        <PackageReference Include="coverlet.collector" Version="3.1.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Beis.HelpToGrow.Api.Voucher\Beis.HelpToGrow.Api.Voucher.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Beis.Htg.VendorSme.Database">
+        <HintPath>..\Beis.HelpToGrow.Api.Voucher\Library\Beis.Htg.VendorSme.Database.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

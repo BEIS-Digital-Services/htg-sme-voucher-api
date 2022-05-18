@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Beis.HelpToGrow.Api.Voucher</name>
+    </assembly>
+    <members>
+        <member name="M:Beis.HelpToGrow.Api.Voucher.Controllers.GenerateVoucherController.GenerateVoucher(Beis.HelpToGrow.Api.Voucher.Models.VoucherGenerationRequest)">
+             <summary>
+             Voucher check endpoint
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/vouchercheck
+                 {
+                    "registration": 12345,
+                    "productSku": "12345"
+                 }
+            
+             </remarks>
+             
+        </member>
+        <member name="M:Beis.HelpToGrow.Api.Voucher.Controllers.VoucherCheckController.CheckVoucher(Beis.HelpToGrow.Api.Voucher.Models.VoucherCheckRequest)">
+             <summary>
+             Voucher check endpoint
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/vouchercheck
+                 {
+                    "registration": 12345,
+                    "accessCode": "12345",
+                    "voucherCode": "sH9ftM1rvm6N635qFVNdhg"
+                 }
+            
+             </remarks>
+            
+             
+        </member>
+        <member name="M:Beis.HelpToGrow.Api.Voucher.Controllers.VoucherReconciliationController.CheckVoucher(Beis.HelpToGrow.Api.Voucher.Models.VoucherReconciliationRequest)">
+             <summary>
+             Voucher reconciliation
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/controller
+                 {
+                    "registration": "12345",
+                    "accessCode": "12345",
+                    "reconciliationDate": "2021-10-06T10:19:03.002Z",
+                    "dailySales": {
+                         "sales": [
+                             {
+                                  "notificationType": "new",
+                                  "voucherCode": "sH9ftM1rvm6N635qFVNdhg",
+                                  "authorisationCode": "179950987",
+                                  "productSku": "12345",
+                                  "productName": "My Accounts Package",
+                                  "licenceTo": "Buyer limited",
+                                  "smeEmail": "abc@my-company.com",
+                                  "purchaserName": "Mr. Joe Blogs",
+                                  "oneOffCosts": 30.99,
+                                  "noOfLicences": 30,
+                                  "costPerLicence": 15.99,
+                                  "totalAmount": 4999.00,
+                                  "discountApplied": 2500.00,
+                                  "currency": "GBP",
+                                  "contractTermInMonths": 12,
+                                  "trialPeriodInMonths": 3                 
+                             }
+                          ]
+                     }
+                }
+             
+             </remarks>
+             
+        </member>
+        <member name="M:Beis.HelpToGrow.Api.Voucher.Controllers.VoucherRedeemController.CheckVoucher(Beis.HelpToGrow.Api.Voucher.Models.VoucherUpdateRequest)">
+             <summary>
+             Voucher update endpoint
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/voucherupdate
+                 {
+                    "registration": "12345",
+                    "accessCode": "12345",
+                    "voucherCode": "sH9ftM1rvm6N635qFVNdhg",
+                    "authorisationCode": "179950987"
+                 }
+            
+             </remarks>
+             
+        </member>
+    </members>
+</doc>
