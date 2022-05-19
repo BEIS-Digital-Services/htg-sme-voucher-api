@@ -295,7 +295,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
         
         private string DecryptVoucher(string encryptedVoucherCode, vendor_company vendorCompany)
         {
-            return _encryptionService.Decrypt(encryptedVoucherCode, vendorCompany.registration_id + vendorCompany.vendorid);
+            var voucherCode = encryptedVoucherCode + "==";
+            return _encryptionService.Decrypt(voucherCode, vendorCompany.registration_id + vendorCompany.vendorid);
         }
         
         public token GetToken(string decryptedVoucherCode)
