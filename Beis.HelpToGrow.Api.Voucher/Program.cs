@@ -1,5 +1,6 @@
 ﻿
 using Beis.HelpToGrow.Api.Voucher.Extensions;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,13 +13,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 
-builder.Services.AddApiVersioning(v => 
+builder.Services.AddApiVersioning(o => 
 { 
-    v.AssumeDefaultVersionWhenUnspecified = true;
-    v.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);    
-    v.ReportApiVersions = true;
+    o.AssumeDefaultVersionWhenUnspecified = true;
+    o.ApiVersionSelector = new CurrentImplementationApiVersionSelector(o);
+    o.DefaultApiVersion = ApiVersion.Default; // new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);    
+    o.ReportApiVersions = true;
 
-    v.UseApiBehavior = false; // version everything by default
+    o.UseApiBehavior = false; // version everything by default
     
 });
 

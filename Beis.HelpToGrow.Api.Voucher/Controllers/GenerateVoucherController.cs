@@ -3,7 +3,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
 {
     [ApiVersion("1.0")]
     [ApiController]
-    [Route("{version:apiVersion}/api/generatevoucher")]
+    [Route("api/v{version:apiVersion}/generatevoucher")]
     public class GenerateVoucherController: ControllerBase
     {
         private readonly ITokenVoucherGeneratorService _tokenVoucherGeneratorService;
