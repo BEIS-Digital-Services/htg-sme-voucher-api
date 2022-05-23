@@ -4,6 +4,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/vouchercheck")]
 
+    
     public class VoucherCheckController : ControllerBase
     {
         private readonly IVoucherCheckService _voucherCheckService;
@@ -18,7 +19,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
         }
 
         /// <summary>
-        /// Voucher check endpoint
+        /// Voucher check endpoint 
         /// </summary>
         /// <remarks>
         /// Sample request:

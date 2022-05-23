@@ -13,6 +13,7 @@ global using Beis.HelpToGrow.Api.Voucher.Models;
 global using Beis.HelpToGrow.Api.Voucher.Services;
 global using Beis.HelpToGrow.Api.Voucher.Interfaces;
 global using Beis.HelpToGrow.Api.Voucher.Config;
+global using BEIS.HelpToGrow.Voucher.Interfaces;
 
 global using Beis.HelpToGrow.Api.Data.Repositories;
 

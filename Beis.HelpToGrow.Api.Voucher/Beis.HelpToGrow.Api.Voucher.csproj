@@ -23,6 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="BEIS.HelpToGrow.Data">
+      <HintPath>Library\BEIS.HelpToGrow.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="BEIS.HelpToGrow.Voucher.Services">
+      <HintPath>Library\BEIS.HelpToGrow.Voucher.Services.dll</HintPath>
+    </Reference>
     <Reference Include="Beis.Htg.VendorSme.Database">
       <HintPath>Library\Beis.Htg.VendorSme.Database.dll</HintPath>
     </Reference>
