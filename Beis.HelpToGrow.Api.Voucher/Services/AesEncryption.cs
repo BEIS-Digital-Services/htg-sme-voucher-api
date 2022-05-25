@@ -4,17 +4,11 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
 {
     public class AesEncryption : IEncryptionService
     {
-        private readonly string _salt;
-        private readonly int _passwordIterations;
-        private readonly string _initialVector;
-        private readonly int _keySize;
+        private readonly EncryptionSettings _encryptionOptions;
 
-        public AesEncryption(IOptions<EncryptionSettings> options)
+        public AesEncryption(IOptions<EncryptionSettings> encryptionOptions)
         {
-            _salt = options.Value.VOUCHER_ENCRYPTION_SALT;
-            _passwordIterations = options.Value.VOUCHER_ENCRYPTION_ITERATION;
-            _initialVector = options.Value.VOUCHER_ENCRYPTION_INITIAL_VECTOR;
-            _keySize = options.Value.VOUCHER_ENCRYPTION_KEY_SIZE;
+            _encryptionOptions = encryptionOptions.Value;
         }
 
         public string Encrypt(string plainText, string password)
@@ -24,11 +18,11 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                 return "";
             }
 
-            byte[] initialVectorBytes = Encoding.ASCII.GetBytes(_initialVector);
-            byte[] saltValueBytes = Encoding.ASCII.GetBytes(_salt);
+            byte[] initialVectorBytes = Encoding.ASCII.GetBytes(_encryptionOptions.VoucherEncryptionInitialVector);
+            byte[] saltValueBytes = Encoding.ASCII.GetBytes(_encryptionOptions.VoucherEncryptionSalt);
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-            Rfc2898DeriveBytes derivedPassword = new Rfc2898DeriveBytes(password, saltValueBytes, _passwordIterations);
-            byte[] keyBytes = derivedPassword.GetBytes(_keySize / 8);
+            Rfc2898DeriveBytes derivedPassword = new Rfc2898DeriveBytes(password, saltValueBytes, _encryptionOptions.VoucherEncryptionIteration);
+            byte[] keyBytes = derivedPassword.GetBytes(_encryptionOptions.VoucherEncryptionKeySize / 8);
             RijndaelManaged symmetricKey = new RijndaelManaged();
             symmetricKey.Mode = CipherMode.CBC;
             byte[] cipherTextBytes;
@@ -61,11 +55,11 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
 
             cipherText = cipherText.Replace('-', '+').Replace('_', '/');
 
-            byte[] initialVectorBytes = Encoding.ASCII.GetBytes(_initialVector);
-            byte[] saltValueBytes = Encoding.ASCII.GetBytes(_salt);
+            byte[] initialVectorBytes = Encoding.ASCII.GetBytes(_encryptionOptions.VoucherEncryptionInitialVector);
+            byte[] saltValueBytes = Encoding.ASCII.GetBytes(_encryptionOptions.VoucherEncryptionSalt);
             byte[] cipherTextBytes = Convert.FromBase64String(cipherText);
-            var derivedPassword = new Rfc2898DeriveBytes(password, saltValueBytes, _passwordIterations);
-            byte[] keyBytes = derivedPassword.GetBytes(_keySize / 8);
+            var derivedPassword = new Rfc2898DeriveBytes(password, saltValueBytes, _encryptionOptions.VoucherEncryptionIteration);
+            byte[] keyBytes = derivedPassword.GetBytes(_encryptionOptions.VoucherEncryptionKeySize / 8);
             var symmetricKey = new RijndaelManaged();
             symmetricKey.Mode = CipherMode.CBC;
             var plainTextBytes = new byte[cipherTextBytes.Length];

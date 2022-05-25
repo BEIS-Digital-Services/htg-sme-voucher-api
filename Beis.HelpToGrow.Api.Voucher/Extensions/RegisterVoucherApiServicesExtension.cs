@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Beis.HelpToGrow.Api.Voucher.Extensions
 {
-    public static class RegisterVoucherApiServicesExtension
+    internal static class RegisterVoucherApiServicesExtension
     {
         public static IServiceCollection RegisterVoucherApiServices(this IServiceCollection services, IConfiguration configuration)
         {
@@ -19,11 +19,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
                 options.SetMinimumLevel(LogLevel.Trace);
 
             });
-            services.AddApplicationInsightsTelemetry(configuration["AZURE_MONITOR_INSTRUMENTATION_KEY"]);
+            services.AddApplicationInsightsTelemetry(configuration["AzureMonitorInstrumentationKey"]);
 
             services.AddSingleton<IEncryptionService, AesEncryption>();
-            services.AddDbContext<HtgVendorSmeDbContext>(options => options.UseNpgsql(configuration["HELPTOGROW_CONNECTIONSTRING"]), ServiceLifetime.Transient);
-
             services.AddTransient<IVoucherCheckService, VoucherCheckService>();
             services.AddTransient<IVendorAPICallStatusServices, VendorAPICallStatusServices>();
 
@@ -37,7 +35,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
             services.AddTransient<IVendorReconciliationSalesRepository, VendorReconciliationSalesRepository>();
             services.AddTransient<IVendorReconciliationRepository, VendorReconciliationRepository>();         
             services.AddTransient<IVoucherReconciliationService, VoucherReconciliationService>();
-            services.AddDbContext<HtgVendorSmeDbContext>(options => options.UseNpgsql(configuration["HELPTOGROW_CONNECTIONSTRING"]), ServiceLifetime.Transient);
+            services.AddDbContext<HtgVendorSmeDbContext>(options => options.UseNpgsql(configuration["HelpToGrowDbConnectionString"]), ServiceLifetime.Transient);
             services.AddTransient<IVoucherRedeemService, VoucherRedeemService>();
 
             services.AddHealthChecks()
