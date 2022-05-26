@@ -1,10 +1,4 @@
-using System;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Moq;
 using NUnit.Framework;
-
 
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 {
@@ -29,10 +23,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             _keySize = 256;
             IOptions<EncryptionSettings> _options = Options.Create<EncryptionSettings>(new EncryptionSettings 
                 { 
-                    VOUCHER_ENCRYPTION_SALT = _salt, 
-                    VOUCHER_ENCRYPTION_ITERATION = _passwordIterations, 
-                    VOUCHER_ENCRYPTION_INITIAL_VECTOR = _initialVector, 
-                    VOUCHER_ENCRYPTION_KEY_SIZE = _keySize 
+                    VoucherEncryptionSalt = _salt, 
+                    VoucherEncryptionIteration = _passwordIterations, 
+                    VoucherEncryptionInitialVector = _initialVector, 
+                    VoucherEncryptionKeySize = _keySize 
                 });
             _encryptionService = new AesEncryption(_options);
         }
