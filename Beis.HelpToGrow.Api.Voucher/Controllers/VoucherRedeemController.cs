@@ -63,7 +63,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                     status = "ERROR",
                     errorCode = 10,
                     message = "Unknown token",
-                    voucherCode = voucherUpdateRequest.voucherCode
+                    voucherCode = voucherUpdateRequest.VoucherCode
                 };
                 var vendorApiCallStatus = _vendorApiCallStatusServices.CreateLogRequestDetails(voucherUpdateRequest);
                 vendorApiCallStatus.error_code = "500";

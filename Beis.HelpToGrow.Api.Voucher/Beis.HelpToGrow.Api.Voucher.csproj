@@ -10,12 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="beis.htg.voucher.persistence" Version="1.1.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.20.0" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.AzureAppConfiguration" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="6.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
@@ -23,14 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="BEIS.HelpToGrow.Data">
-      <HintPath>Library\BEIS.HelpToGrow.Data.dll</HintPath>
+    <Reference Include="Beis.HelpToGrow.Common">
+      <HintPath>Library\Beis.HelpToGrow.Common.dll</HintPath>
     </Reference>
-    <Reference Include="BEIS.HelpToGrow.Voucher.Services">
-      <HintPath>Library\BEIS.HelpToGrow.Voucher.Services.dll</HintPath>
-    </Reference>
-    <Reference Include="Beis.Htg.VendorSme.Database">
-      <HintPath>Library\Beis.Htg.VendorSme.Database.dll</HintPath>
+    <Reference Include="Beis.HelpToGrow.Repositories">
+      <HintPath>Library\Beis.HelpToGrow.Repositories.dll</HintPath>
     </Reference>
   </ItemGroup>
 

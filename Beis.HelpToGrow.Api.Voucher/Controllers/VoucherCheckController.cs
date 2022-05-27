@@ -62,7 +62,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                     errorCode = 10,
                     message = "Unknown token " + e.Message, 
                   
-                    voucherCode = voucherRequest.voucherCode
+                    voucherCode = voucherRequest.VoucherCode
                 };
 
                 _logger.LogInformation("VoucherCheckControllerResponse: {@voucherResponse}", JsonSerializer.Serialize(voucherResponse));

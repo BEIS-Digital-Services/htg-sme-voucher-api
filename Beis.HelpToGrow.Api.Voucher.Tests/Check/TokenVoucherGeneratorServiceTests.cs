@@ -11,7 +11,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
     public class TokenVoucherGeneratorServiceTests
     {
         private TokenVoucherGeneratorService _service;
-        private Mock<IVoucherGeneratorService> _voucherGeneratorService;
+        private Mock<IVoucherGenerationService> _voucherGeneratorService;
         private Mock<IEncryptionService> _encryptionService;
         private Mock<ITokenRepository> _tokenRepository;
         private Mock<IProductRepository> _productRepository;
@@ -25,7 +25,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         public void Setup()
         {
             _encryptionService = new Mock<IEncryptionService>();
-            _voucherGeneratorService = new Mock<IVoucherGeneratorService>();
+            _voucherGeneratorService = new Mock<IVoucherGenerationService>();
             _tokenRepository = new Mock<ITokenRepository>();
             _productRepository = new Mock<IProductRepository>();
             _vendorCompanyRepository = new Mock<IVendorCompanyRepository>();

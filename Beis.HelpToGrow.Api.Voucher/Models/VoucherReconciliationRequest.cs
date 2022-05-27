@@ -1,12 +1,12 @@
 
 namespace Beis.HelpToGrow.Api.Voucher.Models
 {
-    public class VoucherReconciliationRequest
+    public class VoucherReconciliationRequest : IVoucherRequest
     {
-        public string registration { get; set; }
-        public string accessCode { get; set; }
-        public DateTime reconciliationDate { get; set; }
-        public DailySales dailySales { get; set; }
+        public string Registration { get; set; }
+        public string AccessCode { get; set; }
+        public DateTime ReconciliationDate { get; set; }
+        public DailySales DailySales { get; set; }
 
     }
 }

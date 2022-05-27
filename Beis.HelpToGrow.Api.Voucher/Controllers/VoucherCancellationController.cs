@@ -3,7 +3,9 @@
 
 namespace Beis.HelpToGrow.Api.Voucher.Controllers
 {
-    [Route("api/vouchercancellation")]
+
+
+    [Route("api/v{version:apiVersion}paymentcancellation")]
     [ApiController]
     public class VoucherCancellationController : ControllerBase
     {
@@ -18,25 +20,88 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             _vendorApiCallStatusServices = vendorApiCallStatusServices;
         }
 
-        //// GET: api/<VoucherCancellationController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
 
-        //// GET api/<VoucherCancellationController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        /// <remarks>
+        /// 
+        /// Sample request:
+        /// 
+        ///     POST api/v1.0/paymentcancellation
+        ///     {
+        ///        "registration":"R12345",
+        ///        "accessCode":"SDFgnYTrVF",
+        ///        "voucherCode": "JUysert6uYYbdWKJHtrsRQ34",
+        ///        "cancellationReason"Reason for cancellation",
+        ///        "cancellationDate":"15/03/2020 14:37”,
+        ///        "contractStartDate":"15/02/2020 14:37”
+        ///     }
+        /// </remarks>
 
         // POST api/<VoucherCancellationController>
+
         [HttpPost]
-        public async Task<VoucherCancellationResponse> Post(VoucherCancellationRequest cancellationRequest)
+        [ProducesResponseType(typeof(VoucherCancellationResponse), 200)]
+        [ProducesResponseType(typeof(VoucherCancellationResponse), 400)]
+        [ProducesResponseType(typeof(VoucherCancellationResponse), 500)]
+        public async Task<ActionResult<VoucherCancellationResponse>> Post(VoucherCancellationRequest cancellationRequest)
         {
-            return new VoucherCancellationResponse { };
+            _logger.LogInformation("VoucherCancellationControllerRequest: {cancellationRequest}", JsonSerializer.Serialize(cancellationRequest));
+            VoucherCancellationResponse voucherResponse;
+            try
+            {
+                var cancellationResult = await _voucherCancellationService.CancelVoucherFromVoucherCode(cancellationRequest.Registration, cancellationRequest.AccessCode, cancellationRequest.VoucherCode);
+                switch (cancellationResult)
+                {
+                    case CancellationResponse.SuccessfullyCancelled:
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "OK",
+                                ErrorCode = 0,
+                                Message = "Successfully cancelled",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }
+                    case CancellationResponse.UnknownVoucherCode:
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "ERROR",
+                                ErrorCode = 10,
+                                Message = "Unknown Voucher ",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }
+                }
+
+            }
+            catch (Exception e)
+            {
+                voucherResponse = new VoucherCancellationResponse
+                {
+                    Status = "ERROR",
+                    ErrorCode = 10,
+                    Message = "Unknown token " + e.Message,
+
+                    VoucherCode = cancellationRequest.VoucherCode
+                };
+
+                _logger.LogInformation("VoucherCancellationControllerResponse: {voucherResponse}", JsonSerializer.Serialize(voucherResponse));
+                var vendor_api_call_status = _vendorApiCallStatusServices.CreateLogRequestDetails(cancellationRequest);
+                vendor_api_call_status.error_code = "500";
+                await logAPiCallStatus(vendor_api_call_status, voucherResponse);
+
+                return StatusCode(500, voucherResponse);
+            }
+            throw new NotImplementedException();
+            return voucherResponse;
+        }
+
+        private async Task logAPiCallStatus(vendor_api_call_status vendor_api_call_status, VoucherCancellationResponse voucherResponse)
+        {
+            vendor_api_call_status.result = JsonSerializer.Serialize(voucherResponse);
+            await _vendorApiCallStatusServices.LogRequestDetails(vendor_api_call_status);
         }
 
 

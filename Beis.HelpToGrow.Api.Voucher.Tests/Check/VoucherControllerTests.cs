@@ -33,9 +33,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             VoucherCheckRequest voucherRequest = new VoucherCheckRequest();
             
-            voucherRequest.registration = "12345";
-            voucherRequest.accessCode = "12345";
-            voucherRequest.voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q";
+            voucherRequest.Registration = "12345";
+            voucherRequest.AccessCode = "12345";
+            voucherRequest.VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q";
             
             _voucherCheckService.Setup(x => x.GetVoucherResponse(It.IsAny<VoucherCheckRequest>())).ReturnsAsync(getVoucherResponse(voucherRequest));
             
@@ -43,7 +43,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = (VoucherCheckResponse) ((OkObjectResult) actionResult.Result).Value;
             
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.voucherCode);
             Assert.AreEqual(0, voucherResponse.errorCode);
             Assert.AreEqual("GHT23RTDWER", voucherResponse.authorisationCode);
             Assert.AreEqual("ABC corporation", voucherResponse.vendor);
@@ -59,9 +59,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             VoucherCheckRequest voucherRequest = new VoucherCheckRequest();
             
-            voucherRequest.registration = "12345";
-            voucherRequest.accessCode = "12345";
-            voucherRequest.voucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc";
+            voucherRequest.Registration = "12345";
+            voucherRequest.AccessCode = "12345";
+            voucherRequest.VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc";
             
             _voucherCheckService.Setup(x => x.GetVoucherResponse(It.IsAny<VoucherCheckRequest>())).Throws(new Exception("my exception"));
             
@@ -69,7 +69,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = (VoucherCheckResponse) ((ObjectResult) actionResult.Result).Value;
             
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.voucherCode);
             Assert.AreEqual("ERROR", voucherResponse.status);
             Assert.AreEqual(10, voucherResponse.errorCode);
             Assert.AreEqual("Unknown token my exception", voucherResponse.message);
@@ -80,9 +80,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             VoucherCheckRequest voucherRequest = new VoucherCheckRequest();
 
-            voucherRequest.registration = "12345";
-            voucherRequest.accessCode = "12345";
-            voucherRequest.voucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc";
+            voucherRequest.Registration = "12345";
+            voucherRequest.AccessCode = "12345";
+            voucherRequest.VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc";
 
             var expectedResponse = new VoucherCheckResponse
             { 
@@ -97,7 +97,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = (VoucherCheckResponse)((ObjectResult)actionResult.Result).Value;
 
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.voucherCode);
             Assert.AreEqual("ERROR", voucherResponse.status);
             Assert.AreEqual(400, voucherResponse.errorCode);
         }
@@ -106,7 +106,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             return new VoucherCheckResponse()
             {
-                voucherCode = voucherRequest.voucherCode,
+                voucherCode = voucherRequest.VoucherCode,
                 errorCode = 0,
                 authorisationCode = "GHT23RTDWER",
                 vendor = "ABC corporation",

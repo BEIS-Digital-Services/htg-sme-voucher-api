@@ -48,10 +48,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             List<VoucherReconciliationReport> reciliationReport = new List<VoucherReconciliationReport>();
             try
             {
-                var vendorCompanySingle = _vendorCompanyRepository.GetVendorCompanyByRegistration(voucherReconciliationRequest.registration);
+                var vendorCompanySingle = _vendorCompanyRepository.GetVendorCompanyByRegistration(voucherReconciliationRequest.Registration);
                 if(vendorCompanySingle != null && IsValidVendor(voucherReconciliationRequest, vendorCompanySingle))
                 {
-                    foreach (var dailySalesSale in voucherReconciliationRequest.dailySales.sales)
+                    foreach (var dailySalesSale in voucherReconciliationRequest.DailySales.sales)
                     {
                         var voucherReport = new VoucherReconciliationReport();
                         try
@@ -301,15 +301,15 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
         
         public token GetToken(string decryptedVoucherCode)
         {
-            var token = _tokenRepository.GetToken(decryptedVoucherCode);
+            var token = _tokenRepository.GetTokenByTokenCode(decryptedVoucherCode);
 
             return token;
         }
         
         public bool IsValidVendor(VoucherReconciliationRequest voucherRequest, vendor_company vendorCompany)
         {
-            return voucherRequest.registration == vendorCompany.registration_id &&
-                   voucherRequest.accessCode == vendorCompany.access_secret;
+            return voucherRequest.Registration == vendorCompany.registration_id &&
+                   voucherRequest.AccessCode == vendorCompany.access_secret;
         }        
     }
 }

@@ -49,9 +49,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             VoucherCheckRequest voucherRequest = new VoucherCheckRequest()
             {
-                registration = "12345",
-                accessCode = "12345",
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q"
+                Registration = "12345",
+                AccessCode = "12345",
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q"
             };
 
             return voucherRequest;
@@ -65,7 +65,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             var vendorApiCallStatus = new vendor_api_call_status()
             {
                 call_id = 12345,
-                vendor_id = new[] {Convert.ToInt64(voucherRequest.registration.Substring(1, voucherRequest.registration.Length -1))},
+                vendor_id = new[] {Convert.ToInt64(voucherRequest.Registration.Substring(1, voucherRequest.Registration.Length -1))},
                 api_called = "VoucherCheck",
                 call_datetime = DateTime.Now,
                 request = JsonSerializer.Serialize(voucherRequest)

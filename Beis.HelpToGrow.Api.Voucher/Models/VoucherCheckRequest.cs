@@ -1,7 +1,7 @@
 
 namespace Beis.HelpToGrow.Api.Voucher.Models
 {
-    public class VoucherCheckRequest
+    public class VoucherCheckRequest : IVoucherRequest
     {
         [Required(ErrorMessage = "registration is required")]
         //  [MinLength(1, ErrorMessage = "registration is required")]

@@ -1,21 +1,21 @@
 
 namespace Beis.HelpToGrow.Api.Voucher.Services
 {
-    public class TokenVoucherGeneratorService: ITokenVoucherGeneratorService
+    public class TokenVoucherGeneratorService : ITokenVoucherGeneratorService
     {
         private readonly IProductRepository _productRepository;
         private readonly IVendorCompanyRepository _vendorCompanyRepository;
-        private readonly IVoucherGeneratorService _voucherGeneratorService;
-        
-        public TokenVoucherGeneratorService(IProductRepository productRepository, 
-            IVendorCompanyRepository vendorCompanyRepository, 
-            IVoucherGeneratorService voucherGeneratorService)
+        private readonly IVoucherGenerationService _voucherGeneratorService;
+
+        public TokenVoucherGeneratorService(IProductRepository productRepository,
+            IVendorCompanyRepository vendorCompanyRepository,
+            IVoucherGenerationService voucherGeneratorService)
         {
             _productRepository = productRepository;
             _vendorCompanyRepository = vendorCompanyRepository;
             _voucherGeneratorService = voucherGeneratorService;
         }
-
+        private static decimal tokenBalance => 5000M;
         public async Task<VoucherGenerationResponse> GenerateVoucher(VoucherGenerationRequest voucherGenerationRequest)
         {
 
@@ -50,7 +50,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                 registration = voucherGenerationRequest.registration,
                 productSku = voucherGenerationRequest.productSku,
                 voucherCode = voucherCode,
-                voucherBalance = VoucherGenerationService.tokenBalance
+                voucherBalance = tokenBalance //VoucherGenerationService.tokenBalance
             };
         }
     }

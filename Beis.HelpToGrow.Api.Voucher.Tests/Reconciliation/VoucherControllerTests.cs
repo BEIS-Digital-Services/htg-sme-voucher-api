@@ -31,9 +31,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
         public async Task VoucherReconciliationHappyTest()
         {
             VoucherReconciliationRequest voucherReconciliationRequest = new VoucherReconciliationRequest();
-            voucherReconciliationRequest.registration = "12345";
-            voucherReconciliationRequest.accessCode = "12345";
-            voucherReconciliationRequest.reconciliationDate = new DateTime();
+            voucherReconciliationRequest.Registration = "12345";
+            voucherReconciliationRequest.AccessCode = "12345";
+            voucherReconciliationRequest.ReconciliationDate = new DateTime();
             
             List<SalesReconcilliation> salesList = new List<SalesReconcilliation>();
             SalesReconcilliation salesReconcilliation = new SalesReconcilliation();
@@ -58,7 +58,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             salesList.Add(salesReconcilliation);
             DailySales dailySalesTest = new DailySales();
             dailySalesTest.sales = salesList;
-            voucherReconciliationRequest.dailySales = dailySalesTest;
+            voucherReconciliationRequest.DailySales = dailySalesTest;
 
             var voucherResponse = new VoucherReconciliationResponse() { status = "200",errorCode = 0 };
             _voucherReconciliationService.Setup(x => x.GetVoucherResponse(It.IsAny<VoucherReconciliationRequest>()))
@@ -81,9 +81,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
         public async Task VoucherReconciliationNegativeTest()
         {
             VoucherReconciliationRequest voucherReconciliationRequest = new VoucherReconciliationRequest();
-            voucherReconciliationRequest.registration = "12345";
-            voucherReconciliationRequest.accessCode = "12345";
-            voucherReconciliationRequest.reconciliationDate = new DateTime();
+            voucherReconciliationRequest.Registration = "12345";
+            voucherReconciliationRequest.AccessCode = "12345";
+            voucherReconciliationRequest.ReconciliationDate = new DateTime();
 
             
             List<SalesReconcilliation> salesList = new List<SalesReconcilliation>();
@@ -109,7 +109,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             salesList.Add(salesReconcilliation);
             DailySales dailySalesTest = new DailySales();
             dailySalesTest.sales = salesList;
-            voucherReconciliationRequest.dailySales = dailySalesTest;
+            voucherReconciliationRequest.DailySales = dailySalesTest;
 
             var logRequestDetailsResponse = new vendor_api_call_status { error_code = "200" };
             _vendorApiCallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherReconciliationRequest>()))

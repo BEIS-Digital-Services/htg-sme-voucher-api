@@ -39,7 +39,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                 status = "ERROR",
                 errorCode = errorCode,
                 message = message,
-                voucherCode = voucherRequest.voucherCode
+                voucherCode = voucherRequest.VoucherCode
             };
 
 
@@ -56,10 +56,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             
             try
             {
-                var vendorCompanySingle = _vendorCompanyRepository.GetVendorCompanyByRegistration(voucherRequest.registration);
+                var vendorCompanySingle = _vendorCompanyRepository.GetVendorCompanyByRegistration(voucherRequest.Registration);
                 var decryptedVoucherCode = DecryptVoucher(voucherRequest, vendorCompanySingle);
 
-                var token = _tokenRepository.GetToken(decryptedVoucherCode);
+                var token = _tokenRepository.GetTokenByTokenCode(decryptedVoucherCode);
 
                 if (token == null)
                 {
@@ -97,7 +97,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                 return await getVoucherErrorResponse(voucherRequest, 20, "Expired Token");
             }
 
-            if (token.authorisation_code != voucherRequest.authorisationCode)
+            if (token.authorisation_code != voucherRequest.AuthorisationCode)
             {
                 return await getVoucherErrorResponse(voucherRequest, 30, "Unknown Authorisation code");
             }
@@ -105,7 +105,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             voucherResponse.status = "OK"; 
             voucherResponse.errorCode = 0;
             voucherResponse.message = "Successful check - proceed";
-            voucherResponse.voucherCode = voucherRequest.voucherCode;
+            voucherResponse.voucherCode = voucherRequest.VoucherCode;
 
             if (token.reconciliation_status_id is
                 (long)ReconciliationStatus.PendingReconciliation or 
@@ -135,11 +135,11 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
 
         private string DecryptVoucher(VoucherUpdateRequest voucherRequest, vendor_company vendorCompany) =>
             _encryptionService.Decrypt(
-                $"{voucherRequest.voucherCode}==", 
+                $"{voucherRequest.VoucherCode}==", 
                 vendorCompany.registration_id + vendorCompany.vendorid);
 
         public bool IsValidVendor(VoucherUpdateRequest voucherRequest, vendor_company vendorCompany) =>
-            voucherRequest.registration == vendorCompany.registration_id &&
-            voucherRequest.accessCode == vendorCompany.access_secret;
+            voucherRequest.Registration == vendorCompany.registration_id &&
+            voucherRequest.AccessCode == vendorCompany.access_secret;
     }
 }

@@ -33,10 +33,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
         {
             VoucherUpdateRequest voucherUpdateRequest = new VoucherUpdateRequest()
             {
-                registration = "12345",
-                accessCode = "12345",
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q",
-                authorisationCode = "GHT23RTDWER"
+                Registration = "12345",
+                AccessCode = "12345",
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q",
+                AuthorisationCode = "GHT23RTDWER"
             };
 
             var voucherUpdateExpectedResponse = new VoucherUpdateResponse()
@@ -51,7 +51,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
             ActionResult<VoucherUpdateResponse> actionResult = await _voucherController.CheckVoucher(voucherUpdateRequest);
             VoucherUpdateResponse voucherUpdateResponse = (VoucherUpdateResponse) ((OkObjectResult) actionResult.Result).Value;
 
-            Assert.AreEqual(voucherUpdateRequest.voucherCode, voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(voucherUpdateRequest.VoucherCode, voucherUpdateResponse.voucherCode);
             Assert.AreEqual("OK", voucherUpdateResponse.status);
             Assert.AreEqual(0, voucherUpdateResponse.errorCode);
             Assert.AreEqual("Successful check - proceed", voucherUpdateResponse.message);
@@ -62,10 +62,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
         {
             VoucherUpdateRequest voucherUpdateRequest = new VoucherUpdateRequest()
             {
-                registration = "12345",
-                accessCode = "12345",
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q99",
-                authorisationCode = "GHT23RTDWER"
+                Registration = "12345",
+                AccessCode = "12345",
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q99",
+                AuthorisationCode = "GHT23RTDWER"
             };
 
             var voucherUpdateExpectedResponse = new VoucherUpdateResponse()

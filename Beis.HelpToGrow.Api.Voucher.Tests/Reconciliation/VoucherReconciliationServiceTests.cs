@@ -72,8 +72,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
         {
             var voucherReconciliationRequest = GetVoucherReconciliationRequest();
 
-            voucherReconciliationRequest.dailySales.sales[0].totalAmount = 10000;
-            voucherReconciliationRequest.dailySales.sales[0].discountApplied = 10000;
+            voucherReconciliationRequest.DailySales.sales[0].totalAmount = 10000;
+            voucherReconciliationRequest.DailySales.sales[0].discountApplied = 10000;
 
             setupMockObjects(voucherReconciliationRequest);
 
@@ -144,7 +144,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
 
             setupMockObjects(voucherReconciliationRequest);
             token token = null;
-            _tokenRepository.Setup(x => x.GetToken(It.IsAny<string>())).Returns(token);
+            _tokenRepository.Setup(x => x.GetTokenByTokenCode(It.IsAny<string>())).Returns(token);
             var voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
 
             Assert.NotNull(voucherResponse);
@@ -241,10 +241,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             };
 
             _vendorCompanyRepository
-                .Setup(x => x.GetVendorCompanyByRegistration(voucherReconciliationRequest.registration))
+                .Setup(x => x.GetVendorCompanyByRegistration(voucherReconciliationRequest.Registration))
                 .Returns(vendorCompany);
             _encryptionService.Setup(x => x.Decrypt(It.IsAny<string>(), It.IsAny<string>())).Returns("ABCD");
-            _tokenRepository.Setup(x => x.GetToken(It.IsAny<string>())).Returns(token);
+            _tokenRepository.Setup(x => x.GetTokenByTokenCode(It.IsAny<string>())).Returns(token);
             _productRepository.Setup(x => x.GetProductSingle(It.IsAny<long>())).Returns(Task.FromResult(product));
             _reconciliationSalesRepository.Setup(x => x.GetVendorReconciliationSalesByVoucherCode(It.IsAny<string>()))
                 .Returns(Task.FromResult<vendor_reconciliation_sale>(null));
@@ -253,9 +253,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
         private static VoucherReconciliationRequest GetVoucherReconciliationRequest()
         {
             VoucherReconciliationRequest voucherReconciliationRequest = new VoucherReconciliationRequest();
-            voucherReconciliationRequest.registration = "12345";
-            voucherReconciliationRequest.accessCode = "12345";
-            voucherReconciliationRequest.reconciliationDate = DateTime.Now;
+            voucherReconciliationRequest.Registration = "12345";
+            voucherReconciliationRequest.AccessCode = "12345";
+            voucherReconciliationRequest.ReconciliationDate = DateTime.Now;
 
             List<SalesReconcilliation> salesList = new List<SalesReconcilliation>();
             SalesReconcilliation salesReconcilliation = new SalesReconcilliation();
@@ -280,7 +280,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             salesList.Add(salesReconcilliation);
             DailySales dailySalesTest = new DailySales();
             dailySalesTest.sales = salesList;
-            voucherReconciliationRequest.dailySales = dailySalesTest;
+            voucherReconciliationRequest.DailySales = dailySalesTest;
             return voucherReconciliationRequest;
         }
     }

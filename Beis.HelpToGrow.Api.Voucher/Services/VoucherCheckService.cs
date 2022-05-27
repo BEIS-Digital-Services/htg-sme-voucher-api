@@ -39,7 +39,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                 status = "ERROR",
                 errorCode = errorCode,
                 message = message,
-                voucherCode = voucherRequest.voucherCode
+                voucherCode = voucherRequest.VoucherCode
             };
             
 
@@ -53,8 +53,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
          
             try
             {
-                _logger.LogInformation("Getting vendor company for registration {registration}", voucherRequest.registration);
-                var vendorCompany = _vendorCompanyRepository.GetVendorCompanyByRegistration(voucherRequest.registration);
+                _logger.LogInformation("Getting vendor company for registration {registration}", voucherRequest.Registration);
+                var vendorCompany = _vendorCompanyRepository.GetVendorCompanyByRegistration(voucherRequest.Registration);
                 if (vendorCompany != null)
                 {
                     _logger.LogInformation("Decrypting voucher");
@@ -96,7 +96,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
 
         private token GetToken(string decryptedVoucherCode)
         {
-            var token = _tokenRepository.GetToken(decryptedVoucherCode);
+            var token = _tokenRepository.GetTokenByTokenCode(decryptedVoucherCode);
 
             return token;
         }
@@ -127,7 +127,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             voucherResponse.status = "OK";
             voucherResponse.message = "Successful check - proceed with Voucher";
             voucherResponse.errorCode = 0;
-            voucherResponse.voucherCode = voucherRequest.voucherCode;
+            voucherResponse.voucherCode = voucherRequest.VoucherCode;
             voucherResponse.authorisationCode = token.authorisation_code;
 
             voucherResponse.vendor = vendorCompanySingle.vendor_company_name;
@@ -154,14 +154,14 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
 
         private string DecryptVoucher(VoucherCheckRequest voucherRequest, vendor_company vendorCompany)
         {
-            var voucherCode = voucherRequest.voucherCode + "==";
+            var voucherCode = voucherRequest.VoucherCode + "==";
             return _encryptionService.Decrypt(voucherCode, vendorCompany.registration_id + vendorCompany.vendorid);
         }
 
         private bool IsValidVendor(VoucherCheckRequest voucherRequest, vendor_company vendorCompany)
         {
-            return voucherRequest.registration == vendorCompany.registration_id &&
-                voucherRequest.accessCode == vendorCompany.access_secret;
+            return voucherRequest.Registration == vendorCompany.registration_id &&
+                voucherRequest.AccessCode == vendorCompany.access_secret;
         }
     }
 }

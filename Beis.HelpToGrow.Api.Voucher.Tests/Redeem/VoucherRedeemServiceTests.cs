@@ -123,10 +123,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
         {
             var voucherUpdateRequest = new VoucherUpdateRequest
             {
-                registration = registrationNumber,
-                accessCode = "12345",
-                voucherCode = "abcdef",
-                authorisationCode = "abcd"
+                Registration = registrationNumber,
+                AccessCode = "12345",
+                VoucherCode = "abcdef",
+                AuthorisationCode = "abcd"
             };
 
             var vendorCompany = vendorCompanyArg ?? FakeVendorCompany;
@@ -157,7 +157,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
                 .Returns("123456");
 
             _tokenRepository
-                .Setup(x => x.GetToken(It.IsAny<string>()))
+                .Setup(x => x.GetTokenByTokenCode(It.IsAny<string>()))
                 .Returns(token);
 
             _productRepository
