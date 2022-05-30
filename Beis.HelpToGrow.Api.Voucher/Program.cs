@@ -1,8 +1,15 @@
-﻿
 using Beis.HelpToGrow.Api.Voucher.Extensions;
 using Microsoft.AspNetCore.Mvc.Versioning;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("AppConfig");
+if (connectionString != null)
+{
+    builder.Host.ConfigureAppConfiguration(configBuilder =>
+    {
+        configBuilder.AddAzureAppConfiguration(connectionString);
+    });
+}
 
 // Add services to the container.
 builder.Services.RegisterVoucherApiServices(builder.Configuration);

@@ -8,7 +8,7 @@ using Beis.HelpToGrow.Common.Services;
 
 namespace Beis.HelpToGrow.Api.Voucher.Extensions
 {
-    public static class RegisterVoucherApiServicesExtension
+    internal static class RegisterVoucherApiServicesExtension
     {
         public static IServiceCollection RegisterVoucherApiServices(this IServiceCollection services, IConfiguration configuration)
         {
@@ -22,11 +22,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
                 options.SetMinimumLevel(LogLevel.Trace);
 
             });
-            services.AddApplicationInsightsTelemetry(configuration["AZURE_MONITOR_INSTRUMENTATION_KEY"]);
+            services.AddApplicationInsightsTelemetry(configuration["AzureMonitorInstrumentationKey"]);
 
             services.AddSingleton<IEncryptionService, AesEncryption>();
-            
-
             services.AddTransient<IVoucherCheckService, VoucherCheckService>();
             services.AddTransient<IVendorAPICallStatusServices, VendorAPICallStatusServices>();
 
