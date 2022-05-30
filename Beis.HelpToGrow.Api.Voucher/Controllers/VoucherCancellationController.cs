@@ -62,17 +62,78 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                             };
                             return voucherResponse;
                         }
+                    case CancellationResponse.AlreadyCancelled:
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "OK",
+                                ErrorCode = 0,
+                                Message = "Voucher already cancelled",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }
+                    case CancellationResponse.TokenExpired:
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "OK",
+                                ErrorCode = 0,
+                                Message = "Voucher already expired",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+
+                        }
                     case CancellationResponse.UnknownVoucherCode:
+                    case CancellationResponse.UnknownError:
+                    case CancellationResponse.TokenNotFound:
+
                         {
                             voucherResponse = new VoucherCancellationResponse
                             {
                                 Status = "ERROR",
                                 ErrorCode = 10,
-                                Message = "Unknown Voucher ",
+                                Message = "Unknown Voucher",
                                 VoucherCode = cancellationRequest.VoucherCode
                             };
                             return voucherResponse;
                         }
+                    case CancellationResponse.FreeTrialExpired: // todo - discuss whethere this should still cancel the voucher.
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "ERROR",
+                                ErrorCode = 10,
+                                Message = "Free trial expired. SME cannot reapply.",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }
+                    case CancellationResponse.UnknownVendorRegistration:
+                    case CancellationResponse.UnknownVendorAccessCode:
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "ERROR",
+                                ErrorCode = 20,
+                                Message = "Unknown Vendor",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }
+                    default:
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "ERROR",
+                                ErrorCode = 10,
+                                Message = "Unknown Voucher",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }
+
                 }
 
             }
@@ -94,7 +155,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
 
                 return StatusCode(500, voucherResponse);
             }
-            throw new NotImplementedException();
+
             return voucherResponse;
         }
 

@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppConfig");
+
 if (connectionString != null)
 {
+    builder.Services.AddAzureAppConfiguration();
+    
     builder.Host.ConfigureAppConfiguration(configBuilder =>
     {
         configBuilder.AddAzureAppConfiguration(connectionString);
@@ -13,7 +16,7 @@ if (connectionString != null)
 
 // Add services to the container.
 builder.Services.RegisterVoucherApiServices(builder.Configuration);
-//builder.Services.AddVoucherPersistence(configuration);
+
 
 builder.Services.AddControllers();
 

@@ -17,6 +17,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
         private Mock<IEnterpriseRepository> _enterpriseRepository;
         private Mock<ILogger<TokenVoucherGeneratorService>> _logger;
+        private IOptions<VoucherSettings> voucherOptions;
 
         [SetUp]
 
@@ -29,7 +30,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             _vendorCompanyRepository = new Mock<IVendorCompanyRepository>();
             _enterpriseRepository = new Mock<IEnterpriseRepository>();
             _logger = new Mock<ILogger<TokenVoucherGeneratorService>>();
-            _service = new TokenVoucherGeneratorService(_productRepository.Object, _vendorCompanyRepository.Object, _voucherGeneratorService.Object);
+            voucherOptions = Options.Create(new VoucherSettings { VoucherCodeLength = 9 });
+            _service = new TokenVoucherGeneratorService(_productRepository.Object, _vendorCompanyRepository.Object, _voucherGeneratorService.Object, voucherOptions );
         }
 
         [Test]
@@ -113,7 +115,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             _vendorCompanyRepository.Setup(x => x.GetVendorCompanyByRegistration(It.IsAny<string>())).Returns(vendor_company);
             _productRepository.Setup(x => x.GetProductBySku(It.IsAny<string>(), It.IsAny<long>())).Returns(product);
-            _voucherGeneratorService.Setup(x => x.GenerateVoucher(It.IsAny<vendor_company>(), It.IsAny<enterprise>(), It.IsAny<product>())).ReturnsAsync("voucherCode");
+            _voucherGeneratorService.Setup(x => x.GenerateVoucher(It.IsAny<vendor_company>(), It.IsAny<enterprise>(), It.IsAny<product>(), It.IsAny<IOptions<VoucherSettings>>())).ReturnsAsync("voucherCode");
 
             return voucherRequest;
         }

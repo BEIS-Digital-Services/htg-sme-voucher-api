@@ -6,14 +6,17 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
         private readonly IProductRepository _productRepository;
         private readonly IVendorCompanyRepository _vendorCompanyRepository;
         private readonly IVoucherGenerationService _voucherGeneratorService;
+        private readonly IOptions<VoucherSettings> _voucherSettings;
 
         public TokenVoucherGeneratorService(IProductRepository productRepository,
             IVendorCompanyRepository vendorCompanyRepository,
-            IVoucherGenerationService voucherGeneratorService)
+            IVoucherGenerationService voucherGeneratorService,
+            IOptions<VoucherSettings> voucherSettings)
         {
             _productRepository = productRepository;
             _vendorCompanyRepository = vendorCompanyRepository;
             _voucherGeneratorService = voucherGeneratorService;
+            _voucherSettings = voucherSettings;
         }
         private static decimal tokenBalance => 5000M;
         public async Task<VoucherGenerationResponse> GenerateVoucher(VoucherGenerationRequest voucherGenerationRequest)
@@ -43,7 +46,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                 enterprise_id = 1
             };
 
-            var voucherCode = await _voucherGeneratorService.GenerateVoucher(vendorCompany, enterprise, product);
+            var voucherCode = await _voucherGeneratorService.GenerateVoucher(vendorCompany, enterprise, product, _voucherSettings);
 
             return new VoucherGenerationResponse()
             {

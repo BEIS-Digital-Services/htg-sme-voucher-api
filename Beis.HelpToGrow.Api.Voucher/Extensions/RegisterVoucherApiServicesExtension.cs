@@ -12,9 +12,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
     {
         public static IServiceCollection RegisterVoucherApiServices(this IServiceCollection services, IConfiguration configuration)
         {
+           
             services.Configure<EncryptionSettings>(options =>
                 configuration.Bind(options));
-
+            services.Configure<VoucherSettings>(configuration.GetSection("VoucherSettings"));
             services.AddLogging(options =>
             {
                 // hook the Console Log Provider
@@ -37,12 +38,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
             services.AddTransient<IVoucherGenerationService, VoucherGenerationService>();    
             services.AddTransient<IVendorReconciliationSalesRepository, VendorReconciliationSalesRepository>();
             services.AddTransient<IVendorReconciliationRepository, VendorReconciliationRepository>();         
-            services.AddTransient<IVoucherReconciliationService, VoucherReconciliationService>();
-            //services.AddDbContext<HtgVendorSmeDbContext>(options => options.UseNpgsql(configuration["HELPTOGROW_CONNECTIONSTRING"]), ServiceLifetime.Transient);
+            services.AddTransient<IVoucherReconciliationService, VoucherReconciliationService>();            
             services.AddTransient<IVoucherRedeemService, VoucherRedeemService>();
             services.AddTransient<IVoucherCancellationService, VoucherCancellationService>();
             services.AddTransient<IProductPriceRepository, ProductPriceRepository>();
             services.AddVoucherPersistence(configuration);
+            
 
 
 
