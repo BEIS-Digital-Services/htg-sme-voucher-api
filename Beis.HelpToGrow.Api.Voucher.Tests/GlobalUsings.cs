@@ -17,8 +17,8 @@ global using Beis.HelpToGrow.Api.Voucher.Config;
 
 global using Beis.HelpToGrow.Api.Data.Repositories;
 
-global using Beis.Htg.VendorSme.Database;
-global using Beis.Htg.VendorSme.Database.Models;
+global using Beis.HelpToGrow.Persistence;
+global using Beis.HelpToGrow.Persistence.Models;
 
 global using Beis.HelpToGrow.Repositories.Enums;
 global using Beis.HelpToGrow.Repositories.Interfaces;

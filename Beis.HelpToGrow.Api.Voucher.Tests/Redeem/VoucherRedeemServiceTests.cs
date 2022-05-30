@@ -1,8 +1,4 @@
-
-
-using System;
 using System.Threading.Tasks;
-using Beis.Htg.VendorSme.Database.Models;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
@@ -30,7 +26,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
             _logger = new Mock<ILogger<VoucherRedeemService>>();
             _vendorAPICallStatusServices = new Mock<IVendorAPICallStatusServices>();
             _vendorAPICallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherUpdateRequest>()))
-                .Returns(new Beis.Htg.VendorSme.Database.Models.vendor_api_call_status { });
+                .Returns(new vendor_api_call_status { });
 
             _voucherRedeemService = new VoucherRedeemService(_logger.Object,
                                                                                                 _encryptionService.Object,

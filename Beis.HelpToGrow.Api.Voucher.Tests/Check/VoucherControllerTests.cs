@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
@@ -24,7 +23,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             _logger = new Mock<ILogger<VoucherCheckController>>();
             _vendorApiCallStatusServices = new Mock<IVendorAPICallStatusServices>();
             _vendorApiCallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherCheckRequest>()))
-                .Returns(new Beis.Htg.VendorSme.Database.Models.vendor_api_call_status { });
+                .Returns(new vendor_api_call_status { });
             _voucherController = new VoucherCheckController(_logger.Object, _voucherCheckService.Object, _vendorApiCallStatusServices.Object);
         }
         

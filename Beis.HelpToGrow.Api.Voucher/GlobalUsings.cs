@@ -20,7 +20,7 @@ global using Beis.HelpToGrow.Common.Interfaces;
 global using Beis.HelpToGrow.Common.Enums;
 global using Beis.HelpToGrow.Api.Data.Repositories;
 
-global using Beis.Htg.VendorSme.Database;
-global using Beis.Htg.VendorSme.Database.Models;
+global using Beis.HelpToGrow.Persistence;
+global using Beis.HelpToGrow.Persistence.Models;
 
 

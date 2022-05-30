@@ -1,10 +1,6 @@
-
-using Beis.Htg.VendorSme.Database.Models;
-
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Threading.Tasks;
 
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
