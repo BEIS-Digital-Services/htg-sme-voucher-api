@@ -73,6 +73,17 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                             };
                             return voucherResponse;
                         }
+                    case CancellationResponse.UnknownVendorAccessCode:
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "ERROR",
+                                ErrorCode = 30,
+                                Message = "Unknown Access Code",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }
                     case CancellationResponse.TokenExpired:
                         {
                             voucherResponse = new VoucherCancellationResponse
@@ -110,13 +121,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                             };
                             return voucherResponse;
                         }
-                    case CancellationResponse.UnknownVendorRegistration:
-                    case CancellationResponse.UnknownVendorAccessCode:
+                    case CancellationResponse.UnknownVendorRegistration:                   
                         {
                             voucherResponse = new VoucherCancellationResponse
                             {
                                 Status = "ERROR",
-                                ErrorCode = 20,
+                                ErrorCode = 30,
                                 Message = "Unknown Vendor",
                                 VoucherCode = cancellationRequest.VoucherCode
                             };
