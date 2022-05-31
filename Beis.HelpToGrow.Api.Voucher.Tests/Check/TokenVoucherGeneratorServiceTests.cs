@@ -44,9 +44,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             
             Assert.NotNull(voucherResponse);
             Assert.AreEqual(typeof(VoucherGenerationResponse), voucherResponse.GetType());
-            Assert.AreEqual(request.registration, voucherResponse.registration);
-            Assert.AreEqual("voucherCode", voucherResponse.voucherCode);
-            Assert.AreEqual(5000M, voucherResponse.voucherBalance);
+            Assert.AreEqual(request.Registration, voucherResponse.Registration);
+            Assert.AreEqual("voucherCode", voucherResponse.VoucherCode);
+            Assert.AreEqual(5000M, voucherResponse.VoucherBalance);
         }
 
         [Test]
@@ -60,8 +60,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             Assert.NotNull(voucherResponse);
             Assert.AreEqual(typeof(VoucherGenerationResponse), voucherResponse.GetType());
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual("Product not found.", voucherResponse.message);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual("Product not found.", voucherResponse.Message);
         }
 
         [Test]
@@ -75,16 +75,16 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             Assert.NotNull(voucherResponse);
             Assert.AreEqual(typeof(VoucherGenerationResponse), voucherResponse.GetType());
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual("Company registration not found.", voucherResponse.message);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual("Company registration not found.", voucherResponse.Message);
         }
 
         private VoucherGenerationRequest SetupTestData(string registrationNumber)
         {
             var voucherRequest = new VoucherGenerationRequest()
             {
-                registration = registrationNumber,
-                productSku = "sku123",
+                Registration = registrationNumber,
+                ProductSku = "sku123",
             };
 
             var vendor_company = new vendor_company()
@@ -115,7 +115,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             _vendorCompanyRepository.Setup(x => x.GetVendorCompanyByRegistration(It.IsAny<string>())).Returns(vendor_company);
             _productRepository.Setup(x => x.GetProductBySku(It.IsAny<string>(), It.IsAny<long>())).Returns(product);
-            _voucherGeneratorService.Setup(x => x.GenerateVoucher(It.IsAny<vendor_company>(), It.IsAny<enterprise>(), It.IsAny<product>(), It.IsAny<IOptions<VoucherSettings>>())).ReturnsAsync("voucherCode");
+            _voucherGeneratorService.Setup(x => x.GenerateVoucher(It.IsAny<vendor_company>(), It.IsAny<enterprise>(), It.IsAny<product>(), It.IsAny<IOptions<VoucherSettings>>(),It.IsAny<bool>())).ReturnsAsync("voucherCode");
 
             return voucherRequest;
         }

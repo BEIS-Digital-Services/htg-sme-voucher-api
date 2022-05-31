@@ -42,15 +42,15 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = (VoucherCheckResponse) ((OkObjectResult) actionResult.Result).Value;
             
-            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.voucherCode);
-            Assert.AreEqual(0, voucherResponse.errorCode);
-            Assert.AreEqual("GHT23RTDWER", voucherResponse.authorisationCode);
-            Assert.AreEqual("ABC corporation", voucherResponse.vendor);
-            Assert.AreEqual("GHU1234", voucherResponse.productSku);
-            Assert.AreEqual("Mr. Joe Blogs", voucherResponse.purchaserName);
-            Assert.AreEqual("Buyer limited", voucherResponse.licenceTo);
-            Assert.AreEqual("abc@my-company.com", voucherResponse.smeEmail);
-            Assert.AreEqual(4999, voucherResponse.maxDiscountAllowed);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
+            Assert.AreEqual(0, voucherResponse.ErrorCode);
+            Assert.AreEqual("GHT23RTDWER", voucherResponse.AuthorisationCode);
+            Assert.AreEqual("ABC corporation", voucherResponse.Vendor);
+            Assert.AreEqual("GHU1234", voucherResponse.ProductSku);
+            Assert.AreEqual("Mr. Joe Blogs", voucherResponse.PurchaserName);
+            Assert.AreEqual("Buyer limited", voucherResponse.LicenceTo);
+            Assert.AreEqual("abc@my-company.com", voucherResponse.SmeEmail);
+            Assert.AreEqual(4999, voucherResponse.MaxDiscountAllowed);
         }
        
         [Test]
@@ -68,10 +68,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = (VoucherCheckResponse) ((ObjectResult) actionResult.Result).Value;
             
-            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.voucherCode);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(10, voucherResponse.errorCode);
-            Assert.AreEqual("Unknown token my exception", voucherResponse.message);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown token my exception", voucherResponse.Message);
         }
 
         [Test]
@@ -85,9 +85,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             var expectedResponse = new VoucherCheckResponse
             { 
-                errorCode = 400,
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc",
-                status = "ERROR"
+                ErrorCode = 400,
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc",
+                Status = "ERROR"
             };
 
             _voucherCheckService.Setup(x => x.GetVoucherResponse(It.IsAny<VoucherCheckRequest>())).ReturnsAsync(expectedResponse);
@@ -96,24 +96,24 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = (VoucherCheckResponse)((ObjectResult)actionResult.Result).Value;
 
-            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.voucherCode);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(400, voucherResponse.errorCode);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(400, voucherResponse.ErrorCode);
         }
 
         private VoucherCheckResponse getVoucherResponse(VoucherCheckRequest voucherRequest)
         {
             return new VoucherCheckResponse()
             {
-                voucherCode = voucherRequest.VoucherCode,
-                errorCode = 0,
-                authorisationCode = "GHT23RTDWER",
-                vendor = "ABC corporation",
-                productSku = "GHU1234",
-                purchaserName = "Mr. Joe Blogs",
-                licenceTo = "Buyer limited",
-                smeEmail = "abc@my-company.com",
-                maxDiscountAllowed = 4999
+                VoucherCode = voucherRequest.VoucherCode,
+                ErrorCode = 0,
+                AuthorisationCode = "GHT23RTDWER",
+                Vendor = "ABC corporation",
+                ProductSku = "GHU1234",
+                PurchaserName = "Mr. Joe Blogs",
+                LicenceTo = "Buyer limited",
+                SmeEmail = "abc@my-company.com",
+                MaxDiscountAllowed = 4999
             }; }
         
     }

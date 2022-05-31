@@ -36,10 +36,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
 
             var voucherResponse = new VoucherUpdateResponse
             {
-                status = "ERROR",
-                errorCode = errorCode,
-                message = message,
-                voucherCode = voucherRequest.VoucherCode
+                Status = "ERROR",
+                ErrorCode = errorCode,
+                Message = message,
+                VoucherCode = voucherRequest.VoucherCode
             };
 
 
@@ -102,10 +102,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                 return await getVoucherErrorResponse(voucherRequest, 30, "Unknown Authorisation code");
             }
             
-            voucherResponse.status = "OK"; 
-            voucherResponse.errorCode = 0;
-            voucherResponse.message = "Successful check - proceed";
-            voucherResponse.voucherCode = voucherRequest.VoucherCode;
+            voucherResponse.Status = "OK"; 
+            voucherResponse.ErrorCode = 0;
+            voucherResponse.Message = "Successful check - proceed";
+            voucherResponse.VoucherCode = voucherRequest.VoucherCode;
 
             if (token.reconciliation_status_id is
                 (long)ReconciliationStatus.PendingReconciliation or 

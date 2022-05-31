@@ -45,9 +45,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             var voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(0, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("OK", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(0, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("OK", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         [Test]
@@ -57,10 +57,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             VoucherUpdateResponse voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(10, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Unknown token or company", voucherUpdateResponse.message.Trim());
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(10, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Unknown token or company", voucherUpdateResponse.Message.Trim());
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         [Test]
@@ -70,10 +70,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             var voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(40, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherUpdateResponse.message.Trim());
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(40, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherUpdateResponse.Message.Trim());
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         [Test]
@@ -83,10 +83,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             var voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(40, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherUpdateResponse.message.Trim());
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(40, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherUpdateResponse.Message.Trim());
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         [Test]
@@ -96,10 +96,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             var voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(40, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherUpdateResponse.message.Trim());
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(40, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherUpdateResponse.Message.Trim());
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         [Test]
@@ -109,10 +109,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             var voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(40, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherUpdateResponse.message.Trim());
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(40, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherUpdateResponse.Message.Trim());
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         private VoucherUpdateRequest SetupVoucherUpdateRequest(string registrationNumber, vendor_company vendorCompanyArg = null, token tokenArg = null, product productArg = null, int? tokenCancellationCode = null)

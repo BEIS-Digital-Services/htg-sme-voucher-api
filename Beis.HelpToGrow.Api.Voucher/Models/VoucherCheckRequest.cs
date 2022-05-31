@@ -3,14 +3,14 @@ namespace Beis.HelpToGrow.Api.Voucher.Models
 {
     public class VoucherCheckRequest : IVoucherRequest
     {
-        [Required(ErrorMessage = "registration is required")]
-        [MinLength(1, ErrorMessage = "registration is required")]
+        [Required(ErrorMessage = "Registration is required")]
+        [MinLength(1, ErrorMessage = "Registration is required")]
         public string Registration { get; set; }
-        [Required(ErrorMessage = "accessCode is required")]
-        [MinLength(1, ErrorMessage = "accessCode is required")]
+        [Required(ErrorMessage = "AccessCode is required")]
+        [MinLength(1, ErrorMessage = "AccessCode is required")]
         public string AccessCode { get; set; }
-        [Required(ErrorMessage = "voucherCode is required")]
-        [MinLength(1, ErrorMessage = "voucherCode is required")]
+        [Required(ErrorMessage = "VoucherCode is required")]
+        [MinLength(1, ErrorMessage = "VoucherCode is required")]
         public string VoucherCode { get; set; }
     }
 }

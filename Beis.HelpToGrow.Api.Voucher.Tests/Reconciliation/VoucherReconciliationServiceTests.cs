@@ -58,9 +58,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             var voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
 
             Assert.NotNull(voucherResponse);
-            Assert.NotNull(voucherResponse.reconciliationReport);
-            Assert.AreEqual("Success", voucherResponse.reconciliationReport[0].status);
-            Assert.AreEqual(0, voucherResponse.errorCode);
+            Assert.NotNull(voucherResponse.ReconciliationReport);
+            Assert.AreEqual("Success", voucherResponse.ReconciliationReport[0].Status);
+            Assert.AreEqual(0, voucherResponse.ErrorCode);
 
         }
 
@@ -70,19 +70,19 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
         {
             var voucherReconciliationRequest = GetVoucherReconciliationRequest();
 
-            voucherReconciliationRequest.DailySales.sales[0].totalAmount = 10000;
-            voucherReconciliationRequest.DailySales.sales[0].discountApplied = 10000;
+            voucherReconciliationRequest.DailySales.Sales[0].TotalAmount = 10000;
+            voucherReconciliationRequest.DailySales.Sales[0].DiscountApplied = 10000;
 
             setupMockObjects(voucherReconciliationRequest);
 
             var voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
 
             Assert.NotNull(voucherResponse);
-            Assert.AreEqual(1, voucherResponse.reconciliationReport.Count);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(10, voucherResponse.errorCode);
-            Assert.AreEqual("ERROR", voucherResponse.reconciliationReport[0].status);
-            Assert.AreEqual("Reconciliation discount applied 10000 more than voucher balance 5000", voucherResponse.reconciliationReport[0].reason);
+            Assert.AreEqual(1, voucherResponse.ReconciliationReport.Count);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("ERROR", voucherResponse.ReconciliationReport[0].Status);
+            Assert.AreEqual("Reconciliation discount applied 10000 more than voucher balance 5000", voucherResponse.ReconciliationReport[0].Reason);
         }
 
         [Test]
@@ -103,10 +103,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             var voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
 
             Assert.NotNull(voucherResponse);
-            Assert.NotNull(voucherResponse.reconciliationReport);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(10, voucherResponse.errorCode);
-            Assert.AreEqual("Already reconciled", voucherResponse.reconciliationReport[0].reason);
+            Assert.NotNull(voucherResponse.ReconciliationReport);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Already reconciled", voucherResponse.ReconciliationReport[0].Reason);
         }
 
         [Test]
@@ -129,10 +129,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             var voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
 
             Assert.NotNull(voucherResponse);
-            Assert.AreEqual(0, voucherResponse.reconciliationReport.Count);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(10, voucherResponse.errorCode);
-            Assert.AreEqual("Unknown vendor details", voucherResponse.message);
+            Assert.AreEqual(0, voucherResponse.ReconciliationReport.Count);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown vendor details", voucherResponse.Message);
         }
 
         [Test]
@@ -146,10 +146,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             var voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
 
             Assert.NotNull(voucherResponse);
-            Assert.NotNull(voucherResponse.reconciliationReport);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(20, voucherResponse.errorCode);
-            Assert.AreEqual("Unknown token", voucherResponse.reconciliationReport[0].reason);
+            Assert.NotNull(voucherResponse.ReconciliationReport);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(20, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown token", voucherResponse.ReconciliationReport[0].Reason);
         }
 
         [Test]
@@ -162,10 +162,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             var voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
 
             Assert.NotNull(voucherResponse);
-            Assert.NotNull(voucherResponse.reconciliationReport);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(30, voucherResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherResponse.reconciliationReport[0].reason);
+            Assert.NotNull(voucherResponse.ReconciliationReport);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(30, voucherResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherResponse.ReconciliationReport[0].Reason);
         }
 
         [Test]
@@ -178,10 +178,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             var voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
 
             Assert.NotNull(voucherResponse);
-            Assert.NotNull(voucherResponse.reconciliationReport);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(30, voucherResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherResponse.reconciliationReport[0].reason);
+            Assert.NotNull(voucherResponse.ReconciliationReport);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(30, voucherResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherResponse.ReconciliationReport[0].Reason);
         }
 
         [Test]
@@ -194,10 +194,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             var voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
 
             Assert.NotNull(voucherResponse);
-            Assert.NotNull(voucherResponse.reconciliationReport);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(30, voucherResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherResponse.reconciliationReport[0].reason);
+            Assert.NotNull(voucherResponse.ReconciliationReport);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(30, voucherResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherResponse.ReconciliationReport[0].Reason);
         }
 
         [Test]
@@ -210,10 +210,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             var voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
 
             Assert.NotNull(voucherResponse);
-            Assert.NotNull(voucherResponse.reconciliationReport);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(30, voucherResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherResponse.reconciliationReport[0].reason);
+            Assert.NotNull(voucherResponse.ReconciliationReport);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(30, voucherResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherResponse.ReconciliationReport[0].Reason);
         }
         private void setupMockObjects(VoucherReconciliationRequest voucherReconciliationRequest, int? tokenCancellationCode = null)
         {
@@ -258,26 +258,26 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             List<SalesReconcilliation> salesList = new List<SalesReconcilliation>();
             SalesReconcilliation salesReconcilliation = new SalesReconcilliation();
 
-            salesReconcilliation.notificationType = "new";
-            salesReconcilliation.voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q";
-            salesReconcilliation.authorisationCode = "GHT23RTDWER";
-            salesReconcilliation.productSku = "GHU12234";
-            salesReconcilliation.productName = "My Accounts Package";
-            salesReconcilliation.licenceTo = "Buyer limited";
-            salesReconcilliation.smeEmail = "abc@my-company.com";
-            salesReconcilliation.purchaserName = "Mr. Joe Blogs";
-            salesReconcilliation.oneOffCosts = 30;
-            salesReconcilliation.noOfLicences = 30;
-            salesReconcilliation.costPerLicence = 15;
-            salesReconcilliation.totalAmount = 4999;
-            salesReconcilliation.discountApplied = 2500;
-            salesReconcilliation.currency = "GBP";
-            salesReconcilliation.contractTermInMonths = 12;
-            salesReconcilliation.trialPeriodInMonths = 3;
+            salesReconcilliation.NotificationType = "new";
+            salesReconcilliation.VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q";
+            salesReconcilliation.AuthorisationCode = "GHT23RTDWER";
+            salesReconcilliation.ProductSku = "GHU12234";
+            salesReconcilliation.ProductName = "My Accounts Package";
+            salesReconcilliation.LicenceTo = "Buyer limited";
+            salesReconcilliation.SmeEmail = "abc@my-company.com";
+            salesReconcilliation.PurchaserName = "Mr. Joe Blogs";
+            salesReconcilliation.OneOffCosts = 30;
+            salesReconcilliation.NoOfLicences = 30;
+            salesReconcilliation.CostPerLicence = 15;
+            salesReconcilliation.TotalAmount = 4999;
+            salesReconcilliation.DiscountApplied = 2500;
+            salesReconcilliation.Currency = "GBP";
+            salesReconcilliation.ContractTermInMonths = 12;
+            salesReconcilliation.TrialPeriodInMonths = 3;
 
             salesList.Add(salesReconcilliation);
             DailySales dailySalesTest = new DailySales();
-            dailySalesTest.sales = salesList;
+            dailySalesTest.Sales = salesList;
             voucherReconciliationRequest.DailySales = dailySalesTest;
             return voucherReconciliationRequest;
         }

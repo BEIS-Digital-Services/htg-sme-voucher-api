@@ -48,7 +48,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             VoucherCancellationResponse voucherResponse;
             try
             {
-                var cancellationResult = await _voucherCancellationService.CancelVoucherFromVoucherCode(cancellationRequest.Registration, cancellationRequest.AccessCode, cancellationRequest.VoucherCode);
+                var cancellationResult = await _voucherCancellationService.CancelVoucherFromVoucherCode(cancellationRequest.VoucherCode,cancellationRequest.Registration, cancellationRequest.AccessCode);
                 switch (cancellationResult)
                 {
                     case CancellationResponse.SuccessfullyCancelled:

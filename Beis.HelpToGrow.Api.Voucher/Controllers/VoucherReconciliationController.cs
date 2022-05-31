@@ -68,10 +68,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             {
                 voucherResponse = await _voucherReconciliationService.GetVoucherResponse(voucherReconciliationRequest);
                 
-                if (voucherResponse.errorCode == 0)
+                if (voucherResponse.ErrorCode == 0)
                 {
-                    voucherResponse.status = "OK";
-                    voucherResponse.message = "Successful check";
+                    voucherResponse.Status = "OK";
+                    voucherResponse.Message = "Successful check";
                
                     return Ok(voucherResponse);
                 }
@@ -86,8 +86,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                 vendor_api_call_status.error_code = "500";
                 voucherResponse = new VoucherReconciliationResponse
                 {
-                    status = "ERROR",
-                    message = "An error has occurred - Check Error code and Message" 
+                    Status = "ERROR",
+                    Message = "An error has occurred - Check Error code and Message" 
                 };
                 _logger.LogInformation("VoucherReconciliationControllerResponse: {@voucherResponse}", JsonSerializer.Serialize(voucherResponse));
 
