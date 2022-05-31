@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Beis.HelpToGrow.Common" Version="2.1.0" />
     <PackageReference Include="Beis.HelpToGrow.Persistence" Version="2.1.2" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.20.0" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="6.0.5" />
@@ -23,15 +24,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Beis.HelpToGrow.Common">
-      <HintPath>Library\Beis.HelpToGrow.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Beis.HelpToGrow.Repositories">
-      <HintPath>Library\Beis.HelpToGrow.Repositories.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
