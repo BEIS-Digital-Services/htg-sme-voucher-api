@@ -73,6 +73,51 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                             };
                             return voucherResponse;
                         }
+                    case CancellationResponse.FreeTrialExpired: 
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "OK",
+                                ErrorCode = 0,
+                                Message = "Voucher already cancelled. SME cannot reapply",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }         
+                    case CancellationResponse.TokenExpired:
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "OK",
+                                ErrorCode = 0,
+                                Message = "Voucher already expired",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }                    
+                    case CancellationResponse.UnknownVoucherCode:                    
+                    case CancellationResponse.TokenNotFound:
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "ERROR",
+                                ErrorCode = 10,
+                                Message = "Unknown Voucher",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }                   
+                    case CancellationResponse.UnknownVendorRegistration:                   
+                        {
+                            voucherResponse = new VoucherCancellationResponse
+                            {
+                                Status = "ERROR",
+                                ErrorCode = 20,
+                                Message = "Unknown Vendor",
+                                VoucherCode = cancellationRequest.VoucherCode
+                            };
+                            return voucherResponse;
+                        }
                     case CancellationResponse.UnknownVendorAccessCode:
                         {
                             voucherResponse = new VoucherCancellationResponse
@@ -84,77 +129,27 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                             };
                             return voucherResponse;
                         }
-                    case CancellationResponse.TokenExpired:
-                        {
-                            voucherResponse = new VoucherCancellationResponse
-                            {
-                                Status = "OK",
-                                ErrorCode = 0,
-                                Message = "Voucher already expired",
-                                VoucherCode = cancellationRequest.VoucherCode
-                            };
-                            return voucherResponse;
-
-                        }
-                    case CancellationResponse.UnknownVoucherCode:
                     case CancellationResponse.UnknownError:
-                    case CancellationResponse.TokenNotFound:
-
-                        {
-                            voucherResponse = new VoucherCancellationResponse
-                            {
-                                Status = "ERROR",
-                                ErrorCode = 10,
-                                Message = "Unknown Voucher",
-                                VoucherCode = cancellationRequest.VoucherCode
-                            };
-                            return voucherResponse;
-                        }
-                    case CancellationResponse.FreeTrialExpired: // todo - discuss whethere this should still cancel the voucher.
-                        {
-                            voucherResponse = new VoucherCancellationResponse
-                            {
-                                Status = "ERROR",
-                                ErrorCode = 10,
-                                Message = "Free trial expired. SME cannot reapply.",
-                                VoucherCode = cancellationRequest.VoucherCode
-                            };
-                            return voucherResponse;
-                        }
-                    case CancellationResponse.UnknownVendorRegistration:                   
-                        {
-                            voucherResponse = new VoucherCancellationResponse
-                            {
-                                Status = "ERROR",
-                                ErrorCode = 30,
-                                Message = "Unknown Vendor",
-                                VoucherCode = cancellationRequest.VoucherCode
-                            };
-                            return voucherResponse;
-                        }
                     default:
                         {
                             voucherResponse = new VoucherCancellationResponse
                             {
                                 Status = "ERROR",
-                                ErrorCode = 10,
-                                Message = "Unknown Voucher",
+                                ErrorCode = 40,
+                                Message = "Unknown Error",
                                 VoucherCode = cancellationRequest.VoucherCode
                             };
                             return voucherResponse;
                         }
-
                 }
-
             }
             catch (Exception e)
             {
                 voucherResponse = new VoucherCancellationResponse
                 {
                     Status = "ERROR",
-                    ErrorCode = 10,
-                    Message = "Unknown token " + e.Message,
-
+                    ErrorCode = 40,
+                    Message = "Unknown Error " + e.Message,
                     VoucherCode = cancellationRequest.VoucherCode
                 };
 
