@@ -21,5 +21,4 @@ extends:
   parameters:
     solutionToBuild: 'Beis.HelpToGrow.Api.Voucher.sln'
     projectToPublish: 'Beis.HelpToGrow.Api.Voucher.csproj'
-    containerRegistry: 'htgdevregistry'
     
