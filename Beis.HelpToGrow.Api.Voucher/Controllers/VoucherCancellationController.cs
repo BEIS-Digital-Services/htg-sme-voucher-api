@@ -5,7 +5,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
 {
 
 
-    [Route("api/v{version:apiVersion}paymentcancellation")]
+    [Route("api/v{version:apiVersion}/paymentcancellation")]
     [ApiController]
     public class VoucherCancellationController : ControllerBase
     {
@@ -105,7 +105,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                                 Message = "Unknown Voucher",
                                 VoucherCode = cancellationRequest.VoucherCode
                             };
-                            return voucherResponse;
+                            return StatusCode(400, voucherResponse);
                         }                   
                     case CancellationResponse.UnknownVendorRegistration:                   
                         {
@@ -116,7 +116,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                                 Message = "Unknown Vendor",
                                 VoucherCode = cancellationRequest.VoucherCode
                             };
-                            return voucherResponse;
+                            return StatusCode(400, voucherResponse); 
                         }
                     case CancellationResponse.UnknownVendorAccessCode:
                         {
@@ -127,7 +127,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                                 Message = "Unknown Access Code",
                                 VoucherCode = cancellationRequest.VoucherCode
                             };
-                            return voucherResponse;
+                            return StatusCode(400, voucherResponse);
                         }
                     case CancellationResponse.UnknownError:
                     default:
@@ -139,7 +139,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                                 Message = "Unknown Error",
                                 VoucherCode = cancellationRequest.VoucherCode
                             };
-                            return voucherResponse;
+                            return StatusCode(400, voucherResponse);
                         }
                 }
             }
