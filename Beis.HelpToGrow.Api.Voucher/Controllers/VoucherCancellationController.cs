@@ -102,7 +102,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                             {
                                 Status = "ERROR",
                                 ErrorCode = 10,
-                                Message = "Unknown Voucher",
+                                Message = "Unknown Token",
                                 VoucherCode = cancellationRequest.VoucherCode
                             };
                             return StatusCode(400, voucherResponse);
