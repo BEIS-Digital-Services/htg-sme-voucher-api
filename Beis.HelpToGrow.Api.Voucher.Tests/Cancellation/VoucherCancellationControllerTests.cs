@@ -105,11 +105,11 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
 
             //Act
             var result = await controller.Post(new VoucherCancellationRequest { VoucherCode = "abc123" });
-
+            VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
             //Assert
-            Assert.AreEqual(10, result.Value.ErrorCode);
-            Assert.AreEqual("Unknown Voucher", result.Value.Message);
-            Assert.AreEqual("abc123", result.Value.VoucherCode);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown Voucher", voucherResponse.Message);
+            Assert.AreEqual("abc123", voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -120,11 +120,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
 
             //Act
             var result = await controller.Post(new VoucherCancellationRequest { VoucherCode = "abc123" });
+            VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
 
             //Assert
-            Assert.AreEqual(10, result.Value.ErrorCode);
-            Assert.AreEqual("Unknown Voucher", result.Value.Message);
-            Assert.AreEqual("abc123", result.Value.VoucherCode);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown Voucher", voucherResponse.Message);
+            Assert.AreEqual("abc123", voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -135,11 +136,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
 
             //Act
             var result = await controller.Post(new VoucherCancellationRequest { VoucherCode = "abc123" });
+            VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
 
             //Assert
-            Assert.AreEqual(20, result.Value.ErrorCode);
-            Assert.AreEqual("Unknown Vendor", result.Value.Message);
-            Assert.AreEqual("abc123", result.Value.VoucherCode);
+            Assert.AreEqual(20, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown Vendor", voucherResponse.Message);
+            Assert.AreEqual("abc123", voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -150,11 +152,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
 
             //Act
             var result = await controller.Post(new VoucherCancellationRequest { VoucherCode = "abc123" });
+            VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
 
             //Assert
-            Assert.AreEqual(30, result.Value.ErrorCode);
-            Assert.AreEqual("Unknown Access Code", result.Value.Message);
-            Assert.AreEqual("abc123", result.Value.VoucherCode);
+            Assert.AreEqual(30, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown Access Code", voucherResponse.Message);
+            Assert.AreEqual("abc123", voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -165,11 +168,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
 
             //Act
             var result = await controller.Post(new VoucherCancellationRequest { VoucherCode = "abc123" });
+            VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
 
             //Assert
-            Assert.AreEqual(40, result.Value.ErrorCode);
-            Assert.AreEqual("Unknown Error", result.Value.Message);
-            Assert.AreEqual("abc123", result.Value.VoucherCode);
+            Assert.AreEqual(40, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown Error", voucherResponse.Message);
+            Assert.AreEqual("abc123", voucherResponse.VoucherCode);
         }
     }
 }
