@@ -1,0 +1,22 @@
+trigger:
+- main
+
+resources:
+  repositories:
+    - repository: template
+      type: git
+      name: DevOps
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  major: '2'
+  minor: '1'
+  buildConfiguration: 'Release'
+
+extends:
+  template: build-dotnet-6.yml@template
+  parameters:
+    solutionToBuild: 'Beis.HelpToGrow.Api.Voucher.sln'
+    projectToPublish: 'Beis.HelpToGrow.Api.Voucher.csproj'
