@@ -108,7 +108,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
             VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
             //Assert
             Assert.AreEqual(10, voucherResponse.ErrorCode);
-            Assert.AreEqual("Unknown Voucher", voucherResponse.Message);
+            Assert.AreEqual("Unknown Token", voucherResponse.Message);
             Assert.AreEqual("abc123", voucherResponse.VoucherCode);
         }
 
@@ -124,7 +124,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
 
             //Assert
             Assert.AreEqual(10, voucherResponse.ErrorCode);
-            Assert.AreEqual("Unknown Voucher", voucherResponse.Message);
+            Assert.AreEqual("Unknown Token", voucherResponse.Message);
             Assert.AreEqual("abc123", voucherResponse.VoucherCode);
         }
 
