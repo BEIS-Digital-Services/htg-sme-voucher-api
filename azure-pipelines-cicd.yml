@@ -19,3 +19,4 @@ extends:
     solutionToBuild: 'Beis.HelpToGrow.Api.Voucher.sln'
     projectToPublish: 'Beis.HelpToGrow.Api.Voucher.csproj'
     webApplicationNameSuffix: 'voucher-api-app'
+    
