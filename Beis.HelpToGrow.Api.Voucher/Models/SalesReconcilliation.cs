@@ -3,22 +3,22 @@ namespace Beis.HelpToGrow.Api.Voucher.Models
 {
     public class SalesReconcilliation
     {
-        public string notificationType { get; set; }
-        public string voucherCode { get; set; }
-        public string authorisationCode { get; set; }
-        public string productSku { get; set; }
-        public string productName { get; set; }
-        public string licenceTo { get; set; }
-        public string smeEmail { get; set; }
-        public string purchaserName { get; set; }
-        public decimal oneOffCosts { get; set; }
-        public int noOfLicences { get; set; }
-        public decimal costPerLicence { get; set; }
-        public decimal totalAmount { get; set; }
-        public decimal discountApplied { get; set; }
-        public string currency { get; set; }
-        public decimal contractTermInMonths { get; set; }
-        public decimal trialPeriodInMonths { get; set; }
+        public string NotificationType { get; set; }
+        public string VoucherCode { get; set; }
+        public string AuthorisationCode { get; set; }
+        public string ProductSku { get; set; }
+        public string ProductName { get; set; }
+        public string LicenceTo { get; set; }
+        public string SmeEmail { get; set; }
+        public string PurchaserName { get; set; }
+        public decimal OneOffCosts { get; set; }
+        public int NoOfLicences { get; set; }
+        public decimal CostPerLicence { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal DiscountApplied { get; set; }
+        public string Currency { get; set; }
+        public decimal ContractTermInMonths { get; set; }
+        public decimal TrialPeriodInMonths { get; set; }
 
     }
 }

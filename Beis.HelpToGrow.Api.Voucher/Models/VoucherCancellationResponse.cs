@@ -1,7 +1,6 @@
-
-namespace Beis.HelpToGrow.Api.Voucher.Models
+﻿namespace Beis.HelpToGrow.Api.Voucher.Models
 {
-    public class VoucherUpdateResponse
+    public class VoucherCancellationResponse 
     {
         public string Status { get; set; }
         public int ErrorCode { get; set; }

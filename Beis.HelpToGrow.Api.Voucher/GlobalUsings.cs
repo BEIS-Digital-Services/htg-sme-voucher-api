@@ -14,9 +14,14 @@ global using Beis.HelpToGrow.Api.Voucher.Services;
 global using Beis.HelpToGrow.Api.Voucher.Interfaces;
 global using Beis.HelpToGrow.Api.Voucher.Config;
 
+global using Beis.HelpToGrow.Repositories.Interfaces;
+global using Beis.HelpToGrow.Repositories;
+global using Beis.HelpToGrow.Common.Interfaces;
+global using Beis.HelpToGrow.Common.Enums;
+global using Beis.HelpToGrow.Common.Config;
 global using Beis.HelpToGrow.Api.Data.Repositories;
 
-global using Beis.Htg.VendorSme.Database;
-global using Beis.Htg.VendorSme.Database.Models;
+global using Beis.HelpToGrow.Persistence;
+global using Beis.HelpToGrow.Persistence.Models;
 
 

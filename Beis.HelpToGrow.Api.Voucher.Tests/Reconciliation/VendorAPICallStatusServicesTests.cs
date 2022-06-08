@@ -1,7 +1,4 @@
-using System;
-using Beis.Htg.VendorSme.Database.Models;
 using Moq;
-using System.Text.Json;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
@@ -52,9 +49,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
         {
             VoucherReconciliationRequest voucherReconciliationRequest = new VoucherReconciliationRequest()
             {
-                registration = "12345",
-                accessCode = "12345",
-                reconciliationDate = DateTime.Parse("2022-01-10")
+                Registration = "12345",
+                AccessCode = "12345",
+                ReconciliationDate = DateTime.Parse("2022-01-10")
             };
 
             return voucherReconciliationRequest;
@@ -68,7 +65,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             var vendorApiCallStatus = new vendor_api_call_status()
             {
                 call_id = 12345,
-                vendor_id = new[] {Convert.ToInt64(voucherReconciliationRequest.registration.Substring(1, voucherReconciliationRequest.registration.Length -1))},
+                vendor_id = new[] {Convert.ToInt64(voucherReconciliationRequest.Registration.Substring(1, voucherReconciliationRequest.Registration.Length -1))},
                 api_called = "VoucherReconciliation",
                 call_datetime = DateTime.Now,
                 request = JsonSerializer.Serialize(voucherReconciliationRequest),

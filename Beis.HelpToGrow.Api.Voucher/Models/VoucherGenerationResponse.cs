@@ -3,13 +3,13 @@ namespace Beis.HelpToGrow.Api.Voucher.Models
 {
     public class VoucherGenerationResponse
     {
-        public string registration { get; set; }
-        public string productSku { get; set; }
-        public string voucherCode { get; set; }
-        public decimal voucherBalance { get; set; }
-        public string status { get; set; }
-        public string message { get; set; }
-        public int errorCode { get; set; }
+        public string Registration { get; set; }
+        public string ProductSku { get; set; }
+        public string VoucherCode { get; set; }
+        public decimal VoucherBalance { get; set; }
+        public string Status { get; set; }
+        public string Message { get; set; }
+        public int ErrorCode { get; set; }
 
     }
 }

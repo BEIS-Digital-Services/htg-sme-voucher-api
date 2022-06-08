@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
@@ -24,7 +23,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             _logger = new Mock<ILogger<VoucherCheckController>>();
             _vendorApiCallStatusServices = new Mock<IVendorAPICallStatusServices>();
             _vendorApiCallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherCheckRequest>()))
-                .Returns(new Beis.Htg.VendorSme.Database.Models.vendor_api_call_status { });
+                .Returns(new vendor_api_call_status { });
             _voucherController = new VoucherCheckController(_logger.Object, _voucherCheckService.Object, _vendorApiCallStatusServices.Object);
         }
         
@@ -33,9 +32,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             VoucherCheckRequest voucherRequest = new VoucherCheckRequest();
             
-            voucherRequest.registration = "12345";
-            voucherRequest.accessCode = "12345";
-            voucherRequest.voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q";
+            voucherRequest.Registration = "12345";
+            voucherRequest.AccessCode = "12345";
+            voucherRequest.VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q";
             
             _voucherCheckService.Setup(x => x.GetVoucherResponse(It.IsAny<VoucherCheckRequest>())).ReturnsAsync(getVoucherResponse(voucherRequest));
             
@@ -43,15 +42,15 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = (VoucherCheckResponse) ((OkObjectResult) actionResult.Result).Value;
             
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
-            Assert.AreEqual(0, voucherResponse.errorCode);
-            Assert.AreEqual("GHT23RTDWER", voucherResponse.authorisationCode);
-            Assert.AreEqual("ABC corporation", voucherResponse.vendor);
-            Assert.AreEqual("GHU1234", voucherResponse.productSku);
-            Assert.AreEqual("Mr. Joe Blogs", voucherResponse.purchaserName);
-            Assert.AreEqual("Buyer limited", voucherResponse.licenceTo);
-            Assert.AreEqual("abc@my-company.com", voucherResponse.smeEmail);
-            Assert.AreEqual(4999, voucherResponse.maxDiscountAllowed);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
+            Assert.AreEqual(0, voucherResponse.ErrorCode);
+            Assert.AreEqual("GHT23RTDWER", voucherResponse.AuthorisationCode);
+            Assert.AreEqual("ABC corporation", voucherResponse.Vendor);
+            Assert.AreEqual("GHU1234", voucherResponse.ProductSku);
+            Assert.AreEqual("Mr. Joe Blogs", voucherResponse.PurchaserName);
+            Assert.AreEqual("Buyer limited", voucherResponse.LicenceTo);
+            Assert.AreEqual("abc@my-company.com", voucherResponse.SmeEmail);
+            Assert.AreEqual(4999, voucherResponse.MaxDiscountAllowed);
         }
        
         [Test]
@@ -59,9 +58,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             VoucherCheckRequest voucherRequest = new VoucherCheckRequest();
             
-            voucherRequest.registration = "12345";
-            voucherRequest.accessCode = "12345";
-            voucherRequest.voucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc";
+            voucherRequest.Registration = "12345";
+            voucherRequest.AccessCode = "12345";
+            voucherRequest.VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc";
             
             _voucherCheckService.Setup(x => x.GetVoucherResponse(It.IsAny<VoucherCheckRequest>())).Throws(new Exception("my exception"));
             
@@ -69,10 +68,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = (VoucherCheckResponse) ((ObjectResult) actionResult.Result).Value;
             
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(10, voucherResponse.errorCode);
-            Assert.AreEqual("Unknown token my exception", voucherResponse.message);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown token my exception", voucherResponse.Message);
         }
 
         [Test]
@@ -80,15 +79,15 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             VoucherCheckRequest voucherRequest = new VoucherCheckRequest();
 
-            voucherRequest.registration = "12345";
-            voucherRequest.accessCode = "12345";
-            voucherRequest.voucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc";
+            voucherRequest.Registration = "12345";
+            voucherRequest.AccessCode = "12345";
+            voucherRequest.VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc";
 
             var expectedResponse = new VoucherCheckResponse
             { 
-                errorCode = 400,
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc",
-                status = "ERROR"
+                ErrorCode = 400,
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Qcc",
+                Status = "ERROR"
             };
 
             _voucherCheckService.Setup(x => x.GetVoucherResponse(It.IsAny<VoucherCheckRequest>())).ReturnsAsync(expectedResponse);
@@ -97,24 +96,24 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = (VoucherCheckResponse)((ObjectResult)actionResult.Result).Value;
 
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(400, voucherResponse.errorCode);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(400, voucherResponse.ErrorCode);
         }
 
         private VoucherCheckResponse getVoucherResponse(VoucherCheckRequest voucherRequest)
         {
             return new VoucherCheckResponse()
             {
-                voucherCode = voucherRequest.voucherCode,
-                errorCode = 0,
-                authorisationCode = "GHT23RTDWER",
-                vendor = "ABC corporation",
-                productSku = "GHU1234",
-                purchaserName = "Mr. Joe Blogs",
-                licenceTo = "Buyer limited",
-                smeEmail = "abc@my-company.com",
-                maxDiscountAllowed = 4999
+                VoucherCode = voucherRequest.VoucherCode,
+                ErrorCode = 0,
+                AuthorisationCode = "GHT23RTDWER",
+                Vendor = "ABC corporation",
+                ProductSku = "GHU1234",
+                PurchaserName = "Mr. Joe Blogs",
+                LicenceTo = "Buyer limited",
+                SmeEmail = "abc@my-company.com",
+                MaxDiscountAllowed = 4999
             }; }
         
     }
