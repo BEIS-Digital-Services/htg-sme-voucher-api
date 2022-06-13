@@ -8,7 +8,7 @@ resources:
       name: DevOps
 
 pool:
-  vmImage: windows-latest
+  vmImage: linux-latest
 
 variables:
   buildConfiguration: 'Release'
