@@ -6,6 +6,7 @@ resources:
     - repository: template
       type: git
       name: DevOps
+      ref: releases/1.0.0
 
 pool:
   vmImage: Ubuntu-latest
