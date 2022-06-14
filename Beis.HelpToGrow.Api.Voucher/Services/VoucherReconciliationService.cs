@@ -48,37 +48,37 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             List<VoucherReconciliationReport> reciliationReport = new List<VoucherReconciliationReport>();
             try
             {
-                var vendorCompanySingle = _vendorCompanyRepository.GetVendorCompanyByRegistration(voucherReconciliationRequest.registration);
+                var vendorCompanySingle = _vendorCompanyRepository.GetVendorCompanyByRegistration(voucherReconciliationRequest.Registration);
                 if(vendorCompanySingle != null && IsValidVendor(voucherReconciliationRequest, vendorCompanySingle))
                 {
-                    foreach (var dailySalesSale in voucherReconciliationRequest.dailySales.sales)
+                    foreach (var dailySalesSale in voucherReconciliationRequest.DailySales.Sales)
                     {
                         var voucherReport = new VoucherReconciliationReport();
                         try
                         {
-                            var decryptedVoucherCode = DecryptVoucher(dailySalesSale.voucherCode, vendorCompanySingle);
+                            var decryptedVoucherCode = DecryptVoucher(dailySalesSale.VoucherCode, vendorCompanySingle);
                             var token = GetToken(decryptedVoucherCode);
                             
                             if(token == null)
                             {
-                                voucherResponse.status = "ERROR";
-                                voucherResponse.errorCode = 20;
+                                voucherResponse.Status = "ERROR";
+                                voucherResponse.ErrorCode = 20;
 
-                                voucherReport.status = "ERROR";
-                                voucherReport.voucherCode = dailySalesSale.voucherCode;
-                                voucherReport.reason = "Unknown token";
+                                voucherReport.Status = "ERROR";
+                                voucherReport.VoucherCode = dailySalesSale.VoucherCode;
+                                voucherReport.Reason = "Unknown token";
                                 reciliationReport.Add(voucherReport);
                                 continue;
                             }
 
                             if (token.cancellation_status_id.HasValue)
                             {
-                                voucherResponse.status = "ERROR";
-                                voucherResponse.errorCode = 30;
+                                voucherResponse.Status = "ERROR";
+                                voucherResponse.ErrorCode = 30;
 
-                                voucherReport.status = "ERROR";
-                                voucherReport.voucherCode = dailySalesSale.voucherCode;
-                                voucherReport.reason = "Cancelled token";
+                                voucherReport.Status = "ERROR";
+                                voucherReport.VoucherCode = dailySalesSale.VoucherCode;
+                                voucherReport.Reason = "Cancelled token";
                                 reciliationReport.Add(voucherReport);
                                 continue;
                             }
@@ -87,8 +87,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
 
                             await ProcessDailySale(token, dailySalesSale, decryptedVoucherCode, vendorCompanySingle, product, reciliationReport);
                             
-                            voucherReport.status = "Success";
-                            voucherReport.voucherCode = dailySalesSale.voucherCode;
+                            voucherReport.Status = "Success";
+                            voucherReport.VoucherCode = dailySalesSale.VoucherCode;
                             
                             //reciliationReport.Add(voucherReport);
                         }
@@ -106,14 +106,14 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                         {
                             voucherResponse = new VoucherReconciliationResponse
                             {
-                                status = "ERROR",
-                                errorCode = 10,
-                                message = "Error in format"
+                                Status = "ERROR",
+                                ErrorCode = 10,
+                                Message = "Error in format"
                             };
                             
-                            voucherReport.status = "ERROR";
-                            voucherReport.voucherCode = dailySalesSale.voucherCode;
-                            voucherReport.reason = e.Message;
+                            voucherReport.Status = "ERROR";
+                            voucherReport.VoucherCode = dailySalesSale.VoucherCode;
+                            voucherReport.Reason = e.Message;
                             reciliationReport.Add(voucherReport);
                         }
                     }                    
@@ -121,32 +121,32 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                 else
                 {
                     //throw new Exception("Invalid vendor details");
-                    voucherResponse.status = "ERROR";
-                    voucherResponse.errorCode = 10;
-                    voucherResponse.message = "Unknown vendor details";
+                    voucherResponse.Status = "ERROR";
+                    voucherResponse.ErrorCode = 10;
+                    voucherResponse.Message = "Unknown vendor details";
                     _logger.LogError("VoucherReconciliationResponse: {@VoucherResponse}, {@VErrorMessage}", JsonSerializer.Serialize(voucherResponse), "Invalid vendor details");
                 }
             }
             catch (Exception e)
             {
-                voucherResponse.status = "ERROR";
-                voucherResponse.errorCode = 10;
-                voucherResponse.message = "Unknown vendor details";
+                voucherResponse.Status = "ERROR";
+                voucherResponse.ErrorCode = 10;
+                voucherResponse.Message = "Unknown vendor details";
                 _logger.LogError("VoucherReconciliationResponse: {@VoucherResponse}, {@VErrorMessage}",JsonSerializer.Serialize(voucherResponse), e.Message);
             }
             
-            voucherResponse.reconciliationReport = reciliationReport;
-            if(reciliationReport.Any(x => x.status == "ERROR"))
+            voucherResponse.ReconciliationReport = reciliationReport;
+            if(reciliationReport.Any(x => x.Status == "ERROR"))
             {
                 
-                voucherResponse.status = "ERROR";
-                if (voucherResponse.errorCode == 0)
-                    voucherResponse.errorCode = 10;
+                voucherResponse.Status = "ERROR";
+                if (voucherResponse.ErrorCode == 0)
+                    voucherResponse.ErrorCode = 10;
             }
             _logger.LogInformation("VoucherReconciliationResponse: {@VoucherResponse}", JsonSerializer.Serialize(voucherResponse));
             
             var vendor_api_call_status = _vendorApiCallStatusService.CreateLogRequestDetails(voucherReconciliationRequest);
-            vendor_api_call_status.error_code = voucherResponse.errorCode == 0 ? "200" : "400";
+            vendor_api_call_status.error_code = voucherResponse.ErrorCode == 0 ? "200" : "400";
             logAPiCallStatus(vendor_api_call_status, voucherResponse);
             return voucherResponse;
         }
@@ -154,15 +154,15 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
         private async Task ProcessDailySale(token token, SalesReconcilliation reconciliation, string tokenCode, vendor_company vendorCompanySingle, product product, List<VoucherReconciliationReport> reciliationReport)
         {
             
-            var tokenBalance = token.token_balance - reconciliation.discountApplied;
+            var tokenBalance = token.token_balance - reconciliation.DiscountApplied;
 
             if (tokenBalance < 0)
             {
                 reciliationReport.Add(new VoucherReconciliationReport 
                 { 
-                    status = "ERROR",
-                    reason = "Reconciliation discount applied " + reconciliation.discountApplied + " more than voucher balance " + token.token_balance,
-                    voucherCode = reconciliation.voucherCode
+                    Status = "ERROR",
+                    Reason = "Reconciliation discount applied " + reconciliation.DiscountApplied + " more than voucher balance " + token.token_balance,
+                    VoucherCode = reconciliation.VoucherCode
 
                 });
                 return;
@@ -175,25 +175,25 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             {
                 reciliationReport.Add(new VoucherReconciliationReport
                 {
-                    status = "ERROR",
-                    reason = "Already reconciled",
-                    voucherCode = reconciliation.voucherCode
+                    Status = "ERROR",
+                    Reason = "Already reconciled",
+                    VoucherCode = reconciliation.VoucherCode
 
                 });
                 return;
             }
             
-            if (product.product_SKU.Equals(reconciliation.productSku))
+            if (product.product_SKU.Equals(reconciliation.ProductSku))
             {
-                if (reconciliation.authorisationCode.Equals(token.authorisation_code))
+                if (reconciliation.AuthorisationCode.Equals(token.authorisation_code))
                 {
                     if (token.redemption_status_id == notRedeemed)
                     {
                         reciliationReport.Add(new VoucherReconciliationReport
                         {
-                            status = "ERROR",
-                            reason = "Please redeem voucher before proceeding",
-                            voucherCode = reconciliation.voucherCode
+                            Status = "ERROR",
+                            Reason = "Please redeem voucher before proceeding",
+                            VoucherCode = reconciliation.VoucherCode
 
                         });
                         return;
@@ -203,9 +203,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                     {
                         reciliationReport.Add(new VoucherReconciliationReport
                         {
-                            status = "ERROR",
-                            reason = "Already redeemed",
-                            voucherCode = reconciliation.voucherCode
+                            Status = "ERROR",
+                            Reason = "Already redeemed",
+                            VoucherCode = reconciliation.VoucherCode
 
                         });
                         return;
@@ -215,9 +215,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                     {
                         reciliationReport.Add(new VoucherReconciliationReport
                         {
-                            status = "ERROR",
-                            reason = "Already reconciled",
-                            voucherCode = reconciliation.voucherCode
+                            Status = "ERROR",
+                            Reason = "Already reconciled",
+                            VoucherCode = reconciliation.VoucherCode
 
                         });
                         return;
@@ -237,17 +237,17 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                         vendor_id = vendorCompanySingle.registration_id,
                         product_sku = product.product_SKU,
                         product_name = product.product_name,
-                        licensed_to = reconciliation.licenceTo,
-                        sme_email = reconciliation.smeEmail,
-                        purchaser_name = reconciliation.purchaserName,
-                        one_off_cost = reconciliation.oneOffCosts,
-                        no_of_licenses = reconciliation.noOfLicences,
-                        cost_per_license = reconciliation.costPerLicence,
-                        total_amount = reconciliation.totalAmount,
-                        discount_applied = reconciliation.discountApplied,
-                        currency = reconciliation.currency,
-                        contract_term_months = reconciliation.contractTermInMonths,
-                        trial_period_months = reconciliation.trialPeriodInMonths
+                        licensed_to = reconciliation.LicenceTo,
+                        sme_email = reconciliation.SmeEmail,
+                        purchaser_name = reconciliation.PurchaserName,
+                        one_off_cost = reconciliation.OneOffCosts,
+                        no_of_licenses = reconciliation.NoOfLicences,
+                        cost_per_license = reconciliation.CostPerLicence,
+                        total_amount = reconciliation.TotalAmount,
+                        discount_applied = reconciliation.DiscountApplied,
+                        currency = reconciliation.Currency,
+                        contract_term_months = reconciliation.ContractTermInMonths,
+                        trial_period_months = reconciliation.TrialPeriodInMonths
                         
                     };
                    
@@ -265,9 +265,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                 {
                     reciliationReport.Add(new VoucherReconciliationReport
                     {
-                        status = "ERROR",
-                        reason = "Invalid authorisationCode",
-                        voucherCode = reconciliation.voucherCode
+                        Status = "ERROR",
+                        Reason = "Invalid authorisationCode",
+                        VoucherCode = reconciliation.VoucherCode
 
                     });
                     return;
@@ -275,17 +275,17 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
 
                 reciliationReport.Add(new VoucherReconciliationReport
                 {
-                    voucherCode = reconciliation.voucherCode,
-                    status = "Success",                    
+                    VoucherCode = reconciliation.VoucherCode,
+                    Status = "Success",                    
                 });
             }
             else
             {
                 reciliationReport.Add(new VoucherReconciliationReport
                 {
-                    status = "ERROR",
-                    reason = "Invalid product_SKU",
-                    voucherCode = reconciliation.voucherCode
+                    Status = "ERROR",
+                    Reason = "Invalid product_SKU",
+                    VoucherCode = reconciliation.VoucherCode
 
                 });
                 return;
@@ -301,15 +301,15 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
         
         public token GetToken(string decryptedVoucherCode)
         {
-            var token = _tokenRepository.GetToken(decryptedVoucherCode);
+            var token = _tokenRepository.GetTokenByTokenCode(decryptedVoucherCode);
 
             return token;
         }
         
         public bool IsValidVendor(VoucherReconciliationRequest voucherRequest, vendor_company vendorCompany)
         {
-            return voucherRequest.registration == vendorCompany.registration_id &&
-                   voucherRequest.accessCode == vendorCompany.access_secret;
+            return voucherRequest.Registration == vendorCompany.registration_id &&
+                   voucherRequest.AccessCode == vendorCompany.access_secret;
         }        
     }
 }

@@ -1,7 +1,4 @@
-using System;
-using Beis.Htg.VendorSme.Database.Models;
 using Moq;
-using System.Text.Json;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
@@ -46,9 +43,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
         {
             VoucherUpdateRequest voucherUpdateRequest = new VoucherUpdateRequest()
             {
-                registration = "12345",
-                accessCode = "12345",
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q"
+                Registration = "12345",
+                AccessCode = "12345",
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q"
             };
 
             return voucherUpdateRequest;
@@ -62,7 +59,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
             var vendorApiCallStatus = new vendor_api_call_status()
             {
                 call_id = 12345,
-                vendor_id = new[] {Convert.ToInt64(voucherUpdateRequest.registration.Substring(1, voucherUpdateRequest.registration.Length -1))},
+                vendor_id = new[] {Convert.ToInt64(voucherUpdateRequest.Registration.Substring(1, voucherUpdateRequest.Registration.Length -1))},
                 api_called = "VoucherRedeem",
                 call_datetime = DateTime.Now,
                 request = JsonSerializer.Serialize(voucherUpdateRequest)

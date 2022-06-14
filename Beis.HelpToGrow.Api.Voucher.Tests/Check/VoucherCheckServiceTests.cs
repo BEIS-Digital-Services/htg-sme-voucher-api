@@ -56,12 +56,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
             
             Assert.NotNull(voucherResponse);
-            Assert.AreEqual("OK", voucherResponse.status);
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
-            Assert.AreEqual("GBP", voucherResponse.currency);
-            Assert.AreEqual("abcdef", voucherResponse.productName);
-            Assert.AreEqual("abcdefgh", voucherResponse.licenceTo);
-            Assert.AreEqual(0, voucherResponse.errorCode);
+            Assert.AreEqual("OK", voucherResponse.Status);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
+            Assert.AreEqual("GBP", voucherResponse.Currency);
+            Assert.AreEqual("abcdef", voucherResponse.ProductName);
+            Assert.AreEqual("abcdefgh", voucherResponse.LicenceTo);
+            Assert.AreEqual(0, voucherResponse.ErrorCode);
         }
 
         [Test]
@@ -72,13 +72,13 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
             Assert.NotNull(voucherResponse);
-            Assert.AreEqual("OK", voucherResponse.status);
-            Assert.AreEqual("Successful check - proceed with Voucher", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
-            Assert.AreEqual("GBP", voucherResponse.currency);
-            Assert.AreEqual("abcdef", voucherResponse.productName);
-            Assert.AreEqual("abcdefgh", voucherResponse.licenceTo);
-            Assert.AreEqual(0, voucherResponse.errorCode);
+            Assert.AreEqual("OK", voucherResponse.Status);
+            Assert.AreEqual("Successful check - proceed with Voucher", voucherResponse.Message.Trim());
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
+            Assert.AreEqual("GBP", voucherResponse.Currency);
+            Assert.AreEqual("abcdef", voucherResponse.ProductName);
+            Assert.AreEqual("abcdefgh", voucherResponse.LicenceTo);
+            Assert.AreEqual(0, voucherResponse.ErrorCode);
         }
 
         [Test]
@@ -88,10 +88,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
             
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(10, voucherResponse.errorCode);
-            Assert.AreEqual("Unknown token Invalid vendor details", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown token Invalid vendor details", voucherResponse.Message.Trim());
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -99,14 +99,14 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             var voucherRequest = setuptestData("12345");
 
-            _tokenRepository.Setup(x => x.GetToken(It.IsAny<string>())).Returns((token)null);
+            _tokenRepository.Setup(x => x.GetTokenByTokenCode(It.IsAny<string>())).Returns((token)null);
 
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(10, voucherResponse.errorCode);
-            Assert.AreEqual("Unknown token Unknown token", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown token Unknown token", voucherResponse.Message.Trim());
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -118,10 +118,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
                 .Returns((vendor_company)null);
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(10, voucherResponse.errorCode);
-            Assert.AreEqual("Unknown token Invalid Vendor company", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown token Invalid Vendor company", voucherResponse.Message.Trim());
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -129,16 +129,16 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             var voucherRequest = setuptestData("12345");
 
-            var invalidToken = _tokenRepository.Object.GetToken(It.IsAny<string>());
+            var invalidToken = _tokenRepository.Object.GetTokenByTokenCode(It.IsAny<string>());
             invalidToken.token_expiry = DateTime.Now.AddSeconds(-1);
-            _tokenRepository.Setup(x => x.GetToken(It.IsAny<string>())).Returns(invalidToken);
+            _tokenRepository.Setup(x => x.GetTokenByTokenCode(It.IsAny<string>())).Returns(invalidToken);
 
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(20, voucherResponse.errorCode);
-            Assert.AreEqual("Expired Token", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(20, voucherResponse.ErrorCode);
+            Assert.AreEqual("Expired Token", voucherResponse.Message.Trim());
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -146,16 +146,16 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             var voucherRequest = setuptestData("12345");
 
-            var invalidToken = _tokenRepository.Object.GetToken(It.IsAny<string>());
+            var invalidToken = _tokenRepository.Object.GetTokenByTokenCode(It.IsAny<string>());
             invalidToken.token_balance = 0;
-            _tokenRepository.Setup(x => x.GetToken(It.IsAny<string>())).Returns(invalidToken);
+            _tokenRepository.Setup(x => x.GetTokenByTokenCode(It.IsAny<string>())).Returns(invalidToken);
 
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(30, voucherResponse.errorCode);
-            Assert.AreEqual("No Balance", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(30, voucherResponse.ErrorCode);
+            Assert.AreEqual("No Balance", voucherResponse.Message.Trim());
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -163,16 +163,16 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             var voucherRequest = setuptestData("12345");
 
-            var invalidToken = _tokenRepository.Object.GetToken(It.IsAny<string>());
+            var invalidToken = _tokenRepository.Object.GetTokenByTokenCode(It.IsAny<string>());
             invalidToken.authorisation_code = null;
-            _tokenRepository.Setup(x => x.GetToken(It.IsAny<string>())).Returns(invalidToken);
+            _tokenRepository.Setup(x => x.GetTokenByTokenCode(It.IsAny<string>())).Returns(invalidToken);
 
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(40, voucherResponse.errorCode);
-            Assert.AreEqual("Locked", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(40, voucherResponse.ErrorCode);
+            Assert.AreEqual("Locked", voucherResponse.Message.Trim());
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -184,10 +184,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(10, voucherResponse.errorCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
             //Assert.AreEqual("Unknown token", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -197,10 +197,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(50, voucherResponse.errorCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(50, voucherResponse.ErrorCode);
             //Assert.AreEqual("Unknown token", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -210,10 +210,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(50, voucherResponse.errorCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(50, voucherResponse.ErrorCode);
             //Assert.AreEqual("Unknown token", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -223,10 +223,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(50, voucherResponse.errorCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(50, voucherResponse.ErrorCode);
             //Assert.AreEqual("Unknown token", voucherResponse.message.Trim());
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         [Test]
@@ -236,18 +236,18 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             VoucherCheckResponse voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
 
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(50, voucherResponse.errorCode);            
-            Assert.AreEqual(voucherRequest.voucherCode, voucherResponse.voucherCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(50, voucherResponse.ErrorCode);            
+            Assert.AreEqual(voucherRequest.VoucherCode, voucherResponse.VoucherCode);
         }
 
         private VoucherCheckRequest setuptestData(string registrationNumber, int? tokenCancellationCode = null)
         {
             VoucherCheckRequest voucherRequest = new VoucherCheckRequest()
             {
-                registration = registrationNumber,
-                accessCode = "12345",
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q"
+                Registration = registrationNumber,
+                AccessCode = "12345",
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q"
             };
 
             var vendor_company = new vendor_company()
@@ -285,7 +285,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             _vendorCompanyRepository.Setup(x => x.GetVendorCompanyByRegistration(It.IsAny<string>()))
                 .Returns(vendor_company);
             _encryptionService.Setup(x => x.Decrypt(It.IsAny<string>(), It.IsAny<string>())).Returns("123456");
-            _tokenRepository.Setup(x => x.GetToken(It.IsAny<string>())).Returns(token);
+            _tokenRepository.Setup(x => x.GetTokenByTokenCode(It.IsAny<string>())).Returns(token);
             _productRepository.Setup(x => x.GetProductSingle(It.IsAny<long>())).ReturnsAsync(product);
             _enterpriseRepository.Setup(x => x.GetEnterprise(It.IsAny<long>())).ReturnsAsync(enterprise);
             return voucherRequest;

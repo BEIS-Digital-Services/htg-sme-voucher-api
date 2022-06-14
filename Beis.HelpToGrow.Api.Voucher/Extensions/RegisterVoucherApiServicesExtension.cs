@@ -1,7 +1,10 @@
 ﻿using Beis.HelpToGrow.Api.Voucher.Services.HealthCheck;
+using Beis.HelpToGrow.Common.Interfaces;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+using Beis.HelpToGrow.Common.Services;
 
 namespace Beis.HelpToGrow.Api.Voucher.Extensions
 {
@@ -9,9 +12,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
     {
         public static IServiceCollection RegisterVoucherApiServices(this IServiceCollection services, IConfiguration configuration)
         {
+           
             services.Configure<EncryptionSettings>(options =>
                 configuration.Bind(options));
-
+            services.Configure<VoucherSettings>(configuration.GetSection("VoucherSettings"));
             services.AddLogging(options =>
             {
                 // hook the Console Log Provider
@@ -31,12 +35,17 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
             services.AddTransient<IVendorAPICallStatusRepository, VendorApiCallStatusRepository>();
             services.AddTransient<IEnterpriseRepository, EnterpriseRepository>();
             services.AddTransient<ITokenVoucherGeneratorService, TokenVoucherGeneratorService>();
-            services.AddTransient<IVoucherGeneratorService, VoucherGenerationService>();    
+            services.AddTransient<IVoucherGenerationService, VoucherGenerationService>();    
             services.AddTransient<IVendorReconciliationSalesRepository, VendorReconciliationSalesRepository>();
             services.AddTransient<IVendorReconciliationRepository, VendorReconciliationRepository>();         
-            services.AddTransient<IVoucherReconciliationService, VoucherReconciliationService>();
-            services.AddDbContext<HtgVendorSmeDbContext>(options => options.UseNpgsql(configuration["HelpToGrowDbConnectionString"]), ServiceLifetime.Transient);
+            services.AddTransient<IVoucherReconciliationService, VoucherReconciliationService>();            
             services.AddTransient<IVoucherRedeemService, VoucherRedeemService>();
+            services.AddTransient<IVoucherCancellationService, VoucherCancellationService>();
+            services.AddTransient<IProductPriceRepository, ProductPriceRepository>();
+            services.AddVoucherPersistence(configuration);
+            
+
+
 
             services.AddHealthChecks()
                 //.AddCheck<StartupHealthCheckService>(

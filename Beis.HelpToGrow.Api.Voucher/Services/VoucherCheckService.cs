@@ -23,28 +23,28 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             _vendorApiCallStatusService = vendorApiCallStatusService;
         }
 
-        private void logAPiCallStatus(vendor_api_call_status vendor_api_call_status, VoucherCheckResponse VoucherResponse)
+        private async Task logAPiCallStatus(vendor_api_call_status vendor_api_call_status, VoucherCheckResponse VoucherResponse)
         {
             vendor_api_call_status.result = JsonSerializer.Serialize(VoucherResponse);
-            _vendorApiCallStatusService.LogRequestDetails(vendor_api_call_status);
+            await _vendorApiCallStatusService.LogRequestDetails(vendor_api_call_status);
         }
 
-        private VoucherCheckResponse getVoucherErrorResponse(VoucherCheckRequest voucherRequest, int errorCode, string message)
+        private async Task<VoucherCheckResponse> getVoucherErrorResponse(VoucherCheckRequest voucherRequest, int errorCode, string message)
         {
             _logger.LogError("There was an error checking the voucher ({errorCode}) : {Message}", errorCode, message);
             var vendorApiCallStatus = _vendorApiCallStatusService.CreateLogRequestDetails(voucherRequest);
 
             var VoucherResponse = new VoucherCheckResponse
             {
-                status = "ERROR",
-                errorCode = errorCode,
-                message = message,
-                voucherCode = voucherRequest.voucherCode
+                Status = "ERROR",
+                ErrorCode = errorCode,
+                Message = message,
+                VoucherCode = voucherRequest.VoucherCode
             };
             
 
             vendorApiCallStatus.error_code = "400";
-            logAPiCallStatus(vendorApiCallStatus, VoucherResponse);
+            await logAPiCallStatus(vendorApiCallStatus, VoucherResponse);
             return VoucherResponse;
         }
         public async Task<VoucherCheckResponse> GetVoucherResponse(VoucherCheckRequest voucherRequest)
@@ -53,8 +53,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
          
             try
             {
-                _logger.LogInformation("Getting vendor company for registration {registration}", voucherRequest.registration);
-                var vendorCompany = _vendorCompanyRepository.GetVendorCompanyByRegistration(voucherRequest.registration);
+                _logger.LogInformation("Getting vendor company for registration {registration}", voucherRequest.Registration);
+                var vendorCompany = _vendorCompanyRepository.GetVendorCompanyByRegistration(voucherRequest.Registration);
                 if (vendorCompany != null)
                 {
                     _logger.LogInformation("Decrypting voucher");
@@ -67,7 +67,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                         // reject tokens with any cancellation status
                         if (token.cancellation_status_id.HasValue)
                         {
-                            return getVoucherErrorResponse(voucherRequest, 50, "Cancelled token");
+                            return await getVoucherErrorResponse(voucherRequest, 50, "Cancelled token");
                         }
                         var productId = token.product;
                         _logger.LogInformation("Getting product for product Id {productId}", productId);
@@ -77,26 +77,26 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                         {
                             return await GetVoucherCheckResponse(token, voucherRequest, vendorCompany, product);
                         }
-                        return getVoucherErrorResponse(voucherRequest, 10, "Unknown token Invalid vendor details");
+                        return await getVoucherErrorResponse(voucherRequest, 10, "Unknown token Invalid vendor details");
                     }
                     
-                    return getVoucherErrorResponse(voucherRequest, 10, "Unknown token Unknown token");
+                    return await getVoucherErrorResponse(voucherRequest, 10, "Unknown token Unknown token");
                 }
-                return getVoucherErrorResponse(voucherRequest, 10, "Unknown token Invalid Vendor company");
+                return await getVoucherErrorResponse(voucherRequest, 10, "Unknown token Invalid Vendor company");
                 
             }
 
             catch (Exception e)
             {                
                 _logger.LogError(e, "There was an unxpected error checking the voucher : {Message}", e.Message);
-                return getVoucherErrorResponse(voucherRequest, 10, e.Message);
+                return await getVoucherErrorResponse(voucherRequest, 10, e.Message);
                 
             }
         }
 
         private token GetToken(string decryptedVoucherCode)
         {
-            var token = _tokenRepository.GetToken(decryptedVoucherCode);
+            var token = _tokenRepository.GetTokenByTokenCode(decryptedVoucherCode);
 
             return token;
         }
@@ -110,58 +110,58 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             _logger.LogInformation("Getting voucher response");
             if (token.token_expiry.CompareTo(DateTime.Now) < 0)
             {
-                return getVoucherErrorResponse(voucherRequest, 20, "Expired Token");
+                return await getVoucherErrorResponse(voucherRequest, 20, "Expired Token");
             }
 
             if (token.token_balance == 0)
             {
-                return getVoucherErrorResponse(voucherRequest, 30, "No Balance");
+                return await getVoucherErrorResponse(voucherRequest, 30, "No Balance");
             }
 
             if (token.authorisation_code == null)
             {
-                return getVoucherErrorResponse(voucherRequest, 40, "Locked");
+                return await getVoucherErrorResponse(voucherRequest, 40, "Locked");
             }
 
             var voucherResponse = new VoucherCheckResponse();
-            voucherResponse.status = "OK";
-            voucherResponse.message = "Successful check - proceed with Voucher";
-            voucherResponse.errorCode = 0;
-            voucherResponse.voucherCode = voucherRequest.voucherCode;
-            voucherResponse.authorisationCode = token.authorisation_code;
+            voucherResponse.Status = "OK";
+            voucherResponse.Message = "Successful check - proceed with Voucher";
+            voucherResponse.ErrorCode = 0;
+            voucherResponse.VoucherCode = voucherRequest.VoucherCode;
+            voucherResponse.AuthorisationCode = token.authorisation_code;
 
-            voucherResponse.vendor = vendorCompanySingle.vendor_company_name;
-            voucherResponse.productSku = product.product_SKU;
-            voucherResponse.productName = product.product_name;
+            voucherResponse.Vendor = vendorCompanySingle.vendor_company_name;
+            voucherResponse.ProductSku = product.product_SKU;
+            voucherResponse.ProductName = product.product_name;
             _logger.LogInformation("Getting enterprise for id {id}", token.enterprise_id);
             var enterprise = await _enterpriseRepository.GetEnterprise(token.enterprise_id);
 
-            voucherResponse.licenceTo = enterprise.enterprise_name;
-            voucherResponse.smeEmail = enterprise.applicant_email_address;
-            voucherResponse.purchaserName = enterprise.applicant_name;
+            voucherResponse.LicenceTo = enterprise.enterprise_name;
+            voucherResponse.SmeEmail = enterprise.applicant_email_address;
+            voucherResponse.PurchaserName = enterprise.applicant_name;
 
-            voucherResponse.maxDiscountAllowed = token.token_balance;
-            voucherResponse.currency = "GBP";
-            voucherResponse.tokenExpiry = token.token_expiry.ToString(tokenExpiryFormat);
+            voucherResponse.MaxDiscountAllowed = token.token_balance;
+            voucherResponse.Currency = "GBP";
+            voucherResponse.TokenExpiry = token.token_expiry.ToString(tokenExpiryFormat);
 
 
             var vendorApiCallStatus = _vendorApiCallStatusService.CreateLogRequestDetails(voucherRequest);
             vendorApiCallStatus.error_code = "200";
-            logAPiCallStatus(vendorApiCallStatus, voucherResponse);
+            await logAPiCallStatus(vendorApiCallStatus, voucherResponse);
 
             return voucherResponse;
         }
 
         private string DecryptVoucher(VoucherCheckRequest voucherRequest, vendor_company vendorCompany)
         {
-            var voucherCode = voucherRequest.voucherCode + "==";
+            var voucherCode = voucherRequest.VoucherCode + "==";
             return _encryptionService.Decrypt(voucherCode, vendorCompany.registration_id + vendorCompany.vendorid);
         }
 
         private bool IsValidVendor(VoucherCheckRequest voucherRequest, vendor_company vendorCompany)
         {
-            return voucherRequest.registration == vendorCompany.registration_id &&
-                voucherRequest.accessCode == vendorCompany.access_secret;
+            return voucherRequest.Registration == vendorCompany.registration_id &&
+                voucherRequest.AccessCode == vendorCompany.access_secret;
         }
     }
 }

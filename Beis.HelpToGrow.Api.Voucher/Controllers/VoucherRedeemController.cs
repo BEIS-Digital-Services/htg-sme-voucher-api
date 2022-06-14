@@ -47,10 +47,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             {
                 voucherResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-                if (voucherResponse.errorCode == 0)
+                if (voucherResponse.ErrorCode == 0)
                 {
-                    voucherResponse.status = "OK";
-                    voucherResponse.message = "Successful check - proceed";
+                    voucherResponse.Status = "OK";
+                    voucherResponse.Message = "Successful check - proceed";
                
                     return Ok(voucherResponse);
                 }        
@@ -60,10 +60,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             {
                 voucherResponse = new VoucherUpdateResponse
                 {
-                    status = "ERROR",
-                    errorCode = 10,
-                    message = "Unknown token",
-                    voucherCode = voucherUpdateRequest.voucherCode
+                    Status = "ERROR",
+                    ErrorCode = 10,
+                    Message = "Unknown token",
+                    VoucherCode = voucherUpdateRequest.VoucherCode
                 };
                 var vendorApiCallStatus = _vendorApiCallStatusServices.CreateLogRequestDetails(voucherUpdateRequest);
                 vendorApiCallStatus.error_code = "500";

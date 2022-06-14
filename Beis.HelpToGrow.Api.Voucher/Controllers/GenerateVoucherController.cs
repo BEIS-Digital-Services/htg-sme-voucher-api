@@ -15,7 +15,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
         }
 
         /// <summary>
-        /// Voucher check endpoint
+        /// Voucher check endpoint. Supported versions : 1.0
         /// </summary>
         /// <remarks>
         /// Sample request:
@@ -38,7 +38,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             try
             {
                 response= await _tokenVoucherGeneratorService.GenerateVoucher(voucherGenerationRequest);
-                if (response.errorCode == 0)
+                if (response.ErrorCode == 0)
                 {
                     _logger.LogInformation("VoucherCheckControllerResponse: {@voucherResponse}", JsonSerializer.Serialize(response));
                     return response;
@@ -49,11 +49,11 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             {
                 response =  new VoucherGenerationResponse()
                 {
-                    status = "ERROR",
-                    registration = voucherGenerationRequest.registration,
-                    productSku = voucherGenerationRequest.productSku,
-                    errorCode = 10,
-                    message = "Unknown ProductSKU or Vendor details"
+                    Status = "ERROR",
+                    Registration = voucherGenerationRequest.Registration,
+                    ProductSku = voucherGenerationRequest.ProductSku,
+                    ErrorCode = 10,
+                    Message = "Unknown ProductSKU or Vendor details"
                 };
                 _logger.LogError("VoucherCheckServiceResponse: {@VoucherResponse}, {@VErrorMessage}",JsonSerializer.Serialize(response), e.Message);
                 

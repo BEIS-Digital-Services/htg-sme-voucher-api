@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppConfig");
+
 if (connectionString != null)
 {
+    builder.Services.AddAzureAppConfiguration();
+    
     builder.Host.ConfigureAppConfiguration(configBuilder =>
     {
         configBuilder.AddAzureAppConfiguration(connectionString);
@@ -16,6 +19,7 @@ builder.Services.RegisterVoucherApiServices(builder.Configuration);
 
 
 builder.Services.AddControllers();
+
 //// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 

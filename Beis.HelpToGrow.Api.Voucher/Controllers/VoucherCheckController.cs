@@ -4,6 +4,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/vouchercheck")]
 
+    
     public class VoucherCheckController : ControllerBase
     {
         private readonly IVoucherCheckService _voucherCheckService;
@@ -18,7 +19,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
         }
 
         /// <summary>
-        /// Voucher check endpoint
+        /// Voucher check endpoint 
         /// </summary>
         /// <remarks>
         /// Sample request:
@@ -45,7 +46,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             try
             {
                 voucherResponse = await _voucherCheckService.GetVoucherResponse(voucherRequest);
-                if (voucherResponse.errorCode == 0)
+                if (voucherResponse.ErrorCode == 0)
                 {
                     _logger.LogInformation("VoucherCheckControllerResponse: {@voucherResponse}", JsonSerializer.Serialize(voucherResponse));
                     return Ok(voucherResponse);
@@ -57,11 +58,11 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             {
                  voucherResponse = new VoucherCheckResponse
                 {
-                    status = "ERROR",
-                    errorCode = 10,
-                    message = "Unknown token " + e.Message, 
+                    Status = "ERROR",
+                    ErrorCode = 10,
+                    Message = "Unknown token " + e.Message, 
                   
-                    voucherCode = voucherRequest.voucherCode
+                    VoucherCode = voucherRequest.VoucherCode
                 };
 
                 _logger.LogInformation("VoucherCheckControllerResponse: {@voucherResponse}", JsonSerializer.Serialize(voucherResponse));

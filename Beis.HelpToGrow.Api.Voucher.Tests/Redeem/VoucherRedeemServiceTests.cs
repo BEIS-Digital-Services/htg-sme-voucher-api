@@ -1,8 +1,4 @@
-
-
-using System;
 using System.Threading.Tasks;
-using Beis.Htg.VendorSme.Database.Models;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
@@ -30,7 +26,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
             _logger = new Mock<ILogger<VoucherRedeemService>>();
             _vendorAPICallStatusServices = new Mock<IVendorAPICallStatusServices>();
             _vendorAPICallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherUpdateRequest>()))
-                .Returns(new Beis.Htg.VendorSme.Database.Models.vendor_api_call_status { });
+                .Returns(new vendor_api_call_status { });
 
             _voucherRedeemService = new VoucherRedeemService(_logger.Object,
                                                                                                 _encryptionService.Object,
@@ -49,9 +45,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             var voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(0, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("OK", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(0, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("OK", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         [Test]
@@ -61,10 +57,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             VoucherUpdateResponse voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(10, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Unknown token or company", voucherUpdateResponse.message.Trim());
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(10, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Unknown token or company", voucherUpdateResponse.Message.Trim());
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         [Test]
@@ -74,10 +70,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             var voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(40, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherUpdateResponse.message.Trim());
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(40, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherUpdateResponse.Message.Trim());
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         [Test]
@@ -87,10 +83,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             var voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(40, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherUpdateResponse.message.Trim());
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(40, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherUpdateResponse.Message.Trim());
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         [Test]
@@ -100,10 +96,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             var voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(40, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherUpdateResponse.message.Trim());
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(40, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherUpdateResponse.Message.Trim());
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         [Test]
@@ -113,20 +109,20 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 
             var voucherUpdateResponse = await _voucherRedeemService.GetVoucherResponse(voucherUpdateRequest);
 
-            Assert.AreEqual(40, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Cancelled token", voucherUpdateResponse.message.Trim());
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual("abcdef", voucherUpdateResponse.voucherCode);
+            Assert.AreEqual(40, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Cancelled token", voucherUpdateResponse.Message.Trim());
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual("abcdef", voucherUpdateResponse.VoucherCode);
         }
 
         private VoucherUpdateRequest SetupVoucherUpdateRequest(string registrationNumber, vendor_company vendorCompanyArg = null, token tokenArg = null, product productArg = null, int? tokenCancellationCode = null)
         {
             var voucherUpdateRequest = new VoucherUpdateRequest
             {
-                registration = registrationNumber,
-                accessCode = "12345",
-                voucherCode = "abcdef",
-                authorisationCode = "abcd"
+                Registration = registrationNumber,
+                AccessCode = "12345",
+                VoucherCode = "abcdef",
+                AuthorisationCode = "abcd"
             };
 
             var vendorCompany = vendorCompanyArg ?? FakeVendorCompany;
@@ -157,7 +153,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
                 .Returns("123456");
 
             _tokenRepository
-                .Setup(x => x.GetToken(It.IsAny<string>()))
+                .Setup(x => x.GetTokenByTokenCode(It.IsAny<string>()))
                 .Returns(token);
 
             _productRepository

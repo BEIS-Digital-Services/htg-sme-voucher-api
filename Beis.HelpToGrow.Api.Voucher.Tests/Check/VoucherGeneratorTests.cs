@@ -28,8 +28,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             var request = new VoucherGenerationRequest
             {
-                productSku = "sku123",
-                registration = "12345"
+                ProductSku = "sku123",
+                Registration = "12345"
             };
 
             _tokenVoucherGeneratorService.Setup(x => x.GenerateVoucher(It.IsAny<VoucherGenerationRequest>())).ReturnsAsync(GetVoucherResponse(request));
@@ -38,9 +38,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             var voucherResponse = actionResult.Value;
 
-            Assert.AreEqual(0, voucherResponse.errorCode);
-            Assert.AreEqual(request.productSku, voucherResponse.productSku);
-            Assert.AreEqual(request.registration, voucherResponse.registration);
+            Assert.AreEqual(0, voucherResponse.ErrorCode);
+            Assert.AreEqual(request.ProductSku, voucherResponse.ProductSku);
+            Assert.AreEqual(request.Registration, voucherResponse.Registration);
         }
 
         [Test]
@@ -48,14 +48,14 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             var request = new VoucherGenerationRequest
             {
-                productSku = "sku123",
-                registration = "12345"
+                ProductSku = "sku123",
+                Registration = "12345"
             };
 
             var expectedResponse = GetVoucherResponse(request);
-            expectedResponse.errorCode = 400;
-            expectedResponse.voucherCode = "voucherCode";
-            expectedResponse.voucherBalance = 12.34M;
+            expectedResponse.ErrorCode = 400;
+            expectedResponse.VoucherCode = "voucherCode";
+            expectedResponse.VoucherBalance = 12.34M;
 
             _tokenVoucherGeneratorService.Setup(x => x.GenerateVoucher(It.IsAny<VoucherGenerationRequest>())).ReturnsAsync(expectedResponse);
 
@@ -63,11 +63,11 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 
             var voucherResponse = (VoucherGenerationResponse)((ObjectResult)actionResult.Result).Value;
 
-            Assert.AreEqual(400, voucherResponse.errorCode);
-            Assert.AreEqual("voucherCode", voucherResponse.voucherCode);
-            Assert.AreEqual(12.34M, voucherResponse.voucherBalance);
-            Assert.AreEqual(request.productSku, voucherResponse.productSku);
-            Assert.AreEqual(request.registration, voucherResponse.registration);
+            Assert.AreEqual(400, voucherResponse.ErrorCode);
+            Assert.AreEqual("voucherCode", voucherResponse.VoucherCode);
+            Assert.AreEqual(12.34M, voucherResponse.VoucherBalance);
+            Assert.AreEqual(request.ProductSku, voucherResponse.ProductSku);
+            Assert.AreEqual(request.Registration, voucherResponse.Registration);
         }
 
         [Test]
@@ -75,12 +75,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         {
             var request = new VoucherGenerationRequest
             {
-                productSku = "sku123",
-                registration = "12345",
+                ProductSku = "sku123",
+                Registration = "12345",
             };
 
             var expectedResponse = GetVoucherResponse(request);
-            expectedResponse.errorCode = 400;
+            expectedResponse.ErrorCode = 400;
             _tokenVoucherGeneratorService.Setup(x => x.GenerateVoucher(It.IsAny<VoucherGenerationRequest>())).Throws(new Exception());
 
             var actionResult = await _voucherGenerator.GenerateVoucher(request);
@@ -88,20 +88,20 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             var voucherResponse = (VoucherGenerationResponse)((ObjectResult)actionResult.Result).Value;
 
             Assert.AreEqual(500, ((ObjectResult)actionResult.Result).StatusCode);
-            Assert.AreEqual(10, voucherResponse.errorCode);
-            Assert.AreEqual("ERROR", voucherResponse.status);
-            Assert.AreEqual(request.productSku, voucherResponse.productSku);
-            Assert.AreEqual(request.registration, voucherResponse.registration);
-            Assert.AreEqual("Unknown ProductSKU or Vendor details", voucherResponse.message);
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("ERROR", voucherResponse.Status);
+            Assert.AreEqual(request.ProductSku, voucherResponse.ProductSku);
+            Assert.AreEqual(request.Registration, voucherResponse.Registration);
+            Assert.AreEqual("Unknown ProductSKU or Vendor details", voucherResponse.Message);
         }
 
         private VoucherGenerationResponse GetVoucherResponse(VoucherGenerationRequest voucherRequest)
         {
             return new VoucherGenerationResponse()
             {
-                errorCode = 0,
-                productSku = voucherRequest.productSku,
-                registration = voucherRequest.registration
+                ErrorCode = 0,
+                ProductSku = voucherRequest.ProductSku,
+                Registration = voucherRequest.Registration
             }; 
         }        
     }

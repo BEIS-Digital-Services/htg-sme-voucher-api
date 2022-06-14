@@ -23,7 +23,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
             _logger = new Mock<ILogger<VoucherRedeemController>>();
             _vendorAPICallStatusServices = new Mock<IVendorAPICallStatusServices>();
             _vendorAPICallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherUpdateRequest>()))
-                .Returns(new Beis.Htg.VendorSme.Database.Models.vendor_api_call_status { });
+                .Returns(new vendor_api_call_status { });
            _voucherRedeemService = new Mock<IVoucherRedeemService>();
             _voucherController = new VoucherRedeemController(_logger.Object, _voucherRedeemService.Object, _vendorAPICallStatusServices.Object);
         }
@@ -33,28 +33,28 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
         {
             VoucherUpdateRequest voucherUpdateRequest = new VoucherUpdateRequest()
             {
-                registration = "12345",
-                accessCode = "12345",
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q",
-                authorisationCode = "GHT23RTDWER"
+                Registration = "12345",
+                AccessCode = "12345",
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q",
+                AuthorisationCode = "GHT23RTDWER"
             };
 
             var voucherUpdateExpectedResponse = new VoucherUpdateResponse()
             {
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q",
-                status = "OK",
-                errorCode = 0,
-                message = "XXXXXXXXX"
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q",
+                Status = "OK",
+                ErrorCode = 0,
+                Message = "XXXXXXXXX"
             };
             
             _voucherRedeemService.Setup(x =>x.GetVoucherResponse(It.IsAny<VoucherUpdateRequest>())).ReturnsAsync(voucherUpdateExpectedResponse);
             ActionResult<VoucherUpdateResponse> actionResult = await _voucherController.CheckVoucher(voucherUpdateRequest);
             VoucherUpdateResponse voucherUpdateResponse = (VoucherUpdateResponse) ((OkObjectResult) actionResult.Result).Value;
 
-            Assert.AreEqual(voucherUpdateRequest.voucherCode, voucherUpdateResponse.voucherCode);
-            Assert.AreEqual("OK", voucherUpdateResponse.status);
-            Assert.AreEqual(0, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Successful check - proceed", voucherUpdateResponse.message);
+            Assert.AreEqual(voucherUpdateRequest.VoucherCode, voucherUpdateResponse.VoucherCode);
+            Assert.AreEqual("OK", voucherUpdateResponse.Status);
+            Assert.AreEqual(0, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Successful check - proceed", voucherUpdateResponse.Message);
         }
 
         [Test]
@@ -62,27 +62,27 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
         {
             VoucherUpdateRequest voucherUpdateRequest = new VoucherUpdateRequest()
             {
-                registration = "12345",
-                accessCode = "12345",
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q99",
-                authorisationCode = "GHT23RTDWER"
+                Registration = "12345",
+                AccessCode = "12345",
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q99",
+                AuthorisationCode = "GHT23RTDWER"
             };
 
             var voucherUpdateExpectedResponse = new VoucherUpdateResponse()
             {
-                voucherCode = "IvMBLZ2PhUVkmJHpAxle0Q",
-                status = "ERROR",
-                errorCode = 401,
-                message = "Invalid voucher code"
+                VoucherCode = "IvMBLZ2PhUVkmJHpAxle0Q",
+                Status = "ERROR",
+                ErrorCode = 401,
+                Message = "Invalid voucher code"
             };
             
             _voucherRedeemService.Setup(x =>x.GetVoucherResponse(It.IsAny<VoucherUpdateRequest>())).ReturnsAsync(voucherUpdateExpectedResponse);
             ActionResult<VoucherUpdateResponse> actionResult = await _voucherController.CheckVoucher(voucherUpdateRequest);
             VoucherUpdateResponse voucherUpdateResponse = (VoucherUpdateResponse) ((ObjectResult) actionResult.Result).Value;
             
-            Assert.AreEqual("ERROR", voucherUpdateResponse.status);
-            Assert.AreEqual(401, voucherUpdateResponse.errorCode);
-            Assert.AreEqual("Invalid voucher code", voucherUpdateResponse.message);
+            Assert.AreEqual("ERROR", voucherUpdateResponse.Status);
+            Assert.AreEqual(401, voucherUpdateResponse.ErrorCode);
+            Assert.AreEqual("Invalid voucher code", voucherUpdateResponse.Message);
         }
         
 
