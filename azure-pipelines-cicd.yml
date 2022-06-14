@@ -8,7 +8,7 @@ resources:
       name: DevOps
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: Ubuntu-latest
 
 variables:
   buildConfiguration: 'Release'
@@ -19,3 +19,5 @@ extends:
     solutionToBuild: 'Beis.HelpToGrow.Api.Voucher.sln'
     projectToPublish: 'Beis.HelpToGrow.Api.Voucher.csproj'
     webApplicationNameSuffix: 'voucher-api-app'
+    webApplicationResourceGroupFormat: 'voucher-api'
+    
