@@ -1,5 +1,4 @@
-﻿using Beis.HelpToGrow.Api.Voucher.Services.HealthCheck;
-using Beis.HelpToGrow.Common.Interfaces;
+﻿using Beis.HelpToGrow.Common.Interfaces;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -44,15 +43,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
             services.AddTransient<IProductPriceRepository, ProductPriceRepository>();
             services.AddVoucherPersistence(configuration);
             
-
-
-
             services.AddHealthChecks()
-                //.AddCheck<StartupHealthCheckService>(
-                //    "Startup",
-                //    tags: new[] { "ready" })
                 .AddDbContextCheck<HtgVendorSmeDbContext>()
-                .AddCheck<DatabaseHealthCheckService>("Database")
+                .AddCheck<DependencyInjectionHealthCheckService>("Dependency Injection")
                 .AddCheck<EncryptionHealthCheckService>("Encryption", failureStatus: HealthStatus.Unhealthy,
                     tags: new[] { "Encryption" });
 
