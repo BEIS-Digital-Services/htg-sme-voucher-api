@@ -17,4 +17,4 @@ variables:
 extends:
   template: sync-public-repo.yml@template
   parameters:
-    gitUrl: 'https://github.com/BEIS-Digital-Services/htg-sme-voucher-api.git'
+    gitUrl: 'github.com/BEIS-Digital-Services/htg-sme-voucher-api.git'
