@@ -9,7 +9,7 @@ resources:
       #ref: releases/1.0.0
 
 pool:
-  vmImage: Ubuntu-latest
+  vmImage: Windows-latest
 
 variables:
   buildConfiguration: 'Release'
