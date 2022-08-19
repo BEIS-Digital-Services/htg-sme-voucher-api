@@ -57,6 +57,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
                 c.IncludeXmlComments(xmlPath);
             });
 
+
+            bool.TryParse(configuration["ShowGenerateTestVoucherEndPoint"], out var showGenerateTestVoucherEndPoint);
+            services.AddTransient(o => new CanGenerateTestVoucherAttribute(showGenerateTestVoucherEndPoint));
+
             return services;
         }       
     }
