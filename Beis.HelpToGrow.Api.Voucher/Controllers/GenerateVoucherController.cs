@@ -28,8 +28,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
         ///
         /// </remarks>
         /// 
-        [CanGenerateTestVoucherAttribute]
-
+        [ServiceFilter(typeof(CanGenerateTestVoucherAttribute))]
         [HttpPost]
         public async Task<ActionResult<VoucherGenerationResponse>> GenerateVoucher(VoucherGenerationRequest voucherGenerationRequest)
         {
