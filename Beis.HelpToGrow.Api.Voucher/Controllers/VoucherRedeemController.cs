@@ -2,7 +2,7 @@
 namespace Beis.HelpToGrow.Api.Voucher.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/voucherupdate")]
+    [Route("api/voucherupdate")]
     public class VoucherRedeemController : ControllerBase
     {
         private readonly IVoucherRedeemService _voucherRedeemService;

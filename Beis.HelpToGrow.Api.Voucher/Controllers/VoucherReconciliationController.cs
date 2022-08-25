@@ -1,7 +1,8 @@
 namespace Beis.HelpToGrow.Api.Voucher.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/voucherreconciliation")]
+    [Route("api/voucherreconciliation", Order = 1)]
+    [Route("api/voucher", Order = 2)]  // this is the name in the old API and has been included for the URL forwarding.
     public class VoucherReconciliationController : ControllerBase
     {
         private readonly IVoucherReconciliationService _voucherReconciliationService;
@@ -13,15 +14,17 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             _logger = logger;
             _vendorApiCallStatusServices = vendorApiCallStatusServices;
         }
-        
+
         /// <summary>
         /// Voucher reconciliation
         /// </summary>
         /// <remarks>
+        /// Note : The api/voucher endpoint has been included here to support URL forwarding from the original reconciliation API
+        /// 
         /// Sample request:
         ///
         ///     POST /api/controller
-        ///     {
+        ///     { 
         ///        "registration": "12345",
         ///        "accessCode": "12345",
         ///        "reconciliationDate": "2021-10-06T10:19:03.002Z",
