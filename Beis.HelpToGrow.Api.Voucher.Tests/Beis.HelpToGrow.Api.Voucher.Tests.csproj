@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Beis.HelpToGrow.Common" Version="6.0.13" />
+        <PackageReference Include="Beis.HelpToGrow.Common.Voucher" Version="6.1.26" />
         <PackageReference Include="FluentResults" Version="3.5.0" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.5" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />

@@ -26,7 +26,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             _configuration = new Mock<IConfiguration>();
             _mockLogger = new Mock<ILogger<VoucherGenerationService>>();
             voucherOptions = Options.Create(new VoucherSettings { VoucherCodeLength = 9 });
-            _service = new VoucherGenerationService(_encryptionService.Object, _tokenRepository.Object, _mockLogger.Object, voucherOptions  );
+            _service = new VoucherGenerationService(_encryptionService.Object, _tokenRepository.Object, _mockLogger.Object  );
         }
 
         [Test]
