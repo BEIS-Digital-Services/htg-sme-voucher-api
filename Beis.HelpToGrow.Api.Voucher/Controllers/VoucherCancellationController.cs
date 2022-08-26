@@ -3,9 +3,7 @@
 
 namespace Beis.HelpToGrow.Api.Voucher.Controllers
 {
-
-
-    [Route("api/v{version:apiVersion}/paymentcancellation")]
+    [Route("api/paymentcancellation")]
     [ApiController]
     public class VoucherCancellationController : ControllerBase
     {
