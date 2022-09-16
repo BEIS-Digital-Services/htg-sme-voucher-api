@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Moq;
+﻿using Moq;
 using System.Collections.Generic;
 using System.Linq;
 

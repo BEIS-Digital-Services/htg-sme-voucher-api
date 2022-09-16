@@ -1,4 +1,6 @@
-﻿namespace Beis.HelpToGrow.Api.Voucher.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Beis.HelpToGrow.Api.Voucher.Models
 {
     /// <summary>
     ///        "registration":"R12345",
@@ -10,6 +12,9 @@
     /// </summary>
     public class VoucherCancellationRequest : IVoucherRequest
     {
+        [JsonIgnore]
+        public int VoucherId { get; set; }
+        
         [Required(ErrorMessage = "Registration is required")]
         [MaxLength(50, ErrorMessage = "Registration cannot be more than 50 characters")]
         public string Registration { get; set; }

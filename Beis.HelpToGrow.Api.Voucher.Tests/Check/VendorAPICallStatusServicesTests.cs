@@ -1,5 +1,4 @@
-using System;
-using System.Text.Json;
+
 using Moq;
 using NUnit.Framework;
 
@@ -25,12 +24,17 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
         public void VendorAPICallStatusServicesCreateLogRequestDetailsHappyTests()
         {
             var voucherRequest = setupTestData();
-            var vendor_api_call_status = _vendorApiCallStatusServices.CreateLogRequestDetails(voucherRequest);
+
+            var vendorApiCallStatus = _vendorApiCallStatusServices.CreateLogRequestDetails(new LogVoucherRequest
+            {
+                ApiCalled = "voucherCheck",
+                VoucherRequest = voucherRequest
+            });
             
-            Assert.AreEqual("voucherCheck", vendor_api_call_status.api_called);
-            Assert.NotNull(vendor_api_call_status.vendor_id);
-            Assert.NotNull(vendor_api_call_status.request);
-            Assert.NotNull(vendor_api_call_status.call_datetime);
+            Assert.AreEqual("voucherCheck", vendorApiCallStatus.api_called);
+            Assert.NotNull(vendorApiCallStatus.vendor_id);
+            Assert.NotNull(vendorApiCallStatus.request);
+            Assert.NotNull(vendorApiCallStatus.call_datetime);
 
         }
 

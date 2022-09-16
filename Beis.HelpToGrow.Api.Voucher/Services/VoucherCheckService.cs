@@ -32,7 +32,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
         private async Task<VoucherCheckResponse> getVoucherErrorResponse(VoucherCheckRequest voucherRequest, int errorCode, string message)
         {
             _logger.LogError("There was an error checking the voucher ({errorCode}) : {Message}", errorCode, message);
-            var vendorApiCallStatus = _vendorApiCallStatusService.CreateLogRequestDetails(voucherRequest);
+
+            var vendorApiCallStatus = _vendorApiCallStatusService.CreateLogRequestDetails(new LogVoucherRequest
+            {
+                ApiCalled = "voucherCheck",
+                VoucherRequest = voucherRequest
+            });
 
             var VoucherResponse = new VoucherCheckResponse
             {
@@ -42,7 +47,6 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
                 VoucherCode = voucherRequest.VoucherCode
             };
             
-
             vendorApiCallStatus.error_code = "400";
             await logAPiCallStatus(vendorApiCallStatus, VoucherResponse);
             return VoucherResponse;
@@ -143,9 +147,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             voucherResponse.MaxDiscountAllowed = token.token_balance;
             voucherResponse.Currency = "GBP";
             voucherResponse.TokenExpiry = token.token_expiry.ToString(tokenExpiryFormat);
-
-
-            var vendorApiCallStatus = _vendorApiCallStatusService.CreateLogRequestDetails(voucherRequest);
+            
+            var vendorApiCallStatus = _vendorApiCallStatusService.CreateLogRequestDetails(new LogVoucherRequest
+            {
+                ApiCalled = "voucherCheck",
+                VoucherRequest = voucherRequest
+            });
             vendorApiCallStatus.error_code = "200";
             await logAPiCallStatus(vendorApiCallStatus, voucherResponse);
 

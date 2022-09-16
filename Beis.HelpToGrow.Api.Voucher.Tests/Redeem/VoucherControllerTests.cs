@@ -1,11 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Newtonsoft.Json.Serialization;
-using NuGet.Frameworks;
 using NUnit.Framework;
 using System.Threading.Tasks;
-
 
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 {
@@ -22,7 +18,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
         {
             _logger = new Mock<ILogger<VoucherRedeemController>>();
             _vendorAPICallStatusServices = new Mock<IVendorAPICallStatusServices>();
-            _vendorAPICallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherUpdateRequest>()))
+            _vendorAPICallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<ILogVoucherRequest>()))
                 .Returns(new vendor_api_call_status { });
            _voucherRedeemService = new Mock<IVoucherRedeemService>();
             _voucherController = new VoucherRedeemController(_logger.Object, _voucherRedeemService.Object, _vendorAPICallStatusServices.Object);

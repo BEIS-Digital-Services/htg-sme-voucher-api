@@ -4,7 +4,6 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
 {
     [TestFixture]
@@ -36,7 +35,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             _vendorReconciliationRepository = new Mock<IVendorReconciliationRepository>();
             _logger = new Mock<ILogger<VoucherReconciliationService>>();
             _vendorApiCallStatusService = new Mock<IVendorAPICallStatusServices>();
-            _vendorApiCallStatusService.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherReconciliationRequest>())).Returns((VoucherReconciliationRequest r) => vendorApiCallStatus);
+            _vendorApiCallStatusService.Setup(x => x.CreateLogRequestDetails(It.IsAny<ILogVoucherRequest>())).Returns((LogVoucherRequest r) => vendorApiCallStatus);
 
             _voucherReconciliationService = new VoucherReconciliationService(_logger.Object, _encryptionService.Object,
                 _tokenRepository.Object,

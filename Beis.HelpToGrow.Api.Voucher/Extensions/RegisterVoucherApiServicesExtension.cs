@@ -1,9 +1,6 @@
-﻿using Beis.HelpToGrow.Common.Interfaces;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-using Beis.HelpToGrow.Common.Services;
 
 namespace Beis.HelpToGrow.Api.Voucher.Extensions
 {

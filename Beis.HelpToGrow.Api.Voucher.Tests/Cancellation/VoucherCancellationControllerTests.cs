@@ -1,10 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
@@ -17,16 +13,16 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
         private Mock<ILogger<VoucherCancellationController>> logger;       
         private Mock<IVendorAPICallStatusServices> vendorAPICallStatusServices;
         private VoucherCancellationController controller;
-
-
-
-
+        
         [SetUp]
         public async Task Setup()
         {
             voucherCancellationService = new Mock<IVoucherCancellationService>();
             voucherCancellationService.Setup(x => x.CancelVoucherFromVoucherCode(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
             .ReturnsAsync((string voucherCode, string vendorRegistration, string vendorAccessCode) =>  cancellationResponse);
+            
+            voucherCancellationService.Setup(x => x.CancelVoucherById(It.IsAny<long>()))
+                .ReturnsAsync((long tokenId) =>  cancellationResponse);
 
             logger = new Mock<ILogger<VoucherCancellationController>>();
             vendorAPICallStatusServices = new Mock<IVendorAPICallStatusServices>();
@@ -174,6 +170,150 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
             Assert.AreEqual(40, voucherResponse.ErrorCode);
             Assert.AreEqual("Unknown Error", voucherResponse.Message);
             Assert.AreEqual("abc123", voucherResponse.VoucherCode);
+        }
+        
+        //------
+        
+         [Test]
+        public async Task CancelByIdReturnsSuccessfullyCancelledResponse()
+        {
+            //Arrange
+            cancellationResponse = CancellationResponse.SuccessfullyCancelled;
+
+            //Act
+            var result = await controller.CancelById(new VoucherCancellationByIdRequest { VoucherId = 1});
+
+            //Assert
+            Assert.AreEqual(0, result.Value.ErrorCode);
+            Assert.AreEqual("Successfully cancelled", result.Value.Message);
+            Assert.AreEqual("Id:1", result.Value.VoucherCode);
+        }
+
+
+        [Test]
+        public async Task CancelByIdReturnsAlreadyCancelledResponse()
+        {
+            //Arrange
+            cancellationResponse = CancellationResponse.AlreadyCancelled;
+
+            //Act
+            var result = await controller.CancelById(new VoucherCancellationByIdRequest { VoucherId = 1});
+
+            //Assert
+            Assert.AreEqual(0, result.Value.ErrorCode);
+            Assert.AreEqual("Voucher already cancelled", result.Value.Message);
+            Assert.AreEqual("Id:1", result.Value.VoucherCode);
+        }
+
+
+        [Test]
+        public async Task CancelByIdReturnsFreeTrialExpiredResponse()
+        {
+            //Arrange
+            cancellationResponse = CancellationResponse.FreeTrialExpired;
+
+            //Act
+            var result = await controller.CancelById(new VoucherCancellationByIdRequest { VoucherId = 1});
+
+            //Assert
+            Assert.AreEqual(0, result.Value.ErrorCode);
+            Assert.AreEqual("Voucher already cancelled. SME cannot reapply", result.Value.Message);
+            Assert.AreEqual("Id:1", result.Value.VoucherCode);
+        }
+
+        [Test]
+        public async Task CancelByIdReturnsTokenExpiredResponse()
+        {
+            //Arrange
+            cancellationResponse = CancellationResponse.TokenExpired;
+
+            //Act
+            var result = await controller.CancelById(new VoucherCancellationByIdRequest { VoucherId = 1});
+
+            //Assert
+            Assert.AreEqual(0, result.Value.ErrorCode);
+            Assert.AreEqual("Voucher already expired", result.Value.Message);
+            Assert.AreEqual("Id:1", result.Value.VoucherCode);
+        }
+
+
+        [Test]
+        public async Task CancelByIdReturnsUnknownVoucherCodeResponse()
+        {
+            //Arrange
+            cancellationResponse = CancellationResponse.UnknownVoucherCode;
+
+            //Act
+            var result = await controller.CancelById(new VoucherCancellationByIdRequest { VoucherId = 1});
+            VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
+            //Assert
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown Token", voucherResponse.Message);
+            Assert.AreEqual("Id:1", voucherResponse.VoucherCode);
+        }
+
+        [Test]
+        public async Task CancelByIdReturnsTokenNotFoundResponse()
+        {
+            //Arrange
+            cancellationResponse = CancellationResponse.TokenNotFound;
+
+            //Act
+            var result = await controller.CancelById(new VoucherCancellationByIdRequest { VoucherId = 1});
+            VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
+
+            //Assert
+            Assert.AreEqual(10, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown Token", voucherResponse.Message);
+            Assert.AreEqual("Id:1", voucherResponse.VoucherCode);
+        }
+
+        [Test]
+        public async Task CancelByIdReturnsUnknownVendorRegistrationResponse()
+        {
+            //Arrange
+            cancellationResponse = CancellationResponse.UnknownVendorRegistration;
+
+            //Act
+            var result = await controller.CancelById(new VoucherCancellationByIdRequest { VoucherId = 1});
+            VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
+
+            //Assert
+            Assert.AreEqual(20, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown Vendor", voucherResponse.Message);
+            Assert.AreEqual("Id:1", voucherResponse.VoucherCode);
+        }
+
+        [Test]
+        public async Task CancelByIdReturnsUnknownVendorAccessCodeResponse()
+        {
+            //Arrange
+            cancellationResponse = CancellationResponse.UnknownVendorAccessCode;
+
+            //Act
+            var result = await controller.CancelById(new VoucherCancellationByIdRequest { VoucherId = 1});
+            VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
+
+            //Assert
+            Assert.AreEqual(30, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown Access Code", voucherResponse.Message);
+            Assert.AreEqual("Id:1", voucherResponse.VoucherCode);
+        }
+
+        [Test]
+        public async Task CancelByIdReturnsUnknownErrorResponse()
+        {
+            //Arrange
+            cancellationResponse = CancellationResponse.UnknownError;
+
+            //Act
+            var result = await controller.CancelById(new VoucherCancellationByIdRequest { VoucherId = 1});
+            VoucherCancellationResponse voucherResponse = (VoucherCancellationResponse)(result.Result as ObjectResult).Value;
+
+            //Assert
+            Assert.AreEqual(40, voucherResponse.ErrorCode);
+            Assert.AreEqual("Unknown Error", voucherResponse.Message);
+            Assert.AreEqual("Id:1", voucherResponse.VoucherCode);
         }
     }
 }

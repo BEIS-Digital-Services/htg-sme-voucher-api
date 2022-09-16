@@ -62,9 +62,14 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                   
                     VoucherCode = voucherRequest.VoucherCode
                 };
-
+                 
                 _logger.LogInformation("VoucherCheckControllerResponse: {@voucherResponse}", JsonSerializer.Serialize(voucherResponse));
-                var vendor_api_call_status = _vendorApiCallStatusServices.CreateLogRequestDetails(voucherRequest);
+                var vendor_api_call_status = _vendorApiCallStatusServices.CreateLogRequestDetails(new LogVoucherRequest
+                {
+                    ApiCalled = "voucherCheck",
+                    VoucherRequest = voucherRequest
+                });
+
                 vendor_api_call_status.error_code = "500";
                 await LogAPiCallStatus(vendor_api_call_status, voucherResponse);
 

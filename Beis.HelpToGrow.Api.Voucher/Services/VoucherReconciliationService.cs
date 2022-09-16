@@ -145,7 +145,11 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             }
             _logger.LogInformation("VoucherReconciliationResponse: {@VoucherResponse}", JsonSerializer.Serialize(voucherResponse));
             
-            var vendor_api_call_status = _vendorApiCallStatusService.CreateLogRequestDetails(voucherReconciliationRequest);
+            var vendor_api_call_status = _vendorApiCallStatusService.CreateLogRequestDetails(new LogVoucherRequest
+            {
+                ApiCalled = "voucherReconciliation",
+                VoucherRequest = voucherReconciliationRequest
+            });
             vendor_api_call_status.error_code = voucherResponse.ErrorCode == 0 ? "200" : "400";
             logAPiCallStatus(vendor_api_call_status, voucherResponse);
             return voucherResponse;

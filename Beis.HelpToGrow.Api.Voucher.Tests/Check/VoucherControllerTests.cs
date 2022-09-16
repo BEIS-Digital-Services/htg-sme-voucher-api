@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
@@ -22,7 +21,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             _voucherCheckService = new Mock<IVoucherCheckService>();
             _logger = new Mock<ILogger<VoucherCheckController>>();
             _vendorApiCallStatusServices = new Mock<IVendorAPICallStatusServices>();
-            _vendorApiCallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherCheckRequest>()))
+            _vendorApiCallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<ILogVoucherRequest>()))
                 .Returns(new vendor_api_call_status { });
             _voucherController = new VoucherCheckController(_logger.Object, _voucherCheckService.Object, _vendorApiCallStatusServices.Object);
         }

@@ -63,8 +63,6 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
         {
             _logger.LogInformation("VoucherReconciliationControllerRequest: {@ReconciliationRequest}", JsonSerializer.Serialize(voucherReconciliationRequest));
             
-            
-            
             VoucherReconciliationResponse voucherResponse;
             
             try
@@ -85,7 +83,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
             }
             catch (Exception e)
             {
-                var vendor_api_call_status = _vendorApiCallStatusServices.CreateLogRequestDetails(voucherReconciliationRequest);
+                var vendor_api_call_status = _vendorApiCallStatusServices.CreateLogRequestDetails(new LogVoucherRequest
+                {
+                    ApiCalled = "voucherReconciliation",
+                    VoucherRequest = voucherReconciliationRequest
+                });
+                
                 vendor_api_call_status.error_code = "500";
                 voucherResponse = new VoucherReconciliationResponse
                 {
