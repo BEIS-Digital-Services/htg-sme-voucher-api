@@ -8,8 +8,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
     {
         public static IServiceCollection RegisterVoucherApiServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddOptions<EncryptionSettings>().Bind(configuration).ValidateDataAnnotations();
-            services.AddOptions<VoucherSettings>().Bind(configuration.GetSection("VoucherSettings")).ValidateDataAnnotations();            
+            // services.AddOptions<EncryptionSettings>().Bind(configuration).ValidateDataAnnotations();
+            // services.AddOptions<VoucherSettings>().Bind(configuration.GetSection("VoucherSettings")).ValidateDataAnnotations();            
             services.AddLogging(options =>
             {
                 // hook the Console Log Provider

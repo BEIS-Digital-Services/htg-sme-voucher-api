@@ -14,9 +14,21 @@ if (connectionString != null)
     });
 }
 
+// ************************** Ask about how we handle cors ***********************
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins().AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        });
+});
+
+// *******************************************************************************
+
 // Add services to the container.
 builder.Services.RegisterVoucherApiServices(builder.Configuration);
-
 
 builder.Services.AddControllers();
 
@@ -51,6 +63,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json","beis-htg-sme-voucher-service v1"));
 
 app.UseHttpsRedirection();
+app.UseCors();
 
 app.MapControllers();
 
