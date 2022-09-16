@@ -3,7 +3,7 @@
 
 namespace Beis.HelpToGrow.Api.Voucher.Controllers
 {
-    [Route("api/v{version:apiVersion}/paymentcancellation")]
+    [Route("api/paymentcancellation")]
     [ApiController]
     public class VoucherCancellationController : ControllerBase
     {
@@ -35,7 +35,6 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
         /// </remarks>
 
         // POST api/<VoucherCancellationController>
-        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpPost]
         [ProducesResponseType(typeof(VoucherCancellationResponse), 200)]
         [ProducesResponseType(typeof(VoucherCancellationResponse), 400)]
