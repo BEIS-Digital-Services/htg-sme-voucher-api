@@ -14,10 +14,8 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
     {
         public static IServiceCollection RegisterVoucherApiServices(this IServiceCollection services, IConfiguration configuration)
         {
-           
-            services.Configure<EncryptionSettings>(options =>
-                configuration.Bind(options));
-            services.Configure<VoucherSettings>(configuration.GetSection("VoucherSettings"));
+            services.AddOptions<EncryptionSettings>().Bind(configuration).ValidateDataAnnotations();
+            services.AddOptions<VoucherSettings>().Bind(configuration.GetSection("VoucherSettings")).ValidateDataAnnotations();            
             services.AddLogging(options =>
             {
                 // hook the Console Log Provider
@@ -47,10 +45,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
             services.AddVoucherPersistence(configuration);
             
             services.AddHealthChecks()
-                .AddDbContextCheck<HtgVendorSmeDbContext>()
-                .AddCheck<DependencyInjectionHealthCheckService>("Dependency Injection")
-                .AddCheck<EncryptionHealthCheckService>("Encryption", failureStatus: HealthStatus.Unhealthy,
-                    tags: new[] { "Encryption" });
+                .AddDbContextCheck<HtgVendorSmeDbContext>("Database Connection", HealthStatus.Unhealthy, new[] { HealthCheckType.Database.ToString() })
+                .AddCheck<DependencyInjectionHealthCheckService>("Dependency Injection", HealthStatus.Unhealthy, new[] {HealthCheckType.DI.ToString()})
+                .AddCheck<EncryptionHealthCheckService>("Encryption", failureStatus: HealthStatus.Unhealthy, new[] { HealthCheckType.Encryption.ToString() });
 
             services.AddSwaggerGen(c =>
             {
@@ -59,6 +56,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+
+            bool.TryParse(configuration["ShowGenerateTestVoucherEndPoint"], out var showGenerateTestVoucherEndPoint);
+            services.AddTransient(o => new CanGenerateTestVoucherAttribute(showGenerateTestVoucherEndPoint));
 
             return services;
         }       

@@ -1,9 +1,6 @@
 ﻿
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-using Beis.HelpToGrow.Common.Voucher.Enums;
-using Beis.HelpToGrow.Common.Voucher.Interfaces;
-
 namespace Beis.HelpToGrow.Api.Voucher.Controllers
 {
     [Route("api/v{version:apiVersion}/paymentcancellation")]

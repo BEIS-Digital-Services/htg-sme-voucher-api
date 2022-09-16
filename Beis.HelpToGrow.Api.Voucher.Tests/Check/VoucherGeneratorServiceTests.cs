@@ -2,9 +2,6 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using System.Threading.Tasks;
-using Beis.HelpToGrow.Common.Voucher.Config;
-using Beis.HelpToGrow.Common.Voucher.Interfaces;
-using Beis.HelpToGrow.Common.Voucher.Services;
 
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 {

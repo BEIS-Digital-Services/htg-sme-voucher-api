@@ -2,21 +2,18 @@
 
 namespace Beis.HelpToGrow.Api.Voucher.Config
 {
-
     public class CanGenerateTestVoucherAttribute : ActionFilterAttribute
     {
-        private bool canShowVouherGenerationEndpoint
+        private readonly bool _showGenerateTestVoucherEndPoint;
+
+        public CanGenerateTestVoucherAttribute(bool showGenerateTestVoucherEndPoint)
         {
-            get
-            {
-                bool value;
-                return (bool.TryParse(Environment.GetEnvironmentVariable("SHOW_GENERATE_TEST_VOUCHER_ENDPOINT") ?? "false", out value) && value);         
-            }
+            _showGenerateTestVoucherEndPoint = showGenerateTestVoucherEndPoint;
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (!canShowVouherGenerationEndpoint)
+            if (!_showGenerateTestVoucherEndPoint)
             {
                 filterContext.Result = new NotFoundResult();
             }
