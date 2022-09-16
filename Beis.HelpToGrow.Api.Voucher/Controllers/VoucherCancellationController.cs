@@ -83,7 +83,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
 
         [HttpPost] 
         [Route("cancelbyid")]
-//        [ApiExplorerSettings(IgnoreApi = true)]
+        [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(VoucherCancellationResponse), 200)]
         [ProducesResponseType(typeof(VoucherCancellationResponse), 400)]
         [ProducesResponseType(typeof(VoucherCancellationResponse), 500)]
