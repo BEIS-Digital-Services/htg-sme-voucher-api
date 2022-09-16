@@ -4,7 +4,6 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
 {
     [TestFixture]

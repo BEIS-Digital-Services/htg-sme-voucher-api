@@ -1,11 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Newtonsoft.Json.Serialization;
-using NuGet.Frameworks;
 using NUnit.Framework;
 using System.Threading.Tasks;
-
 
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 {

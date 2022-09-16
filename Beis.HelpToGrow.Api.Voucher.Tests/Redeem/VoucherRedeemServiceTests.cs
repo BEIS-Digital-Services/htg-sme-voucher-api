@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
 {
     public class VoucherRedeemServiceTests
