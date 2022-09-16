@@ -65,8 +65,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Controllers
                     Message = "Unknown token",
                     VoucherCode = voucherUpdateRequest.VoucherCode
                 };
-                var vendorApiCallStatus = _vendorApiCallStatusServices.CreateLogRequestDetails(voucherUpdateRequest);
-                vendorApiCallStatus.error_code = "500";
+                var vendorApiCallStatus = _vendorApiCallStatusServices.CreateLogRequestDetails(new LogVoucherRequest
+                {
+                    ApiCalled = "voucherRedeem",
+                    VoucherRequest = voucherUpdateRequest
+                });
+                
                 vendorApiCallStatus.error_code = "10";
                 await LogAPiCallStatus(vendorApiCallStatus, voucherResponse);
                 if (e.Message.Length > 0)

@@ -21,12 +21,16 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
         public void VendorAPICallStatusServicesCreateLogRequestDetailsHappyTests()
         {
             var voucherUpdateRequest = setupTestData();
-            var vendor_api_call_status = _vendorApiCallStatusServices.CreateLogRequestDetails(voucherUpdateRequest);
+            var vendorApiCallStatus = _vendorApiCallStatusServices.CreateLogRequestDetails(new LogVoucherRequest
+            {
+                ApiCalled = "voucherRedeem",
+                VoucherRequest = voucherUpdateRequest
+            });
 
-            Assert.AreEqual("voucherRedeem", vendor_api_call_status.api_called);
-            Assert.NotNull(vendor_api_call_status.vendor_id);
-            Assert.NotNull(vendor_api_call_status.request);
-            Assert.NotNull(vendor_api_call_status.call_datetime);
+            Assert.AreEqual("voucherRedeem", vendorApiCallStatus.api_called);
+            Assert.NotNull(vendorApiCallStatus.vendor_id);
+            Assert.NotNull(vendorApiCallStatus.request);
+            Assert.NotNull(vendorApiCallStatus.call_datetime);
         }
         
         [Test]

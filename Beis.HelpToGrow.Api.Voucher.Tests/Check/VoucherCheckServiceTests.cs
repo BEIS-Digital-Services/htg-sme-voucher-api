@@ -34,7 +34,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             _enterpriseRepository = new Mock<IEnterpriseRepository>();
             _logger = new Mock<ILogger<VoucherCheckService>>();
             _vendorApiCallStatusService = new Mock<IVendorAPICallStatusServices>();
-            _vendorApiCallStatusService.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherCheckRequest>())).Returns( (VoucherCheckRequest r) => vendorApiCallStatus);
+            _vendorApiCallStatusService.Setup(x => x.CreateLogRequestDetails(It.IsAny<ILogVoucherRequest>())).Returns( (LogVoucherRequest r) => vendorApiCallStatus);
                 
                
 

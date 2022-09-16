@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Beis.HelpToGrow.Common.Voucher.Enums;
+using Beis.HelpToGrow.Common.Voucher.Interfaces;
 
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
 {
@@ -17,10 +19,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Cancellation
         private Mock<ILogger<VoucherCancellationController>> logger;       
         private Mock<IVendorAPICallStatusServices> vendorAPICallStatusServices;
         private VoucherCancellationController controller;
-
-
-
-
+        
         [SetUp]
         public async Task Setup()
         {

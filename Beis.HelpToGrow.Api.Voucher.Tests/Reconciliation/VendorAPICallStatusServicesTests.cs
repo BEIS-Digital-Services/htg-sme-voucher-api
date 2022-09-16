@@ -27,12 +27,17 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
         public void VendorAPICallStatusServicesCreateLogRequestDetailsHappyTests()
         {
             var VoucherReconciliationRequest = setupTestData();
-            var vendor_api_call_status = _vendorApiCallStatusServices.CreateLogRequestDetails(VoucherReconciliationRequest);
 
-            Assert.AreEqual("voucherReconciliation", vendor_api_call_status.api_called);
-            Assert.NotNull(vendor_api_call_status.vendor_id);
-            Assert.NotNull(vendor_api_call_status.request);
-            Assert.NotNull(vendor_api_call_status.call_datetime);
+            var vendorApiCallStatus = _vendorApiCallStatusServices.CreateLogRequestDetails(new LogVoucherRequest
+            {
+                ApiCalled = "voucherReconciliation",
+                VoucherRequest = VoucherReconciliationRequest
+            });
+
+            Assert.AreEqual("voucherReconciliation", vendorApiCallStatus.api_called);
+            Assert.NotNull(vendorApiCallStatus.vendor_id);
+            Assert.NotNull(vendorApiCallStatus.request);
+            Assert.NotNull(vendorApiCallStatus.call_datetime);
         }
         
         [Test]

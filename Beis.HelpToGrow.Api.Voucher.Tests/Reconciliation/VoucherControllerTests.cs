@@ -62,7 +62,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
                 .ReturnsAsync(voucherResponse);
 
             var logRequestDetailsResponse = new vendor_api_call_status { error_code = "200" };
-            _vendorApiCallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherReconciliationRequest>()))
+            _vendorApiCallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<ILogVoucherRequest>()))
                 .Returns(logRequestDetailsResponse);
 
             ActionResult<VoucherReconciliationResponse> actionResult = await _voucherController.CheckVoucher(voucherReconciliationRequest);
@@ -109,7 +109,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Reconciliation
             voucherReconciliationRequest.DailySales = dailySalesTest;
 
             var logRequestDetailsResponse = new vendor_api_call_status { error_code = "200" };
-            _vendorApiCallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherReconciliationRequest>()))
+            _vendorApiCallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<ILogVoucherRequest>()))
                 .Returns(logRequestDetailsResponse);
 
             _voucherReconciliationService.Setup(x => x.GetVoucherResponse(It.IsAny<VoucherReconciliationRequest>()))

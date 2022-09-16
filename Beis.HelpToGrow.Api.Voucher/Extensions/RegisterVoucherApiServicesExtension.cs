@@ -4,6 +4,9 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Beis.HelpToGrow.Common.Services;
+using Beis.HelpToGrow.Common.Voucher.Config;
+using Beis.HelpToGrow.Common.Voucher.Interfaces;
+using Beis.HelpToGrow.Common.Voucher.Services;
 
 namespace Beis.HelpToGrow.Api.Voucher.Extensions
 {

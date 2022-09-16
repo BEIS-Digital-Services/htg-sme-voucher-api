@@ -2,6 +2,9 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using System.Threading.Tasks;
+using Beis.HelpToGrow.Common.Voucher.Config;
+using Beis.HelpToGrow.Common.Voucher.Interfaces;
+using Beis.HelpToGrow.Common.Voucher.Services;
 
 namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
 {
@@ -26,7 +29,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Check
             _configuration = new Mock<IConfiguration>();
             _mockLogger = new Mock<ILogger<VoucherGenerationService>>();
             voucherOptions = Options.Create(new VoucherSettings { VoucherCodeLength = 9 });
-            _service = new VoucherGenerationService(_encryptionService.Object, _tokenRepository.Object, _mockLogger.Object, voucherOptions  );
+            _service = new VoucherGenerationService(_encryptionService.Object, _tokenRepository.Object, _mockLogger.Object );
         }
 
         [Test]

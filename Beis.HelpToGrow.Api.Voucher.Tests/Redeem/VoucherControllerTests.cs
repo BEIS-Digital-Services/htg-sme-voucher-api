@@ -22,7 +22,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Tests.Redeem
         {
             _logger = new Mock<ILogger<VoucherRedeemController>>();
             _vendorAPICallStatusServices = new Mock<IVendorAPICallStatusServices>();
-            _vendorAPICallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<VoucherUpdateRequest>()))
+            _vendorAPICallStatusServices.Setup(x => x.CreateLogRequestDetails(It.IsAny<ILogVoucherRequest>()))
                 .Returns(new vendor_api_call_status { });
            _voucherRedeemService = new Mock<IVoucherRedeemService>();
             _voucherController = new VoucherRedeemController(_logger.Object, _voucherRedeemService.Object, _vendorAPICallStatusServices.Object);

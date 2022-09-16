@@ -32,7 +32,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
         private async Task<VoucherUpdateResponse> getVoucherErrorResponse(VoucherUpdateRequest voucherRequest, int errorCode, string message)
         {
             _logger.LogError("There was an error checking the voucher ({errorCode}) : {Message}", errorCode, message);
-            var vendorApiCallStatus = _vendorApiCallStatusService.CreateLogRequestDetails(voucherRequest);
+
+            var vendorApiCallStatus = _vendorApiCallStatusService.CreateLogRequestDetails(new LogVoucherRequest
+            {
+                ApiCalled = "voucherRedeem",
+                VoucherRequest = voucherRequest
+            });
 
             var voucherResponse = new VoucherUpdateResponse
             {
@@ -125,8 +130,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Services
             token.redemption_status_id = (long)RedemptionStatus.PendingRedemption;
             token.redemption_date = DateTime.Now;
             await _tokenRepository.UpdateToken(token);
-
-            var vendorApiCallStatus = _vendorApiCallStatusService.CreateLogRequestDetails(voucherRequest);
+            
+            var vendorApiCallStatus = _vendorApiCallStatusService.CreateLogRequestDetails(new LogVoucherRequest
+            {
+                ApiCalled = "voucherRedeem",
+                VoucherRequest = voucherRequest
+            });
             vendorApiCallStatus.error_code = "200";
             await logAPiCallStatus(vendorApiCallStatus, voucherResponse); 
 
