@@ -40,11 +40,10 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
             services.AddTransient<IProductPriceRepository, ProductPriceRepository>();
             services.AddVoucherPersistence(configuration);
 
-            services.AddHealthChecks()
-                //.AddDbContextCheck<HtgVendorSmeDbContext>("Database Connection", HealthStatus.Unhealthy, new[] { HealthCheckType.Database.ToString() })
-                .AddCheck<DatabaseHealthCheckService>("Database Connection", HealthStatus.Unhealthy, new[] { HealthCheckType.Database.ToString() })
-                .AddCheck<DependencyInjectionHealthCheckService>("Dependency Injection", HealthStatus.Unhealthy, new[] {HealthCheckType.DI.ToString()})
-                .AddCheck<Common.Voucher.Services.HealthChecks.EncryptionHealthCheckService>("Encryption", failureStatus: HealthStatus.Unhealthy, new[] { HealthCheckType.Encryption.ToString() });
+            services.AddHealthChecks()                
+                .AddCheck<DatabaseHealthCheckService>(HealthCheckConstants.DatabaseName, HealthStatus.Unhealthy, new[] { HealthCheckType.Database.ToString() })
+                .AddCheck<DependencyInjectionHealthCheckService>(HealthCheckConstants.DependencyInjectionName, HealthStatus.Unhealthy, new[] {HealthCheckType.DI.ToString()})
+                .AddCheck<Common.Voucher.Services.HealthChecks.EncryptionHealthCheckService>(HealthCheckConstants.EncryptionName, failureStatus: HealthStatus.Unhealthy, new[] { HealthCheckType.Encryption.ToString() });
 
             services.AddSwaggerGen(c =>
             {
