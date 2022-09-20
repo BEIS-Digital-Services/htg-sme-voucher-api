@@ -8,8 +8,9 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
     {
         public static IServiceCollection RegisterVoucherApiServices(this IServiceCollection services, IConfiguration configuration)
         {
-            // services.AddOptions<EncryptionSettings>().Bind(configuration).ValidateDataAnnotations();
-            // services.AddOptions<VoucherSettings>().Bind(configuration.GetSection("VoucherSettings")).ValidateDataAnnotations();            
+            services.AddOptions<HealthcheckPublisherSettings>().Bind(configuration).ValidateDataAnnotations();
+            services.AddOptions<EncryptionSettings>().Bind(configuration).ValidateDataAnnotations();
+            services.AddOptions<VoucherSettings>().Bind(configuration.GetSection("VoucherSettings")).ValidateDataAnnotations();            
             services.AddLogging(options =>
             {
                 // hook the Console Log Provider
@@ -17,6 +18,7 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
                 options.SetMinimumLevel(LogLevel.Trace);
 
             });
+            services.AddScoped<IApplicationInsightsPublisher, ApplicationInsightsPublisher>();
             services.AddApplicationInsightsTelemetry(configuration["AzureMonitorInstrumentationKey"]);
 
             services.AddSingleton<IEncryptionService, AesEncryption>();
@@ -37,11 +39,12 @@ namespace Beis.HelpToGrow.Api.Voucher.Extensions
             services.AddTransient<IVoucherCancellationService, VoucherCancellationService>();
             services.AddTransient<IProductPriceRepository, ProductPriceRepository>();
             services.AddVoucherPersistence(configuration);
-            
+
             services.AddHealthChecks()
-                .AddDbContextCheck<HtgVendorSmeDbContext>("Database Connection", HealthStatus.Unhealthy, new[] { HealthCheckType.Database.ToString() })
+                //.AddDbContextCheck<HtgVendorSmeDbContext>("Database Connection", HealthStatus.Unhealthy, new[] { HealthCheckType.Database.ToString() })
+                .AddCheck<DatabaseHealthCheckService>("Database Connection", HealthStatus.Unhealthy, new[] { HealthCheckType.Database.ToString() })
                 .AddCheck<DependencyInjectionHealthCheckService>("Dependency Injection", HealthStatus.Unhealthy, new[] {HealthCheckType.DI.ToString()})
-                .AddCheck<EncryptionHealthCheckService>("Encryption", failureStatus: HealthStatus.Unhealthy, new[] { HealthCheckType.Encryption.ToString() });
+                .AddCheck<Common.Voucher.Services.HealthChecks.EncryptionHealthCheckService>("Encryption", failureStatus: HealthStatus.Unhealthy, new[] { HealthCheckType.Encryption.ToString() });
 
             services.AddSwaggerGen(c =>
             {
