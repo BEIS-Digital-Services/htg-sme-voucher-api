@@ -10,9 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Beis.HelpToGrow.Common" Version="6.1.29" />
-    <PackageReference Include="Beis.HelpToGrow.Common.Voucher" Version="6.1.29" />
-    <PackageReference Include="Beis.HelpToGrow.Repositories" Version="6.1.29" />
+    <PackageReference Include="Beis.HelpToGrow.Common.Voucher" Version="6.1.31" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.20.0" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.5" />
