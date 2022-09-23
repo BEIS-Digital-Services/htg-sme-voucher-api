@@ -14,18 +14,19 @@ if (connectionString != null)
     });
 }
 
-// ************************** Ask about how we handle cors ***********************
+// **************** Adding cors for local development - Cors will be handled  ************** //
+// **************** by the app service in azure for other environments *********************** //
 
-builder.Services.AddCors(options =>
+if (builder.Environment.IsDevelopment())
 {
-    options.AddDefaultPolicy(
-        policy =>
-        {
-            policy.WithOrigins().AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-        });
-});
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(
+            policy => { policy.WithOrigins().AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); });
+    });
+}
 
-// *******************************************************************************
+// **************************************************************************************** //
 
 // Add services to the container.
 builder.Services.RegisterVoucherApiServices(builder.Configuration);
@@ -63,7 +64,12 @@ app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json","beis-htg-sme-voucher-service v1"));
 
 app.UseHttpsRedirection();
-app.UseCors();
+
+// ********* Adding cors for local development *********************** //
+if (builder.Environment.IsDevelopment())
+{
+    app.UseCors();
+}
 
 app.MapControllers();
 
